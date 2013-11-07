@@ -43,17 +43,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.FirstPointY = new System.Windows.Forms.TextBox();
             this.SecondPointY = new System.Windows.Forms.TextBox();
-            this.BumpCount = new System.Windows.Forms.TextBox();
             this.FirstPointX = new System.Windows.Forms.TextBox();
             this.SecondPointX = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.BumpLog = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -61,7 +58,6 @@
             this.button7 = new System.Windows.Forms.Button();
             this.EpsLabel = new System.Windows.Forms.Label();
             this.Eps = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -198,24 +194,13 @@
             this.listBox1.Size = new System.Drawing.Size(120, 329);
             this.listBox1.TabIndex = 15;
             // 
-            // button4
-            // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(12, 213);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(99, 27);
-            this.button4.TabIndex = 19;
-            this.button4.Text = "Таблица";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // FirstPointY
             // 
             this.FirstPointY.Location = new System.Drawing.Point(169, 256);
             this.FirstPointY.Name = "FirstPointY";
             this.FirstPointY.Size = new System.Drawing.Size(50, 20);
             this.FirstPointY.TabIndex = 20;
-            this.FirstPointY.Text = "15";
+            this.FirstPointY.Text = "300";
             // 
             // SecondPointY
             // 
@@ -224,15 +209,6 @@
             this.SecondPointY.Size = new System.Drawing.Size(50, 20);
             this.SecondPointY.TabIndex = 21;
             this.SecondPointY.Text = "20";
-            // 
-            // BumpCount
-            // 
-            this.BumpCount.Location = new System.Drawing.Point(169, 318);
-            this.BumpCount.Name = "BumpCount";
-            this.BumpCount.Size = new System.Drawing.Size(50, 20);
-            this.BumpCount.TabIndex = 22;
-            this.BumpCount.Text = "1500";
-            this.BumpCount.Visible = false;
             // 
             // FirstPointX
             // 
@@ -286,22 +262,12 @@
             this.label10.TabIndex = 28;
             this.label10.Text = "Y2";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 321);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(140, 13);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "Количество столкновений";
-            this.label11.Visible = false;
-            // 
             // BumpLog
             // 
             this.BumpLog.FormattingEnabled = true;
             this.BumpLog.Location = new System.Drawing.Point(515, 41);
             this.BumpLog.Name = "BumpLog";
-            this.BumpLog.Size = new System.Drawing.Size(310, 329);
+            this.BumpLog.Size = new System.Drawing.Size(374, 329);
             this.BumpLog.TabIndex = 30;
             // 
             // button5
@@ -337,9 +303,9 @@
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(117, 213);
+            this.button7.Location = new System.Drawing.Point(11, 213);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(99, 27);
+            this.button7.Size = new System.Drawing.Size(205, 27);
             this.button7.TabIndex = 34;
             this.button7.Text = "Рисунок";
             this.button7.UseVisualStyleBackColor = true;
@@ -348,7 +314,7 @@
             // EpsLabel
             // 
             this.EpsLabel.AutoSize = true;
-            this.EpsLabel.Location = new System.Drawing.Point(122, 321);
+            this.EpsLabel.Location = new System.Drawing.Point(18, 324);
             this.EpsLabel.Name = "EpsLabel";
             this.EpsLabel.Size = new System.Drawing.Size(41, 13);
             this.EpsLabel.TabIndex = 35;
@@ -356,28 +322,17 @@
             // 
             // Eps
             // 
-            this.Eps.Location = new System.Drawing.Point(176, 317);
+            this.Eps.Location = new System.Drawing.Point(65, 321);
             this.Eps.Name = "Eps";
             this.Eps.Size = new System.Drawing.Size(42, 20);
             this.Eps.TabIndex = 36;
             this.Eps.Text = "0,01";
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(38, 391);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(72, 33);
-            this.button8.TabIndex = 37;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(837, 444);
-            this.Controls.Add(this.button8);
+            this.ClientSize = new System.Drawing.Size(901, 379);
             this.Controls.Add(this.Eps);
             this.Controls.Add(this.EpsLabel);
             this.Controls.Add(this.button7);
@@ -385,17 +340,14 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.BumpLog);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.SecondPointX);
             this.Controls.Add(this.FirstPointX);
-            this.Controls.Add(this.BumpCount);
             this.Controls.Add(this.SecondPointY);
             this.Controls.Add(this.FirstPointY);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.listBox2);
@@ -437,17 +389,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox FirstPointY;
         private System.Windows.Forms.TextBox SecondPointY;
-        private System.Windows.Forms.TextBox BumpCount;
         private System.Windows.Forms.TextBox FirstPointX;
         private System.Windows.Forms.TextBox SecondPointX;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ListBox BumpLog;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label12;
@@ -455,7 +404,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label EpsLabel;
         private System.Windows.Forms.TextBox Eps;
-        private System.Windows.Forms.Button button8;
     }
 }
 

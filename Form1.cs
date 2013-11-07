@@ -28,12 +28,10 @@ namespace raytraicing
         public int maxX; // Наибольший X
         public int maxY; // Наибольший Y
         public int RayCount; // Количество лучей
-        List<Point> Points = new List<Point>(); // Список точек
-        List<Point> Ribs = new List<Point>(); // Список рёбер
-        List<double> Coefs = new List<double>(); // Список коэфициентов звукопоглощения
+        Ribs AllRibs = new Ribs(); // Список структур со всей информацией о рёбрах
         List<List<List<int>>> col = new List<List<List<int>>>(); // Списки рёбер в каждом сегменте
-        List<List<List<int>>> ray = new List<List<List<int>>>(); // Списки лучей в каждом сегменте
-        Point3D pos = new Point3D(1, 1, 1);
+       // List<List<List<int>>> ray = new List<List<List<int>>>(); // Списки лучей в каждом сегменте
+       // Point3D pos = new Point3D(1, 1, 1);
         public Bitmap pic; // Картинка
         //public PictureBox pic;
         
@@ -47,7 +45,7 @@ namespace raytraicing
         }
 
         //Проверка не являются ли луч и отрезок параллельными
-        public bool Parallel(int num, PointF UVect)
+      /*  public bool Parallel(int num, PointF UVect)
         {
             // Формируем направляющий, единичный вектор ребра
             PointF RUVect = new PointF();
@@ -90,8 +88,8 @@ namespace raytraicing
             }
             return NormalR;
         }
-
-        public int GetCrossPoint2(int num, PointF UVect, Point FP)
+*/
+       /* public int GetCrossPoint2(int num, PointF UVect, Point FP)
         {
             PointF RUVect = new PointF();
             Point RFP = Points[Ribs[num].X];
@@ -135,7 +133,7 @@ namespace raytraicing
             tau = (int)((RUVect.X * (FP.Y - RFP.Y) - RUVect.Y * (FP.X - RFP.X)) / (RUVect.Y * UVect.X - RUVect.X * UVect.Y));
             Res = new Point(RFP.X + (int)(t * RUVect.X), RFP.Y + (int)(t * RUVect.Y));
         }
-
+        
         public void NextCell(ref int t, ref int x, ref int y, PointF UVect, Point FirstPoint)
         {
             int curX = x / XGR;
@@ -149,7 +147,7 @@ namespace raytraicing
                 if ((x < 0) || (x >= maxX) || (y < 0) || (y >= maxY)) return; // Выход за границы
             } while ((x / XGR == curX) && (y / YGR == curY));
         }
-
+*/
         private void button2_Click(object sender, EventArgs e)
         {
             Form Form2 = new Form2();
@@ -166,10 +164,8 @@ namespace raytraicing
         private void button3_Click(object sender, EventArgs e)
         {
             RayCount = 0;
-            ray.Clear();
+            //ray.Clear();
             col.Clear();
-            Ribs.Clear();
-            Points.Clear();
             XGR = Convert.ToInt32(XGridRange.Text);
             YGR = Convert.ToInt32(YGridRange.Text);
             maxX = Convert.ToInt32(XRange.Text);
@@ -180,29 +176,25 @@ namespace raytraicing
             g.Dispose();
             GridXCount = maxX / XGR;
             GridYCount = maxY / YGR;
-
-            // Список точек
             
-            for (int i = 0; i < listBox1.Items.Count; i++)
-            {
-                int IndexOfSpace = listBox1.Items[i].ToString().IndexOf(' ');
-                Points.Add(new Point(Convert.ToInt32(listBox1.Items[i].ToString().Substring(0,IndexOfSpace)),
-                    Convert.ToInt32(listBox1.Items[i].ToString().Substring(IndexOfSpace+1))));
-            }
-            
-            // Список рёбер
-
+            // Заполнение структуры
             for (int i = 0; i < listBox2.Items.Count; i++)
             {
                 int IndexOfSpace1 = listBox2.Items[i].ToString().IndexOf(' ');
                 int IndexOfSpace2 = listBox2.Items[i].ToString().LastIndexOf(' ');
-                Ribs.Add(new Point(Convert.ToInt32(listBox2.Items[i].ToString().Substring(0, IndexOfSpace1)),
-                    Convert.ToInt32(listBox2.Items[i].ToString().Substring(IndexOfSpace1 + 1,IndexOfSpace2-IndexOfSpace1))));
-                Coefs.Add(Convert.ToDouble(listBox2.Items[i].ToString().Substring(IndexOfSpace2+1)));
-            }
-            
-            // Подготовка матрицы
+                int FPNum = Convert.ToInt32(listBox2.Items[i].ToString().Substring(0, IndexOfSpace1));
+                int SPNum = Convert.ToInt32(listBox2.Items[i].ToString().Substring(IndexOfSpace1 + 1, IndexOfSpace2 - IndexOfSpace1));
+                int IndexOfSpaceFP = listBox1.Items[FPNum].ToString().IndexOf(' ');
+                int IndexOfSpaceSP = listBox1.Items[SPNum].ToString().IndexOf(' ');
+                Point FP = new Point(Convert.ToInt32(listBox1.Items[FPNum].ToString().Substring(0, IndexOfSpaceFP)),
+                                     Convert.ToInt32(listBox1.Items[FPNum].ToString().Substring(IndexOfSpaceFP + 1)));
+                Point SP = new Point(Convert.ToInt32(listBox1.Items[SPNum].ToString().Substring(0, IndexOfSpaceSP)),
+                                     Convert.ToInt32(listBox1.Items[SPNum].ToString().Substring(IndexOfSpaceSP + 1)));
 
+                AllRibs.Add(FP, SP, Convert.ToDouble(listBox2.Items[i].ToString().Substring(IndexOfSpace2 + 1)));
+            }
+
+            // Подготовка матрицы
             for (int i = 0; i <= GridXCount; i++)
             {
                 col.Add(new List<List<int>>());
@@ -214,74 +206,30 @@ namespace raytraicing
             
             // Заполнение матрицы
 
-            for (int i = 0; i < Ribs.Count; i++)
+            for (int i = 0; i < AllRibs.GetCount(); i++)
             {
-                Point FirstPoint = Points[Ribs[i].X];
-                // Формируем направляющий, единичный вектор ребра
-                Point Vect = new Point(Points[Ribs[i].Y].X - Points[Ribs[i].X].X, Points[Ribs[i].Y].Y - Points[Ribs[i].X].Y);
-                float CurNorm = norma(Vect);
-                PointF UVect = new PointF(Vect.X / CurNorm, Vect.Y / CurNorm);
-                Graphics gr = Graphics.FromImage(pic);
-                gr.DrawLine(new Pen(Color.Black), Points[Ribs[i].X], Points[Ribs[i].Y]);
-                gr.Dispose();
-                for (int t = 0; t <= (int)CurNorm; t++)
+                AllRibs[i].DrawRib(Graphics.FromImage(pic));
+                for (int t = 0; t <= (int)AllRibs[i].Length; t++)
                 {
-                    int x = FirstPoint.X + (int)(t * UVect.X);
-                    int y = FirstPoint.Y + (int)(t * UVect.Y);
+                    int x = AllRibs[i].FirstPoint.X + (int)(t * AllRibs[i].DirectingVector.X);
+                    int y = AllRibs[i].FirstPoint.Y + (int)(t * AllRibs[i].DirectingVector.Y);
                     if (col[x / XGR][y / YGR].Contains(i) == false) col[x / XGR][y / YGR].Add(i); // Добавляем если надо информацию об отрезке
                 }
             }
 
             // Делаем доступными кнопки
-            button4.Enabled = true;
             button5.Enabled = true;
             button7.Enabled = true;
 
             // Подготовка матрицы для луча
 
-            ray.Clear();
+           /* ray.Clear();
             for (int k = 0; k <= GridXCount; k++)
             {
                 ray.Add(new List<List<int>>(GridYCount));
                 for (int j = 0; j <= GridYCount; j++)
                     ray[k].Add(new List<int>());
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Form3 f = new Form3();
-            f.Owner = this;
-            f.Show();
-            for (int i = 0; i < GridXCount; i++)
-            {
-                (Application.OpenForms["Form3"].Controls["dataGridView1"] as DataGridView).Columns.Add(i.ToString(), i.ToString());
-                (Application.OpenForms["Form3"].Controls["dataGridView1"] as DataGridView).Columns[i].Width = 50;
-            }
-            (Application.OpenForms["Form3"].Controls["dataGridView1"] as DataGridView).Rows.Add(GridYCount);
-            for (int i = 0; i < GridYCount; i++)
-                (Application.OpenForms["Form3"].Controls["dataGridView1"] as DataGridView).Rows[i].HeaderCell.Value = i.ToString();
-
-            /* Номера рёбер */
-            for (int i = 0; i < GridXCount; i++)
-            {
-                for (int j = 0; j < GridYCount; j++)
-                {
-                    if (col[i][j].Count > 0)
-                    {
-                        string temp = "";
-                        for (int k = 0; k < col[i][j].Count; k++)
-                            temp += col[i][j][k].ToString()+"; ";
-                        (Application.OpenForms["Form3"].Controls["dataGridView1"] as DataGridView)[i, j].Value = temp.Substring(0,temp.Length-2);
-                    }
-                    if (ray[i][j].Count > 0)
-                    {
-                        if (ray[i][j].Max() == RayCount)
-                                (Application.OpenForms["Form3"].Controls["dataGridView1"] as DataGridView)[i, j].Style.BackColor = Color.Cyan;
-                        else (Application.OpenForms["Form3"].Controls["dataGridView1"] as DataGridView)[i, j].Style.BackColor = Color.Gray;
-                    }
-                }
-            }
+            }*/
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -293,36 +241,38 @@ namespace raytraicing
             int X2 = Convert.ToInt32(SecondPointX.Text);
             int Y1 = Convert.ToInt32(FirstPointY.Text);
             int Y2 = Convert.ToInt32(SecondPointY.Text);
-            int bcount = Convert.ToInt32(BumpCount.Text);
-            Point FirstPoint = new Point(X1, Y1);
-
+            //int bcount = Convert.ToInt32(BumpCount.Text);
+            //Point FirstPoint = new Point(X1, Y1);
+            Ray ray = new Ray(new Point(X1, Y1), new PointF(X2 - X1, Y2 - Y1));
             // Формируем направляющий, единичный вектор луча
-            Point Vect = new Point(X2 - X1, Y2 - Y1);
-            PointF UVect = new PointF(Vect.X / norma(Vect), Vect.Y / norma(Vect));
+           // Point Vect = new Point(X2 - X1, Y2 - Y1);
+            //PointF UVect = new PointF(Vect.X / norma(Vect), Vect.Y / norma(Vect));
             int numR = -1;
 
-            int t = 0;
+           // int t = 0;
             int temp_t = 0;
-            int x = FirstPoint.X;
-            int y = FirstPoint.Y;
+            //int x = FirstPoint.X;
+           // int y = FirstPoint.Y;
             double epsilon = Convert.ToDouble(Eps.Text);
             
             //for (int i = 0; i != bcount; ) // В цикле двигаемся до нужного количества столкновений либо выхода за границы
-            for (double power = 1.0; power > epsilon;)
+            for (double power = 1.0; power > epsilon;) // Луч отражается пока его мощность не станет меньше epsilon
             {
                 PointF NormalR = new PointF();
                 Point Res = new Point();
 
                 // Ищем не пустую клетку
 
-                while (col[x / XGR][y / YGR].Count.Equals(0))
+                while (col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count.Equals(0))
                 {
-                    NextCell(ref t, ref x, ref y, UVect, FirstPoint);
-                    if ((x < 0) || (x >= maxX) || (y < 0) || (y >= maxY))
+                    //NextCell(ref t, ref x, ref y, UVect, FirstPoint);
+                    ray.NextCell(XGR, YGR);
+                    if ((ray.CurPoint.X < 0) || (ray.CurPoint.X >= maxX) || (ray.CurPoint.Y < 0) || (ray.CurPoint.Y >= maxY))
                     {
-                        gr = Graphics.FromImage(pic);
-                        gr.DrawLine(new Pen(Color.Aquamarine), FirstPoint, new Point(x,y));
-                        gr.Dispose();
+                        //gr = Graphics.FromImage(pic);
+                        //gr.DrawLine(Pens.Aquamarine, ray.FirstPoint, ray.CurPoint);
+                       // gr.Dispose();
+                        ray.DrawRay(Graphics.FromImage(pic));
                         MessageBox.Show("Ошибка! Выход за границы области!");
                         return;
                     }
@@ -330,44 +280,43 @@ namespace raytraicing
 
                 List<Point> Results = new List<Point>();
                 List<float> Norms = new List<float>();
-                List<int> Rnums = new List<int>(col[x / XGR][y / YGR]); // Список рёбер этого сегмента копируем, он известен заранее
+                List<int> Rnums = new List<int>(col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR]); // Список рёбер этого сегмента копируем, он известен заранее
 
                 // Собираем информацию о точках пересечения
-                for (int j = 0; j < col[x / XGR][y / YGR].Count; j++)
+                for (int j = 0; j < col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count; j++)
                 {
-                    int num = col[x / XGR][y / YGR][j];
-                    GetCrossPoint(num, UVect, FirstPoint, ref Res, ref temp_t);
-                    Results.Add(Res); 
-                    Norms.Add(norma(new Point(Res.X - x, Res.Y - y)));
+                    int num = col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR][j];
+                    //GetCrossPoint(num, UVect, FirstPoint, ref Res, ref temp_t);
+                    Res = AllRibs[num].GetCrossPointXY(ray);
+                    Results.Add(Res);
+                    Norms.Add(ray.GetDistance(Res));
                 }
                 
                 // Выясняем какие точки лишние
                 List<int> DelRNums = new List<int>();
 
-                for (int j = 0; j < col[x / XGR][y / YGR].Count; j++)
+                for (int j = 0; j < col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count; j++)
                 {
-                    int num = col[x / XGR][y / YGR][j];
-                    if (Parallel(num, UVect))                                                   // Отрезок параллелен лучу
+                    int num = col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR][j];
+                    if (AllRibs[num].IsParallel(ray))                                                   // Отрезок параллелен лучу
                     {
                         DelRNums.Add(num);
                         continue;
                     }
-                    temp_t = GetCrossPoint2(num, UVect, FirstPoint);
+                    /*temp_t = AllRibs[num].GetCrossPointT(ray);
                     if (temp_t < 0)                                                             // Мы остались в той же точке, либо отрезок находится раньше начала луча
                     {
                         DelRNums.Add(num);
                         continue;
-                    }
-                    GetCrossPoint(num, UVect, FirstPoint, ref Res, ref temp_t);
-                    if ((Res.X > Math.Max(Points[Ribs[num].Y].X, Points[Ribs[num].X].X)) ||       // Проверяем принадлежит ли точка пересечения отрезку
-                        (Res.X < Math.Min(Points[Ribs[num].Y].X, Points[Ribs[num].X].X)) ||
-                        (Res.Y > Math.Max(Points[Ribs[num].Y].Y, Points[Ribs[num].X].Y)) ||
-                        (Res.Y < Math.Min(Points[Ribs[num].Y].Y, Points[Ribs[num].X].Y)))
+                    }*/
+                    //GetCrossPoint(num, UVect, FirstPoint, ref Res, ref temp_t);
+                    Res = AllRibs[num].GetCrossPointXY(ray);
+                    if (AllRibs[num].IsInhere(ray))//if (AllRibs[num].IsInhere(ray))
                     {
                         DelRNums.Add(num);
                         continue;
                     }
-                    if ((Res.X / XGR != x / XGR) && (Res.Y / YGR != y / YGR))                   // Проверяем принадлежит ли точка пересечения клетке
+                    if ((Res.X / XGR != ray.CurPoint.X / XGR) && (Res.Y / YGR != ray.CurPoint.X / YGR))                   // Проверяем принадлежит ли точка пересечения клетке
                     {
                         DelRNums.Add(num);
                         continue;
@@ -391,29 +340,27 @@ namespace raytraicing
                 // Проверям остались ли рёбра в списке
                 if (Rnums.Count.Equals(0))  
                 {
-                    NextCell(ref t, ref x, ref y, UVect, FirstPoint);
+                    ray.NextCell(XGR, YGR);
+                    //NextCell(ref t, ref x, ref y, UVect, FirstPoint);
                     continue;
                 }
                 
                 // Столкновение всё-таки произошло
                 
                 gr = Graphics.FromImage(pic);
-                gr.DrawLine(new Pen(Color.Aquamarine), FirstPoint, Results[Norms.IndexOf(Norms.Min())]);
+                gr.DrawLine(Pens.Aquamarine, ray.FirstPoint, Results[Norms.IndexOf(Norms.Min())]);
                 gr.Dispose();
 
                 numR = Rnums[Norms.IndexOf(Norms.Min())];
-                NormalR = RibNormal(numR);
+                /*NormalR = RibNormal(numR);
                 UVect = new PointF(UVect.X - 2 * (UVect.X * NormalR.X + UVect.Y * NormalR.Y) * NormalR.X, UVect.Y - 2 * (UVect.X * NormalR.X + UVect.Y * NormalR.Y) * NormalR.Y);
                 FirstPoint = Results[Norms.IndexOf(Norms.Min())];
                 t = 0;
                 x = FirstPoint.X;
-                y = FirstPoint.Y;
-                power *= (1 - Coefs[Norms.IndexOf(Norms.Min())]);
-                BumpLog.Items.Add(@"Было столкновение в точке: (" + FirstPoint.X.ToString() + ";" + FirstPoint.Y.ToString() + ") Сила луча: " + power.ToString());
-                //BumpLog.Items.Add(@i.ToString() + " (" + x.ToString() + ";" + y.ToString() + ")" + " (" + UVect.X.ToString() + ";" + UVect.Y.ToString() + ")");
-                //i++;
-                
-
+                y = FirstPoint.Y;*/
+                ray.ReNew(AllRibs[numR], Results[Norms.IndexOf(Norms.Min())]);
+                //power *= (1 - Coefs[Norms.IndexOf(Norms.Min())]);
+                BumpLog.Items.Add(@"Было столкновение в точке: (" + ray.FirstPoint.X.ToString() + ";" + ray.FirstPoint.Y.ToString() + ") Сила луча: " + power.ToString());
             }
         }
 
@@ -430,9 +377,5 @@ namespace raytraicing
             f4.ShowDialog();
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(Convert.ToDouble("0,1").ToString());
-        }
     }
 }
