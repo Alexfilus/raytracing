@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.YRange = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,12 +57,18 @@
             this.button7 = new System.Windows.Forms.Button();
             this.EpsLabel = new System.Windows.Forms.Label();
             this.Eps = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.headX = new System.Windows.Forms.TextBox();
+            this.headY = new System.Windows.Forms.TextBox();
+            this.RadLabel = new System.Windows.Forms.Label();
+            this.headRad = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(12, 41);
+            this.button1.Location = new System.Drawing.Point(3, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(205, 23);
             this.button1.TabIndex = 0;
@@ -71,20 +76,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(205, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Сгенерировать тестовые файлы";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 96);
+            this.label3.Location = new System.Drawing.Point(4, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 9;
@@ -92,7 +87,7 @@
             // 
             // YRange
             // 
-            this.YRange.Location = new System.Drawing.Point(42, 93);
+            this.YRange.Location = new System.Drawing.Point(33, 62);
             this.YRange.Name = "YRange";
             this.YRange.Size = new System.Drawing.Size(39, 20);
             this.YRange.TabIndex = 8;
@@ -101,7 +96,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 70);
+            this.label2.Location = new System.Drawing.Point(4, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 13);
             this.label2.TabIndex = 7;
@@ -109,7 +104,7 @@
             // 
             // XRange
             // 
-            this.XRange.Location = new System.Drawing.Point(42, 70);
+            this.XRange.Location = new System.Drawing.Point(33, 39);
             this.XRange.Name = "XRange";
             this.XRange.Size = new System.Drawing.Size(39, 20);
             this.XRange.TabIndex = 6;
@@ -117,7 +112,7 @@
             // 
             // XGridRange
             // 
-            this.XGridRange.Location = new System.Drawing.Point(117, 119);
+            this.XGridRange.Location = new System.Drawing.Point(108, 88);
             this.XGridRange.Name = "XGridRange";
             this.XGridRange.Size = new System.Drawing.Size(46, 20);
             this.XGridRange.TabIndex = 10;
@@ -126,7 +121,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 126);
+            this.label1.Location = new System.Drawing.Point(-1, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 11;
@@ -135,7 +130,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 152);
+            this.label4.Location = new System.Drawing.Point(-1, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 13);
             this.label4.TabIndex = 13;
@@ -143,7 +138,7 @@
             // 
             // YGridRange
             // 
-            this.YGridRange.Location = new System.Drawing.Point(117, 145);
+            this.YGridRange.Location = new System.Drawing.Point(108, 114);
             this.YGridRange.Name = "YGridRange";
             this.YGridRange.Size = new System.Drawing.Size(46, 20);
             this.YGridRange.TabIndex = 12;
@@ -152,11 +147,11 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(12, 180);
+            this.button3.Location = new System.Drawing.Point(3, 149);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(205, 27);
+            this.button3.Size = new System.Drawing.Size(99, 27);
             this.button3.TabIndex = 14;
-            this.button3.Text = "Проверка";
+            this.button3.Text = "Подготовка";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -196,7 +191,7 @@
             // 
             // FirstPointY
             // 
-            this.FirstPointY.Location = new System.Drawing.Point(117, 255);
+            this.FirstPointY.Location = new System.Drawing.Point(108, 182);
             this.FirstPointY.Name = "FirstPointY";
             this.FirstPointY.Size = new System.Drawing.Size(50, 20);
             this.FirstPointY.TabIndex = 20;
@@ -204,7 +199,7 @@
             // 
             // SecondPointY
             // 
-            this.SecondPointY.Location = new System.Drawing.Point(117, 281);
+            this.SecondPointY.Location = new System.Drawing.Point(108, 208);
             this.SecondPointY.Name = "SecondPointY";
             this.SecondPointY.Size = new System.Drawing.Size(50, 20);
             this.SecondPointY.TabIndex = 21;
@@ -212,7 +207,7 @@
             // 
             // FirstPointX
             // 
-            this.FirstPointX.Location = new System.Drawing.Point(42, 255);
+            this.FirstPointX.Location = new System.Drawing.Point(33, 182);
             this.FirstPointX.Name = "FirstPointX";
             this.FirstPointX.Size = new System.Drawing.Size(50, 20);
             this.FirstPointX.TabIndex = 23;
@@ -220,7 +215,7 @@
             // 
             // SecondPointX
             // 
-            this.SecondPointX.Location = new System.Drawing.Point(42, 281);
+            this.SecondPointX.Location = new System.Drawing.Point(33, 208);
             this.SecondPointX.Name = "SecondPointX";
             this.SecondPointX.Size = new System.Drawing.Size(50, 20);
             this.SecondPointX.TabIndex = 24;
@@ -229,7 +224,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 258);
+            this.label7.Location = new System.Drawing.Point(7, 185);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(20, 13);
             this.label7.TabIndex = 25;
@@ -238,7 +233,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(91, 258);
+            this.label8.Location = new System.Drawing.Point(82, 185);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(20, 13);
             this.label8.TabIndex = 26;
@@ -247,7 +242,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 284);
+            this.label9.Location = new System.Drawing.Point(7, 211);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(20, 13);
             this.label9.TabIndex = 27;
@@ -256,7 +251,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(91, 284);
+            this.label10.Location = new System.Drawing.Point(82, 211);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(20, 13);
             this.label10.TabIndex = 28;
@@ -273,9 +268,9 @@
             // button5
             // 
             this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(11, 343);
+            this.button5.Location = new System.Drawing.Point(108, 149);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(208, 23);
+            this.button5.Size = new System.Drawing.Size(99, 27);
             this.button5.TabIndex = 31;
             this.button5.Text = "Пустить луч";
             this.button5.UseVisualStyleBackColor = true;
@@ -292,7 +287,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(87, 70);
+            this.button6.Location = new System.Drawing.Point(78, 39);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(129, 38);
             this.button6.TabIndex = 33;
@@ -303,7 +298,7 @@
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(11, 213);
+            this.button7.Location = new System.Drawing.Point(2, 274);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(205, 27);
             this.button7.TabIndex = 34;
@@ -314,7 +309,7 @@
             // EpsLabel
             // 
             this.EpsLabel.AutoSize = true;
-            this.EpsLabel.Location = new System.Drawing.Point(18, 324);
+            this.EpsLabel.Location = new System.Drawing.Point(9, 251);
             this.EpsLabel.Name = "EpsLabel";
             this.EpsLabel.Size = new System.Drawing.Size(41, 13);
             this.EpsLabel.TabIndex = 35;
@@ -322,17 +317,74 @@
             // 
             // Eps
             // 
-            this.Eps.Location = new System.Drawing.Point(65, 321);
+            this.Eps.Location = new System.Drawing.Point(56, 248);
             this.Eps.Name = "Eps";
             this.Eps.Size = new System.Drawing.Size(42, 20);
             this.Eps.TabIndex = 36;
             this.Eps.Text = "0,01";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(114, 310);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 13);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "Y головы";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 310);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 13);
+            this.label13.TabIndex = 39;
+            this.label13.Text = "X головы";
+            // 
+            // headX
+            // 
+            this.headX.Location = new System.Drawing.Point(67, 307);
+            this.headX.Name = "headX";
+            this.headX.Size = new System.Drawing.Size(41, 20);
+            this.headX.TabIndex = 38;
+            this.headX.Text = "480";
+            // 
+            // headY
+            // 
+            this.headY.Location = new System.Drawing.Point(174, 307);
+            this.headY.Name = "headY";
+            this.headY.Size = new System.Drawing.Size(50, 20);
+            this.headY.TabIndex = 37;
+            this.headY.Text = "100";
+            // 
+            // RadLabel
+            // 
+            this.RadLabel.AutoSize = true;
+            this.RadLabel.Location = new System.Drawing.Point(7, 336);
+            this.RadLabel.Name = "RadLabel";
+            this.RadLabel.Size = new System.Drawing.Size(111, 13);
+            this.RadLabel.TabIndex = 41;
+            this.RadLabel.Text = "Радиус слышимости";
+            // 
+            // headRad
+            // 
+            this.headRad.Location = new System.Drawing.Point(124, 333);
+            this.headRad.Name = "headRad";
+            this.headRad.Size = new System.Drawing.Size(100, 20);
+            this.headRad.TabIndex = 42;
+            this.headRad.Text = "50";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 379);
+            this.Controls.Add(this.headRad);
+            this.Controls.Add(this.RadLabel);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.headX);
+            this.Controls.Add(this.headY);
             this.Controls.Add(this.Eps);
             this.Controls.Add(this.EpsLabel);
             this.Controls.Add(this.button7);
@@ -361,7 +413,6 @@
             this.Controls.Add(this.YRange);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.XRange);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -376,7 +427,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox YRange;
         private System.Windows.Forms.Label label2;
@@ -405,6 +455,12 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label EpsLabel;
         private System.Windows.Forms.TextBox Eps;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox headX;
+        private System.Windows.Forms.TextBox headY;
+        private System.Windows.Forms.Label RadLabel;
+        private System.Windows.Forms.TextBox headRad;
     }
 }
 

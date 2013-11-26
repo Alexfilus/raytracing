@@ -41,7 +41,7 @@ namespace raytraicing
             return (float)Math.Sqrt(Vect.X * Vect.X + Vect.Y * Vect.Y);
         }
 
-        public void NextCell(int XGR, int YGR)
+        public void NextCell(int XGR, int YGR, Listener Head)
         {
             int curX = CurPoint.X / XGR;
             int curY = CurPoint.Y / YGR;
@@ -51,6 +51,7 @@ namespace raytraicing
                 CurT++;
                 CurPoint.X = FirstPoint.X + (int)(CurT * DirectingVector.X);
                 CurPoint.Y = FirstPoint.Y + (int)(CurT * DirectingVector.Y);
+                Head.Check(this);
              //   if ((x < 0) || (x >= maxX) || (y < 0) || (y >= maxY)) return; // Выход за границы
             } while ((CurPoint.X / XGR == curX) && (CurPoint.Y / YGR == curY));
         }

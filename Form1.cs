@@ -25,17 +25,12 @@ namespace raytraicing
         public int YGR; // Размер ячейки по Y
         public int maxX; // Наибольший X
         public int maxY; // Наибольший Y
-        public int RayCount; // Количество лучей
+        //public int RayCount; // Количество лучей
+        Listener Head;
         Ribs AllRibs = new Ribs(); // Список структур со всей информацией о рёбрах
         List<List<List<int>>> col = new List<List<List<int>>>(); // Списки рёбер в каждом сегменте
         public Bitmap pic; // Картинка
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form Form2 = new Form2();
-            Form2.ShowDialog();
-        }
-
+   
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.AddRange(File.ReadAllLines(@"points.dat"));
@@ -45,8 +40,9 @@ namespace raytraicing
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RayCount = 0;
+            //RayCount = 0;
             col.Clear();
+            Head = new Listener(new Point(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
             XGR = Convert.ToInt32(XGridRange.Text);
             YGR = Convert.ToInt32(YGridRange.Text);
             maxX = Convert.ToInt32(XRange.Text);
@@ -105,7 +101,7 @@ namespace raytraicing
 
         private void button5_Click(object sender, EventArgs e)
         {
-            RayCount++; 
+            //RayCount++; 
             BumpLog.Items.Clear();
             Graphics gr;
             int X1 = Convert.ToInt32(FirstPointX.Text);
@@ -126,7 +122,7 @@ namespace raytraicing
 
                 while (col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count.Equals(0))
                 {
-                    ray.NextCell(XGR, YGR);
+                    ray.NextCell(XGR, YGR, Head);
                     if ((ray.CurPoint.X < 0) || (ray.CurPoint.X >= maxX) || (ray.CurPoint.Y < 0) || (ray.CurPoint.Y >= maxY))
                     {
                         ray.DrawRay(Graphics.FromImage(pic));
@@ -198,7 +194,7 @@ namespace raytraicing
                 // Проверям остались ли рёбра в списке
                 if (Rnums.Count.Equals(0))
                 {
-                    ray.NextCell(XGR, YGR);
+                    ray.NextCell(XGR, YGR, Head);
                     continue;
                 }
 
@@ -210,6 +206,7 @@ namespace raytraicing
 
                 numR = Rnums[Norms.IndexOf(Norms.Min())];
                 ray.ReNew(AllRibs[numR], Results[Norms.IndexOf(Norms.Min())]);
+                Head.Check(ray);
                 BumpLog.Items.Add(@"Было столкновение в точке: (" + ray.FirstPoint.X.ToString() + ";" + ray.FirstPoint.Y.ToString() + ") Сила луча: " + ray.Power.ToString());
             }
         }
