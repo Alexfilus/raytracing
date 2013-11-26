@@ -119,9 +119,9 @@
             // 
             this.XGridRange.Location = new System.Drawing.Point(117, 119);
             this.XGridRange.Name = "XGridRange";
-            this.XGridRange.Size = new System.Drawing.Size(100, 20);
+            this.XGridRange.Size = new System.Drawing.Size(46, 20);
             this.XGridRange.TabIndex = 10;
-            this.XGridRange.Text = "200";
+            this.XGridRange.Text = "10";
             // 
             // label1
             // 
@@ -145,9 +145,9 @@
             // 
             this.YGridRange.Location = new System.Drawing.Point(117, 145);
             this.YGridRange.Name = "YGridRange";
-            this.YGridRange.Size = new System.Drawing.Size(100, 20);
+            this.YGridRange.Size = new System.Drawing.Size(46, 20);
             this.YGridRange.TabIndex = 12;
-            this.YGridRange.Text = "200";
+            this.YGridRange.Text = "10";
             // 
             // button3
             // 
@@ -163,7 +163,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(379, 18);
+            this.label5.Location = new System.Drawing.Point(353, 17);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 18;
@@ -172,7 +172,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(241, 15);
+            this.label6.Location = new System.Drawing.Point(227, 15);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 17;
@@ -181,7 +181,7 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(382, 41);
+            this.listBox2.Location = new System.Drawing.Point(356, 41);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(120, 329);
             this.listBox2.TabIndex = 16;
@@ -189,30 +189,30 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(244, 41);
+            this.listBox1.Location = new System.Drawing.Point(230, 41);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 329);
             this.listBox1.TabIndex = 15;
             // 
             // FirstPointY
             // 
-            this.FirstPointY.Location = new System.Drawing.Point(169, 256);
+            this.FirstPointY.Location = new System.Drawing.Point(117, 255);
             this.FirstPointY.Name = "FirstPointY";
             this.FirstPointY.Size = new System.Drawing.Size(50, 20);
             this.FirstPointY.TabIndex = 20;
-            this.FirstPointY.Text = "300";
+            this.FirstPointY.Text = "100";
             // 
             // SecondPointY
             // 
-            this.SecondPointY.Location = new System.Drawing.Point(169, 282);
+            this.SecondPointY.Location = new System.Drawing.Point(117, 281);
             this.SecondPointY.Name = "SecondPointY";
             this.SecondPointY.Size = new System.Drawing.Size(50, 20);
             this.SecondPointY.TabIndex = 21;
-            this.SecondPointY.Text = "20";
+            this.SecondPointY.Text = "200";
             // 
             // FirstPointX
             // 
-            this.FirstPointX.Location = new System.Drawing.Point(65, 256);
+            this.FirstPointX.Location = new System.Drawing.Point(42, 255);
             this.FirstPointX.Name = "FirstPointX";
             this.FirstPointX.Size = new System.Drawing.Size(50, 20);
             this.FirstPointX.TabIndex = 23;
@@ -220,7 +220,7 @@
             // 
             // SecondPointX
             // 
-            this.SecondPointX.Location = new System.Drawing.Point(65, 282);
+            this.SecondPointX.Location = new System.Drawing.Point(42, 281);
             this.SecondPointX.Name = "SecondPointX";
             this.SecondPointX.Size = new System.Drawing.Size(50, 20);
             this.SecondPointX.TabIndex = 24;
@@ -229,7 +229,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(39, 259);
+            this.label7.Location = new System.Drawing.Point(16, 258);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(20, 13);
             this.label7.TabIndex = 25;
@@ -238,7 +238,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(143, 259);
+            this.label8.Location = new System.Drawing.Point(91, 258);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(20, 13);
             this.label8.TabIndex = 26;
@@ -247,7 +247,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(39, 285);
+            this.label9.Location = new System.Drawing.Point(16, 284);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(20, 13);
             this.label9.TabIndex = 27;
@@ -256,7 +256,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(143, 285);
+            this.label10.Location = new System.Drawing.Point(91, 284);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(20, 13);
             this.label10.TabIndex = 28;
@@ -265,9 +265,9 @@
             // BumpLog
             // 
             this.BumpLog.FormattingEnabled = true;
-            this.BumpLog.Location = new System.Drawing.Point(515, 41);
+            this.BumpLog.Location = new System.Drawing.Point(483, 41);
             this.BumpLog.Name = "BumpLog";
-            this.BumpLog.Size = new System.Drawing.Size(374, 329);
+            this.BumpLog.Size = new System.Drawing.Size(403, 329);
             this.BumpLog.TabIndex = 30;
             // 
             // button5
@@ -284,7 +284,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(517, 17);
+            this.label12.Location = new System.Drawing.Point(480, 17);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(79, 13);
             this.label12.TabIndex = 32;
@@ -332,7 +332,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 379);
+            this.ClientSize = new System.Drawing.Size(892, 379);
             this.Controls.Add(this.Eps);
             this.Controls.Add(this.EpsLabel);
             this.Controls.Add(this.button7);
@@ -367,6 +367,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Трассировка";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

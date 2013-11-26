@@ -41,7 +41,7 @@ namespace raytraicing
 
         public PointF GetNormal()
         {
-            return new PointF(DirectingVector.Y, -DirectingVector.X);
+            return new PointF(-DirectingVector.Y, DirectingVector.X);
         }
 
         public void DrawRib(Graphics g)
@@ -67,9 +67,9 @@ namespace raytraicing
                 RUVect.X = Vect.X / CurNorm;
                 RUVect.Y = Vect.Y / CurNorm;
             }*/
-            int t = (int)((CurRay.DirectingVector.X * (FirstPoint.Y - CurRay.FirstPoint.Y) - CurRay.DirectingVector.Y * (FirstPoint.X - CurRay.FirstPoint.X)) / (CurRay.DirectingVector.Y * DirectingVector.X - CurRay.DirectingVector.X * DirectingVector.Y));
+            int t = (int)((CurRay.DirectingVector.X * (CurRay.FirstPoint.Y - FirstPoint.Y) - CurRay.DirectingVector.Y * (CurRay.FirstPoint.X - FirstPoint.X)) / (DirectingVector.Y * CurRay.DirectingVector.X - DirectingVector.X * CurRay.DirectingVector.Y));
             //tau = (int)((RUVect.X * (FP.Y - RFP.Y) - RUVect.Y * (FP.X - RFP.X)) / (RUVect.Y * UVect.X - RUVect.X * UVect.Y));
-            return new Point(CurRay.FirstPoint.X + (int)(t * CurRay.DirectingVector.X), CurRay.FirstPoint.Y + (int)(t * CurRay.DirectingVector.Y));
+            return new Point(FirstPoint.X + (int)(t * DirectingVector.X), FirstPoint.Y + (int)(t * DirectingVector.Y));
         }
 
         public int GetCrossPointT(Ray CurRay)
@@ -77,7 +77,7 @@ namespace raytraicing
             // t для отрезка
             //return (int)((UVect.X * (FP.Y - RFP.Y) - UVect.Y * (FP.X - RFP.X)) / (RUVect.Y * UVect.X - RUVect.X * UVect.Y));
             // t для луча
-            return (int)((CurRay.DirectingVector.X * (FirstPoint.Y - CurRay.FirstPoint.Y) - CurRay.DirectingVector.Y * (FirstPoint.X - CurRay.FirstPoint.X)) / (CurRay.DirectingVector.Y * DirectingVector.X - CurRay.DirectingVector.X * DirectingVector.Y));
+            return (int)((DirectingVector.X * (CurRay.FirstPoint.Y - FirstPoint.Y) - DirectingVector.Y * (CurRay.FirstPoint.X - FirstPoint.X)) / (DirectingVector.Y * CurRay.DirectingVector.X - DirectingVector.X * CurRay.DirectingVector.Y));
         }
 
         public bool IsParallel(Ray CurRay)
