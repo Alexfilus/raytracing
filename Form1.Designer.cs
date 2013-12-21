@@ -262,7 +262,7 @@
             this.BumpLog.FormattingEnabled = true;
             this.BumpLog.Location = new System.Drawing.Point(483, 41);
             this.BumpLog.Name = "BumpLog";
-            this.BumpLog.Size = new System.Drawing.Size(403, 329);
+            this.BumpLog.Size = new System.Drawing.Size(546, 329);
             this.BumpLog.TabIndex = 30;
             // 
             // button5
@@ -355,7 +355,7 @@
             this.headY.Name = "headY";
             this.headY.Size = new System.Drawing.Size(50, 20);
             this.headY.TabIndex = 37;
-            this.headY.Text = "100";
+            this.headY.Text = "300";
             // 
             // RadLabel
             // 
@@ -372,13 +372,13 @@
             this.headRad.Name = "headRad";
             this.headRad.Size = new System.Drawing.Size(100, 20);
             this.headRad.TabIndex = 42;
-            this.headRad.Text = "50";
+            this.headRad.Text = "150";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 379);
+            this.ClientSize = new System.Drawing.Size(1041, 379);
             this.Controls.Add(this.headRad);
             this.Controls.Add(this.RadLabel);
             this.Controls.Add(this.label11);

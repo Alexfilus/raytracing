@@ -12,6 +12,7 @@ namespace raytraicing
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             Form4 f4 = new Form4();
@@ -199,16 +200,25 @@ namespace raytraicing
                 }
 
                 // Столкновение всё-таки произошло
-
+                
+                /*bool IsInHead = Head.Check(ray);
+                string InHead;
+                if (IsInHead) InHead = " Слышен";
+                else InHead =  " Не слышен";*/
+                int IsInHead = Head.Check(ray);
                 gr = Graphics.FromImage(pic);
-                gr.DrawLine(Pens.Aquamarine, ray.FirstPoint, Results[Norms.IndexOf(Norms.Min())]);
+                if(IsInHead == 0)
+                    gr.DrawLine(Pens.Red, ray.FirstPoint, Results[Norms.IndexOf(Norms.Min())]);
+                else
+                    gr.DrawLine(Pens.Aquamarine, ray.FirstPoint, Results[Norms.IndexOf(Norms.Min())]);
                 gr.Dispose();
 
                 numR = Rnums[Norms.IndexOf(Norms.Min())];
                 ray.ReNew(AllRibs[numR], Results[Norms.IndexOf(Norms.Min())]);
-                Head.Check(ray);
-                BumpLog.Items.Add(@"Было столкновение в точке: (" + ray.FirstPoint.X.ToString() + ";" + ray.FirstPoint.Y.ToString() + ") Сила луча: " + ray.Power.ToString());
+
+                BumpLog.Items.Add(@"Было столкновение в точке: (" + ray.FirstPoint.X.ToString() + ";" + ray.FirstPoint.Y.ToString() + ") Сила луча: " + ray.Power.ToString() + " " + IsInHead.ToString());
             }
+            Head.DrawHead(Graphics.FromImage(pic));
         }
 
         private void button6_Click(object sender, EventArgs e)

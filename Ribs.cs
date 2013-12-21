@@ -52,21 +52,6 @@ namespace raytraicing
 
         public Point GetCrossPointXY(Ray CurRay)
         {
-            /*PointF RUVect = new PointF();
-            Point RFP = Points[Ribs[num].X];
-            // Формируем направляющий, единичный вектор ребра
-            if (Points[Ribs[num].Y].X == Points[Ribs[num].X].X)
-            {
-                RUVect.X = 0;
-                RUVect.Y = (Points[Ribs[num].Y].Y - Points[Ribs[num].X].Y) / Math.Abs(Points[Ribs[num].Y].Y - Points[Ribs[num].X].Y);
-            }
-            else
-            {
-                Point Vect = new Point(Points[Ribs[num].Y].X - Points[Ribs[num].X].X, Points[Ribs[num].Y].Y - Points[Ribs[num].X].Y);
-                float CurNorm = norma(Vect);
-                RUVect.X = Vect.X / CurNorm;
-                RUVect.Y = Vect.Y / CurNorm;
-            }*/
             int t = (int)((CurRay.DirectingVector.X * (CurRay.FirstPoint.Y - FirstPoint.Y) - CurRay.DirectingVector.Y * (CurRay.FirstPoint.X - FirstPoint.X)) / (DirectingVector.Y * CurRay.DirectingVector.X - DirectingVector.X * CurRay.DirectingVector.Y));
             //tau = (int)((RUVect.X * (FP.Y - RFP.Y) - RUVect.Y * (FP.X - RFP.X)) / (RUVect.Y * UVect.X - RUVect.X * UVect.Y));
             return new Point(FirstPoint.X + (int)(t * DirectingVector.X), FirstPoint.Y + (int)(t * DirectingVector.Y));
@@ -75,7 +60,7 @@ namespace raytraicing
         public int GetCrossPointT(Ray CurRay)
         {
             // t для отрезка
-            //return (int)((UVect.X * (FP.Y - RFP.Y) - UVect.Y * (FP.X - RFP.X)) / (RUVect.Y * UVect.X - RUVect.X * UVect.Y));
+            //return (int)((CurRay.DirectingVector.X * (CurRay.FirstPoint.Y - FirstPoint.Y) - CurRay.DirectingVector.Y * (CurRay.FirstPoint.X - FirstPoint.X)) / (DirectingVector.Y * CurRay.DirectingVector.X - DirectingVector.X * CurRay.DirectingVector.Y));
             // t для луча
             return (int)((DirectingVector.X * (CurRay.FirstPoint.Y - FirstPoint.Y) - DirectingVector.Y * (CurRay.FirstPoint.X - FirstPoint.X)) / (DirectingVector.Y * CurRay.DirectingVector.X - DirectingVector.X * CurRay.DirectingVector.Y));
         }
@@ -117,10 +102,6 @@ namespace raytraicing
             {
                 return List[index];
             }
-            //set
-            //{
-            //    List[index] = value;
-            //}
         }
         public int GetCount()
         {

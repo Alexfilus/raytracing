@@ -18,7 +18,7 @@ namespace raytraicing
         public Point CurPoint;
         public int CurT;
 
-        public Ray(Point _FirstPoint, PointF _DirectingVector, double _Power)
+        public Ray(Point _FirstPoint, PointF _DirectingVector, double _Power = 1.0)
         {
             FirstPoint = _FirstPoint;
             DirectingVector = new PointF(_DirectingVector.X/GetLength(_DirectingVector),_DirectingVector.Y/GetLength(_DirectingVector));
@@ -27,14 +27,14 @@ namespace raytraicing
             CurT = 0;
         }
 
-        public Ray(Point _FirstPoint, PointF _DirectingVector)
+       /* public Ray(Point _FirstPoint, PointF _DirectingVector)
         {
             FirstPoint = _FirstPoint;
             DirectingVector = new PointF(_DirectingVector.X / GetLength(_DirectingVector), _DirectingVector.Y / GetLength(_DirectingVector));
             Power = 1.0;
             CurPoint = _FirstPoint;
             CurT = 0;
-        }
+        }*/
 
         private float GetLength(PointF Vect)
         {
