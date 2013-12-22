@@ -46,7 +46,7 @@ namespace raytraicing
                 return 0;
             }
             PointF m = ray.DirectingVector;
-            PointF d = new PointF(Position.X -ray.FirstPoint.X , Position.Y - ray.FirstPoint.Y);
+            PointF d = new PointF(Position.X - ray.FirstPoint.X, Position.Y - ray.FirstPoint.Y);
             double scal = m.X * d.X + m.Y * d.Y;
             if (scal < 0) return 1;
             double dist1 = Useful.vect_length(new PointF(ray.CurPoint.X - ray.FirstPoint.X, ray.CurPoint.Y - ray.FirstPoint.Y));
@@ -63,10 +63,6 @@ namespace raytraicing
                 return 0;
             }
             else return 3;
-        }
-        double dist_p_p(double ax, double ay, double az, double bx, double by, double bz)
-        {
-            return Useful.sqr(ax - bx) + Useful.sqr(ay - by) + Useful.sqr(az - bz);
         }
         public void DrawHead(Graphics g)
         {

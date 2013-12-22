@@ -63,6 +63,7 @@
             this.headY = new System.Windows.Forms.TextBox();
             this.RadLabel = new System.Windows.Forms.Label();
             this.headRad = new System.Windows.Forms.TextBox();
+            this.btnAbort = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -151,7 +152,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 27);
             this.button3.TabIndex = 14;
-            this.button3.Text = "Подготовка";
+            this.button3.Text = "Расчёты";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -374,11 +375,22 @@
             this.headRad.TabIndex = 42;
             this.headRad.Text = "150";
             // 
+            // btnAbort
+            // 
+            this.btnAbort.Location = new System.Drawing.Point(120, 245);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(87, 22);
+            this.btnAbort.TabIndex = 43;
+            this.btnAbort.Text = "Сброс";
+            this.btnAbort.UseVisualStyleBackColor = true;
+            this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1041, 379);
+            this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.headRad);
             this.Controls.Add(this.RadLabel);
             this.Controls.Add(this.label11);
@@ -461,6 +473,7 @@
         private System.Windows.Forms.TextBox headY;
         private System.Windows.Forms.Label RadLabel;
         private System.Windows.Forms.TextBox headRad;
+        private System.Windows.Forms.Button btnAbort;
     }
 }
 

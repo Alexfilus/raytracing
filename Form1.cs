@@ -41,14 +41,18 @@ namespace raytraicing
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //RayCount = 0;
-            col.Clear();
-            Head = new Listener(new Point(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
-            XGR = Convert.ToInt32(XGridRange.Text);
-            YGR = Convert.ToInt32(YGridRange.Text);
             maxX = Convert.ToInt32(XRange.Text);
             maxY = Convert.ToInt32(YRange.Text);
             pic = new Bitmap(maxX, maxY);
+            Graphics.FromImage(pic).Clear(Color.White);
+            col.Clear();
+            AllRibs.Clear();
+
+            Head = new Listener(new Point(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
+            XGR = Convert.ToInt32(XGridRange.Text);
+            YGR = Convert.ToInt32(YGridRange.Text);
+            
+            
             Graphics g = Graphics.FromImage(pic);
             g.FillRectangle(Brushes.White, 0, 0, pic.Width, pic.Height);
             g.Dispose();
@@ -102,9 +106,7 @@ namespace raytraicing
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //RayCount++; 
             BumpLog.Items.Clear();
-            Graphics gr;
             int X1 = Convert.ToInt32(FirstPointX.Text);
             int X2 = Convert.ToInt32(SecondPointX.Text);
             int Y1 = Convert.ToInt32(FirstPointY.Text);
@@ -112,7 +114,6 @@ namespace raytraicing
             Ray ray = new Ray(new Point(X1, Y1), new PointF(X2 - X1, Y2 - Y1));
             int numR = -1;
 
-            int temp_t = 0;
             double epsilon = Convert.ToDouble(Eps.Text);
             
             while (ray.Power > epsilon)// Луч отражается пока его мощность не станет меньше epsilon
@@ -126,7 +127,7 @@ namespace raytraicing
                     ray.NextCell(XGR, YGR, Head);
                     if ((ray.CurPoint.X < 0) || (ray.CurPoint.X >= maxX) || (ray.CurPoint.Y < 0) || (ray.CurPoint.Y >= maxY))
                     {
-                        ray.DrawRay(Graphics.FromImage(pic));
+                        ray.DrawRay(Graphics.FromImage(pic),Pens.Black);
                         MessageBox.Show("Ошибка! Выход за границы области!");
                         return;
                     }
@@ -157,9 +158,8 @@ namespace raytraicing
                         DelRNums.Add(num);
                         continue;
                     }
-                    temp_t = AllRibs[num].GetCrossPointT(ray);
                     // Мы остались в той же точке, либо отрезок находится раньше начала луча
-                    if (temp_t < 0)                                                             
+                    if (AllRibs[num].GetCrossPointT(ray) < 0)                                                             
                     {
                         DelRNums.Add(num);
                         continue;
@@ -200,21 +200,19 @@ namespace raytraicing
                 }
 
                 // Столкновение всё-таки произошло
-                
+
+                ray.CurPoint = Results[Norms.IndexOf(Norms.Min())];
+
                 /*bool IsInHead = Head.Check(ray);
                 string InHead;
                 if (IsInHead) InHead = " Слышен";
                 else InHead =  " Не слышен";*/
                 int IsInHead = Head.Check(ray);
-                gr = Graphics.FromImage(pic);
-                if(IsInHead == 0)
-                    gr.DrawLine(Pens.Red, ray.FirstPoint, Results[Norms.IndexOf(Norms.Min())]);
-                else
-                    gr.DrawLine(Pens.Aquamarine, ray.FirstPoint, Results[Norms.IndexOf(Norms.Min())]);
-                gr.Dispose();
+                if (IsInHead == 0) ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
+                else ray.DrawRay(Graphics.FromImage(pic), Pens.Aquamarine);
 
                 numR = Rnums[Norms.IndexOf(Norms.Min())];
-                ray.ReNew(AllRibs[numR], Results[Norms.IndexOf(Norms.Min())]);
+                ray.ReNew(AllRibs[numR]);
 
                 BumpLog.Items.Add(@"Было столкновение в точке: (" + ray.FirstPoint.X.ToString() + ";" + ray.FirstPoint.Y.ToString() + ") Сила луча: " + ray.Power.ToString() + " " + IsInHead.ToString());
             }
@@ -236,7 +234,16 @@ namespace raytraicing
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            button1_Click(sender, e);
+        }
 
+        private void btnAbort_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            BumpLog.Items.Clear();
+            col.Clear();
+            AllRibs.Clear();
         }
 
     }
