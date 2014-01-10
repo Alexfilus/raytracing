@@ -1,17 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="raytraicing.Point3D" Collapsed="true">
+  <Class Name="raytraicing.Point3D">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAE=</HashCode>
       <FileName>Point3D.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="raytraicing.Point3DF" Collapsed="true">
+  <Class Name="raytraicing.Point3DF">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAE=</HashCode>
       <FileName>Point3D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="raytraicing.Ray">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAACABAAAAAAAABBAAAAACAAAAAAAABAQAAQAAAAEA=</HashCode>
+      <FileName>Ray.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="raytraicing.Rib">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAgCBAIEAABAAAIIACAAAQABAABIAAA=</HashCode>
+      <FileName>Ribs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="raytraicing.Ribs">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAABAAAI=</HashCode>
+      <FileName>Ribs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="raytraicing.Useful">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Useful.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="raytraicing.Listener">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAgAAAAABAAgAAAAAAABAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Listener.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

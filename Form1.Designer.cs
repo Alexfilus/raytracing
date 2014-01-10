@@ -43,13 +43,9 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.FirstPointY = new System.Windows.Forms.TextBox();
-            this.SecondPointY = new System.Windows.Forms.TextBox();
             this.FirstPointX = new System.Windows.Forms.TextBox();
-            this.SecondPointX = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.BumpLog = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -64,6 +60,8 @@
             this.RadLabel = new System.Windows.Forms.Label();
             this.headRad = new System.Windows.Forms.TextBox();
             this.btnAbort = new System.Windows.Forms.Button();
+            this.lRayCount = new System.Windows.Forms.Label();
+            this.RayCount = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -117,7 +115,7 @@
             this.XGridRange.Name = "XGridRange";
             this.XGridRange.Size = new System.Drawing.Size(46, 20);
             this.XGridRange.TabIndex = 10;
-            this.XGridRange.Text = "10";
+            this.XGridRange.Text = "20";
             // 
             // label1
             // 
@@ -143,7 +141,7 @@
             this.YGridRange.Name = "YGridRange";
             this.YGridRange.Size = new System.Drawing.Size(46, 20);
             this.YGridRange.TabIndex = 12;
-            this.YGridRange.Text = "10";
+            this.YGridRange.Text = "20";
             // 
             // button3
             // 
@@ -196,15 +194,7 @@
             this.FirstPointY.Name = "FirstPointY";
             this.FirstPointY.Size = new System.Drawing.Size(50, 20);
             this.FirstPointY.TabIndex = 20;
-            this.FirstPointY.Text = "100";
-            // 
-            // SecondPointY
-            // 
-            this.SecondPointY.Location = new System.Drawing.Point(108, 208);
-            this.SecondPointY.Name = "SecondPointY";
-            this.SecondPointY.Size = new System.Drawing.Size(50, 20);
-            this.SecondPointY.TabIndex = 21;
-            this.SecondPointY.Text = "200";
+            this.FirstPointY.Text = "400";
             // 
             // FirstPointX
             // 
@@ -212,15 +202,7 @@
             this.FirstPointX.Name = "FirstPointX";
             this.FirstPointX.Size = new System.Drawing.Size(50, 20);
             this.FirstPointX.TabIndex = 23;
-            this.FirstPointX.Text = "480";
-            // 
-            // SecondPointX
-            // 
-            this.SecondPointX.Location = new System.Drawing.Point(33, 208);
-            this.SecondPointX.Name = "SecondPointX";
-            this.SecondPointX.Size = new System.Drawing.Size(50, 20);
-            this.SecondPointX.TabIndex = 24;
-            this.SecondPointX.Text = "450";
+            this.FirstPointX.Text = "160";
             // 
             // label7
             // 
@@ -240,24 +222,6 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "Y1";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 211);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(20, 13);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "X2";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(82, 211);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(20, 13);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Y2";
-            // 
             // BumpLog
             // 
             this.BumpLog.FormattingEnabled = true;
@@ -273,7 +237,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(99, 27);
             this.button5.TabIndex = 31;
-            this.button5.Text = "Пустить луч";
+            this.button5.Text = "Пустить лучи";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -348,7 +312,7 @@
             this.headX.Name = "headX";
             this.headX.Size = new System.Drawing.Size(41, 20);
             this.headX.TabIndex = 38;
-            this.headX.Text = "480";
+            this.headX.Text = "750";
             // 
             // headY
             // 
@@ -356,7 +320,7 @@
             this.headY.Name = "headY";
             this.headY.Size = new System.Drawing.Size(50, 20);
             this.headY.TabIndex = 37;
-            this.headY.Text = "300";
+            this.headY.Text = "400";
             // 
             // RadLabel
             // 
@@ -373,7 +337,7 @@
             this.headRad.Name = "headRad";
             this.headRad.Size = new System.Drawing.Size(100, 20);
             this.headRad.TabIndex = 42;
-            this.headRad.Text = "150";
+            this.headRad.Text = "15";
             // 
             // btnAbort
             // 
@@ -385,11 +349,30 @@
             this.btnAbort.UseVisualStyleBackColor = true;
             this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
             // 
+            // lRayCount
+            // 
+            this.lRayCount.AutoSize = true;
+            this.lRayCount.Location = new System.Drawing.Point(4, 215);
+            this.lRayCount.Name = "lRayCount";
+            this.lRayCount.Size = new System.Drawing.Size(97, 13);
+            this.lRayCount.TabIndex = 44;
+            this.lRayCount.Text = "Количество лучей";
+            // 
+            // RayCount
+            // 
+            this.RayCount.Location = new System.Drawing.Point(108, 212);
+            this.RayCount.Name = "RayCount";
+            this.RayCount.Size = new System.Drawing.Size(50, 20);
+            this.RayCount.TabIndex = 45;
+            this.RayCount.Text = "9";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1041, 379);
+            this.Controls.Add(this.RayCount);
+            this.Controls.Add(this.lRayCount);
             this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.headRad);
             this.Controls.Add(this.RadLabel);
@@ -404,13 +387,9 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.BumpLog);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.SecondPointX);
             this.Controls.Add(this.FirstPointX);
-            this.Controls.Add(this.SecondPointY);
             this.Controls.Add(this.FirstPointY);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -453,13 +432,9 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox FirstPointY;
-        private System.Windows.Forms.TextBox SecondPointY;
         private System.Windows.Forms.TextBox FirstPointX;
-        private System.Windows.Forms.TextBox SecondPointX;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListBox BumpLog;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label12;
@@ -474,6 +449,8 @@
         private System.Windows.Forms.Label RadLabel;
         private System.Windows.Forms.TextBox headRad;
         private System.Windows.Forms.Button btnAbort;
+        private System.Windows.Forms.Label lRayCount;
+        private System.Windows.Forms.TextBox RayCount;
     }
 }
 

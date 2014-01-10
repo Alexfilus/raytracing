@@ -17,6 +17,7 @@ namespace raytraicing
         public double Power;
         public Point CurPoint;
         public int CurT;
+        public double Way;
 
         public Ray(Point _FirstPoint, PointF _DirectingVector, double _Power = 1.0)
         {
@@ -25,6 +26,7 @@ namespace raytraicing
             Power = _Power;
             CurPoint = _FirstPoint;
             CurT = 0;
+            Way = 0;
         }
 
         private float GetLength(PointF Vect)
@@ -57,11 +59,47 @@ namespace raytraicing
 
         public void ReNew(Rib CurRib)
         {
+            Way += (float)Useful.vect_length(CurPoint, FirstPoint);
             DirectingVector = new PointF(DirectingVector.X - 2 * (DirectingVector.X * CurRib.Normal.X + DirectingVector.Y * CurRib.Normal.Y) * CurRib.Normal.X,
                                          DirectingVector.Y - 2 * (DirectingVector.X * CurRib.Normal.X + DirectingVector.Y * CurRib.Normal.Y) * CurRib.Normal.Y);
             FirstPoint = CurPoint;
             CurT = 0;
             Power *= 1 - CurRib.Coef;
+        }
+    }
+    class Rays
+    {
+        public int Count;
+        public List<Ray> List;
+        
+
+        public Rays(Point _Position, int _Count)
+        {
+            Count = _Count;
+            List = new List<Ray>(Count);
+            for (int i = 0; i < Count; ++i)
+                Add(_Position, new PointF((float)Math.Cos(2 * Math.PI * i / Count), (float)Math.Sin(2 * Math.PI * i / Count)));
+        }
+
+        public void Add(Point _FirstPoint, PointF _DirectingVector, double _Power = 1.0)
+        {
+            List.Add(new Ray(_FirstPoint, _DirectingVector, _Power));
+        }
+
+        public Ray this[int index]
+        {
+            get
+            {
+                return List[index];
+            }
+        }
+        public int GetCount()
+        {
+            return List.Count;
+        }
+        public void Clear()
+        {
+            List.Clear();
         }
     }
 }
