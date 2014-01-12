@@ -7,9 +7,7 @@ namespace raytraicing
 {
     public class Point3D
     {
-        public int X;
-        public int Y;
-        public int Z;
+        public int X, Y, Z;
         public Point3D(int x, int y, int z)
         {
             X = x;

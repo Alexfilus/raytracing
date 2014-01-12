@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
 
 namespace raytraicing
 {
     public class Line
     {
-        double a, b, c;
+        public double a, b, c;
 
         public Line(double a, double b, double c)
         {
@@ -29,7 +28,11 @@ namespace raytraicing
             c = -a * rib.FirstPoint.X - b * rib.FirstPoint.Y;
         }
 
-        public double GetDistance(Point point)
+        public double GetDistance(Point2D point)
+        {
+            return a * point.X + b * point.Y + c;
+        }
+        public double GetDistance(Point2DD point)
         {
             return a * point.X + b * point.Y + c;
         }

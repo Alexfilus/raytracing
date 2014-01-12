@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Line.cs" />
     <Compile Include="Listener.cs" />
+    <Compile Include="Point2D.cs" />
     <Compile Include="Point3D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
