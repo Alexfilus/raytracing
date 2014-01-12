@@ -29,9 +29,14 @@ namespace raytraicing
             Normal = GetNormal();
         }
 
+        public Line ToLine()
+        {
+            return new Line(this);
+        }
+
         private float GetLength()
         {
-            return (float)Math.Sqrt(((SecondPoint.X - FirstPoint.X) * (SecondPoint.X - FirstPoint.X)) + ((SecondPoint.Y - FirstPoint.Y) * (SecondPoint.Y - FirstPoint.Y)));
+            return Useful.vect_length(SecondPoint, FirstPoint);
         }
 
         private PointF GetVector()
@@ -80,6 +85,13 @@ namespace raytraicing
             return ((Res.X > Math.Max(FirstPoint.X, SecondPoint.X)) || (Res.X < Math.Min(FirstPoint.X, SecondPoint.X)) ||
                         (Res.Y > Math.Max(FirstPoint.Y, SecondPoint.Y)) || (Res.Y < Math.Min(FirstPoint.Y, SecondPoint.Y)));
         }
+       /* public static Rib GetBisector(Rib FRib, Rib SRib)
+        {
+            Line FL = new Line(FRib);
+            Line SL = new Line(SRib);
+
+
+        }*/
     }
 
     class Ribs

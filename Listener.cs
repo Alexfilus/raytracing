@@ -42,14 +42,16 @@ namespace raytraicing
             PointF d = new PointF(Position.X - ray.FirstPoint.X, Position.Y - ray.FirstPoint.Y);
             double scal = m.X * d.X + m.Y * d.Y;
             if (scal < 0) return 1;
-            double dist1 = Useful.vect_length(ray.FirstPoint, ray.CurPoint);
+            //double dist1 = Useful.vect_length(ray.FirstPoint, ray.CurPoint);
+            double dist1 = ray.GetLength();
             if (dist1 < scal) return 2;
 
-            double a = ray.DirectingVector.Y;
+            /*double a = ray.DirectingVector.Y;
             double b = -ray.DirectingVector.X;
             double c = -a * ray.FirstPoint.X - b * ray.FirstPoint.Y;
             double dist2 = a * Position.X + b * Position.Y + c;
-            dist2 = Math.Abs(dist2);
+            dist2 = Math.Abs(dist2);*/
+            double dist2 = Math.Abs(ray.GetDistance(Position));
             if (dist2 < Radius)
             {
                 double LastDist = GetDistance(ray);

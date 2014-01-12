@@ -22,16 +22,17 @@ namespace raytraicing
         public Ray(Point _FirstPoint, PointF _DirectingVector, double _Power = 1.0)
         {
             FirstPoint = _FirstPoint;
-            DirectingVector = new PointF(_DirectingVector.X/GetLength(_DirectingVector),_DirectingVector.Y/GetLength(_DirectingVector));
+            //DirectingVector = new PointF(_DirectingVector.X/GetLength(_DirectingVector),_DirectingVector.Y/GetLength(_DirectingVector));
+            DirectingVector = Useful.UVect(_DirectingVector);
             Power = _Power;
             CurPoint = _FirstPoint;
             CurT = 0;
             Way = 0;
         }
 
-        private float GetLength(PointF Vect)
+        public Line ToLine()
         {
-            return (float)Math.Sqrt(Vect.X * Vect.X + Vect.Y * Vect.Y);
+            return new Line(this);
         }
 
         public void NextCell(int XGR, int YGR, Listener Head)
@@ -52,9 +53,19 @@ namespace raytraicing
             g.Dispose();
         }
 
+        /*public float GetDistance(Point Cur)
+        {
+            return Useful.vect_length(CurPoint, Cur);
+        }*/
+
         public float GetDistance(Point Cur)
         {
-            return GetLength(new PointF(Cur.X - CurPoint.X, Cur.Y - CurPoint.Y));
+            return (float)this.ToLine().GetDistance(Cur);
+        }
+
+        public float GetLength()
+        {
+            return Useful.vect_length(CurPoint, FirstPoint);
         }
 
         public void ReNew(Rib CurRib)

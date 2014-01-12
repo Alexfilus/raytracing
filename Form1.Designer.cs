@@ -157,7 +157,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(353, 17);
+            this.label5.Location = new System.Drawing.Point(340, 14);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 18;
@@ -166,7 +166,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(227, 15);
+            this.label6.Location = new System.Drawing.Point(214, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 17;
@@ -175,7 +175,7 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(356, 41);
+            this.listBox2.Location = new System.Drawing.Point(343, 38);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(120, 329);
             this.listBox2.TabIndex = 16;
@@ -183,7 +183,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(230, 41);
+            this.listBox1.Location = new System.Drawing.Point(217, 38);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 329);
             this.listBox1.TabIndex = 15;
@@ -225,9 +225,9 @@
             // BumpLog
             // 
             this.BumpLog.FormattingEnabled = true;
-            this.BumpLog.Location = new System.Drawing.Point(483, 41);
+            this.BumpLog.Location = new System.Drawing.Point(470, 38);
             this.BumpLog.Name = "BumpLog";
-            this.BumpLog.Size = new System.Drawing.Size(546, 329);
+            this.BumpLog.Size = new System.Drawing.Size(559, 329);
             this.BumpLog.TabIndex = 30;
             // 
             // button5
@@ -244,7 +244,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(480, 17);
+            this.label12.Location = new System.Drawing.Point(467, 14);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(79, 13);
             this.label12.TabIndex = 32;
@@ -291,7 +291,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(114, 310);
+            this.label11.Location = new System.Drawing.Point(100, 310);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 13);
             this.label11.TabIndex = 40;
@@ -300,7 +300,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 310);
+            this.label13.Location = new System.Drawing.Point(0, 310);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 13);
             this.label13.TabIndex = 39;
@@ -308,7 +308,7 @@
             // 
             // headX
             // 
-            this.headX.Location = new System.Drawing.Point(67, 307);
+            this.headX.Location = new System.Drawing.Point(56, 307);
             this.headX.Name = "headX";
             this.headX.Size = new System.Drawing.Size(41, 20);
             this.headX.TabIndex = 38;
@@ -316,7 +316,7 @@
             // 
             // headY
             // 
-            this.headY.Location = new System.Drawing.Point(174, 307);
+            this.headY.Location = new System.Drawing.Point(157, 307);
             this.headY.Name = "headY";
             this.headY.Size = new System.Drawing.Size(50, 20);
             this.headY.TabIndex = 37;
@@ -325,7 +325,7 @@
             // RadLabel
             // 
             this.RadLabel.AutoSize = true;
-            this.RadLabel.Location = new System.Drawing.Point(7, 336);
+            this.RadLabel.Location = new System.Drawing.Point(-1, 336);
             this.RadLabel.Name = "RadLabel";
             this.RadLabel.Size = new System.Drawing.Size(111, 13);
             this.RadLabel.TabIndex = 41;
@@ -333,9 +333,9 @@
             // 
             // headRad
             // 
-            this.headRad.Location = new System.Drawing.Point(124, 333);
+            this.headRad.Location = new System.Drawing.Point(116, 333);
             this.headRad.Name = "headRad";
-            this.headRad.Size = new System.Drawing.Size(100, 20);
+            this.headRad.Size = new System.Drawing.Size(92, 20);
             this.headRad.TabIndex = 42;
             this.headRad.Text = "15";
             // 
@@ -364,13 +364,13 @@
             this.RayCount.Name = "RayCount";
             this.RayCount.Size = new System.Drawing.Size(50, 20);
             this.RayCount.TabIndex = 45;
-            this.RayCount.Text = "9";
+            this.RayCount.Text = "999";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 379);
+            this.ClientSize = new System.Drawing.Size(1041, 372);
             this.Controls.Add(this.RayCount);
             this.Controls.Add(this.lRayCount);
             this.Controls.Add(this.btnAbort);

@@ -59,6 +59,7 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Line.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Point3D.cs" />
     <Compile Include="Program.cs" />

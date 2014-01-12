@@ -146,7 +146,8 @@ namespace raytraicing
                         int num = col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR][j];
                         Res = AllRibs[num].GetCrossPointXY(ray);
                         Results.Add(Res);
-                        Norms.Add(ray.GetDistance(Res));
+                        //Norms.Add(ray.GetDistance(Res));
+                        Norms.Add(Useful.vect_length(ray.CurPoint, Res));
                     }
 
                     // Выясняем какие точки лишние
@@ -205,6 +206,12 @@ namespace raytraicing
                     // Столкновение всё-таки произошло
 
                     ray.CurPoint = Results[Norms.IndexOf(Norms.Min())];
+                    List<Point> GoodResults = new List<Point>();
+                    foreach (Point CurRes in Results)
+                    {
+                        if (CurRes.Equals(ray.CurPoint)) GoodResults.Add(CurRes);
+                    }
+                    if (GoodResults.Count > 1) MessageBox.Show("Мы попали в угол!" + GoodResults.Count.ToString());
                     //ray.DrawRay(Graphics.FromImage(pic), Pens.Aquamarine);
                     /*bool IsInHead = Head.Check(ray);
                     string InHead;
