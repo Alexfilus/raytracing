@@ -115,7 +115,7 @@
             this.XGridRange.Name = "XGridRange";
             this.XGridRange.Size = new System.Drawing.Size(46, 20);
             this.XGridRange.TabIndex = 10;
-            this.XGridRange.Text = "20";
+            this.XGridRange.Text = "40";
             // 
             // label1
             // 
@@ -141,7 +141,7 @@
             this.YGridRange.Name = "YGridRange";
             this.YGridRange.Size = new System.Drawing.Size(46, 20);
             this.YGridRange.TabIndex = 12;
-            this.YGridRange.Text = "20";
+            this.YGridRange.Text = "40";
             // 
             // button3
             // 

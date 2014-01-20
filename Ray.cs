@@ -48,14 +48,13 @@ namespace raytraicing
 
         public void DrawRay(Graphics g, Pen pen)
         {
-            //g.DrawLine(pen, FirstPoint, CurPoint);
             g.DrawLine(pen, FirstPoint.X, FirstPoint.Y, CurPoint.X, CurPoint.Y);
             g.Dispose();
         }
 
-        public float GetDistance(Point2D Cur)
+        public double GetDistance(Point2D Cur)
         {
-            return (float)this.ToLine().GetDistance(Cur);
+            return this.ToLine().GetDistance(Cur);
         }
 
         public double GetLength()

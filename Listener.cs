@@ -73,7 +73,7 @@ namespace raytraicing
             double R = Radius;
             double left_part = -x0 * Ax - y0 * Ay + Ay * y1 + Ax * x1;
             double right_part = 2 * x0 * Ax * y0 * Ay - 2 * x0 * Ax * Ay * y1 - 2 * y0 * Ay * Ax * x1 + 2 * Ay * y1 * Ax * x1 - Ay * Ay * x0 * x0 - Ay * Ay * x1 * x1 + 2 * Ay * Ay * x0 * x1 + Ay * Ay * R * R - Ax * Ax * y1 * y1 + 2 * Ax * Ax * y0 * y1 - Ax * Ax * y0 * y0 + Ax * Ax * R * R;
-            right_part = (float)Math.Sqrt(right_part);
+            right_part = Math.Sqrt(right_part);
             Point2DD FirstRoot = new Point2DD(ray.FirstPoint.X + (left_part + right_part) * ray.DirectingVector.X, ray.FirstPoint.Y + (left_part + right_part) * ray.DirectingVector.Y);
             Point2DD SecondRoot = new Point2DD(ray.FirstPoint.X + (left_part - right_part) * ray.DirectingVector.X, ray.FirstPoint.Y + (left_part - right_part) * ray.DirectingVector.Y);
             return Math.Min(Useful.vect_length(FirstRoot, ray.FirstPoint), Useful.vect_length(SecondRoot, ray.FirstPoint));

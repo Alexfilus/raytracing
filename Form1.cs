@@ -32,13 +32,14 @@ namespace raytraicing
         List<List<List<int>>> col = new List<List<List<int>>>(); // Списки рёбер в каждом сегменте
         public Bitmap pic; // Картинка
    
+        // Загрузить информацию
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.AddRange(File.ReadAllLines(@"points.dat"));
             listBox2.Items.AddRange(File.ReadAllLines(@"ribs.dat"));
             button3.Enabled = true;
         }
-
+        // Расчёты
         private void button3_Click(object sender, EventArgs e)
         {
             maxX = Convert.ToInt32(XRange.Text);
@@ -51,7 +52,6 @@ namespace raytraicing
             Head = new Listener(new Point2D(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
             XGR = Convert.ToInt32(XGridRange.Text);
             YGR = Convert.ToInt32(YGridRange.Text);
-            
             
             Graphics g = Graphics.FromImage(pic);
             g.FillRectangle(Brushes.White, 0, 0, pic.Width, pic.Height);
@@ -103,7 +103,7 @@ namespace raytraicing
             button5.Enabled = true;
             button7.Enabled = true;
         }
-
+        //Запуск лучей
         private void button5_Click(object sender, EventArgs e)
         {
             BumpLog.Items.Clear();
@@ -113,13 +113,16 @@ namespace raytraicing
             double epsilon = Convert.ToDouble(Eps.Text);
             int numR, numR1=-1, numR2=-1;
             List<Point2D> Results = new List<Point2D>();
-            List<double> Norms = new List<double>(); ;
+            List<double> Norms = new List<double>();
             List<int> Rnums = new List<int>();
             List<int> DelRNums = new List<int>();
             Rib Bisector = new Rib();
-
-            foreach (Ray ray in AllRays.List)
+            int i = 0;
+            qwerty:
+            //foreach (Ray ray in AllRays.List)
+            while(i<AllRays.Count)
             {
+                Ray ray = AllRays[i];
                 numR = -1;
                 DelRNums.Clear();
                 
@@ -135,8 +138,11 @@ namespace raytraicing
                         if ((ray.CurPoint.X < 0) || (ray.CurPoint.X >= maxX) || (ray.CurPoint.Y < 0) || (ray.CurPoint.Y >= maxY))
                         {
                             ray.DrawRay(Graphics.FromImage(pic), Pens.Black);
-                            MessageBox.Show("Ошибка! Выход за границы области!");
-                            return;
+                            //MessageBox.Show("Ошибка! Выход за границы области!");
+                            BumpLog.Items.Add("Ошибка! Выход за границы области!");
+                            i++;
+                            goto qwerty;
+                            //return;
                         }
                     }
                     Results.Clear();
@@ -155,8 +161,6 @@ namespace raytraicing
                     }
 
                     // Выясняем какие точки лишние
-                   
-
                     for (int j = 0; j < col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count; j++)
                     {
                         int num = col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR][j];
@@ -237,10 +241,7 @@ namespace raytraicing
                             if (CurRes.Equals(ray.CurPoint))
                             {
                                 int FRib = AllRibs.GetFirstPoints().IndexOf(CurRes);
-                                int SRib = AllRibs.GetSecondPoints().IndexOf(CurRes);
-                                var Writer = File.AppendText("log.txt");
-                                Writer.WriteLine(FRib.ToString() + "   " + SRib.ToString());
-                                Writer.Close();
+                                int SRib = AllRibs.GetSecondPoints().IndexOf(CurRes);=
                                 Bisector = Rib.GetBisector(AllRibs[FRib], AllRibs[SRib], ray);
                                 Angle = true;
                             }
@@ -261,39 +262,35 @@ namespace raytraicing
                     if (Angle)
                     {
                         ray.ReNew(Bisector);
-                        //File.AppendAllText(@"log.txt", @"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString());
                         BumpLog.Items.Add(@"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString());
                         Angle = false;
                         
                     }
                     else
                     {
-                        int IsInHead = Head.Check(ray);
+                        int IsInHead = Head.Check(ray); // Пересекает ли луч голову
                         if (IsInHead != 0)
                         {
                             //ray.DrawRay(Graphics.FromImage(pic), Pens.Aquamarine);
                             numR = Rnums[Norms.IndexOf(Norms.Min())];
                             ray.ReNew(AllRibs[numR]);
-                            //File.AppendAllText(@"log.txt", @"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString());
                             BumpLog.Items.Add(@"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString() + " " + IsInHead.ToString());
-                            var Writer = File.AppendText("log.txt");
-                             Writer.WriteLine(BumpLog.Items[BumpLog.Items.Count-1].ToString());
-                             Writer.Close();
                             //DelRNums.Add(numR);
                         }
                         else ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
                     }
-                }
+                    
+                }i++;
             }
             Head.DrawHead(Graphics.FromImage(pic));
         }
-
+        // Получить размеры экрана
         private void button6_Click(object sender, EventArgs e)
         {
             XRange.Text = Screen.PrimaryScreen.Bounds.Width.ToString();
             YRange.Text = Screen.PrimaryScreen.Bounds.Height.ToString();
         }
-
+        // Показать форму с рисунком
         private void button7_Click(object sender, EventArgs e)
         {
             Form4 f4 = new Form4();
@@ -305,7 +302,7 @@ namespace raytraicing
         {
             button1_Click(sender, e);
         }
-
+        // Сброс
         private void btnAbort_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
