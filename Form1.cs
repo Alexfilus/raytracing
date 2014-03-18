@@ -31,6 +31,9 @@ namespace raytraicing
         Ribs AllRibs = new Ribs(); // Список структур со всей информацией о рёбрах
         List<List<List<int>>> col = new List<List<List<int>>>(); // Списки рёбер в каждом сегменте
         public Bitmap pic; // Картинка
+        public Bitmap Graph_bmp;
+        public double Perimetr = 0;
+        public double Area = 0;
    
         // Загрузить информацию
         private void button1_Click(object sender, EventArgs e)
@@ -68,9 +71,9 @@ namespace raytraicing
                 int SPNum = Convert.ToInt32(listBox2.Items[i].ToString().Substring(IndexOfSpace1 + 1, IndexOfSpace2 - IndexOfSpace1));
                 int IndexOfSpaceFP = listBox1.Items[FPNum].ToString().IndexOf(' ');
                 int IndexOfSpaceSP = listBox1.Items[SPNum].ToString().IndexOf(' ');
-                Point2D FP = new Point2D(Convert.ToInt32(listBox1.Items[FPNum].ToString().Substring(0, IndexOfSpaceFP)),
+                Point2DD FP = new Point2DD(Convert.ToInt32(listBox1.Items[FPNum].ToString().Substring(0, IndexOfSpaceFP)),
                                      Convert.ToInt32(listBox1.Items[FPNum].ToString().Substring(IndexOfSpaceFP + 1)));
-                Point2D SP = new Point2D(Convert.ToInt32(listBox1.Items[SPNum].ToString().Substring(0, IndexOfSpaceSP)),
+                Point2DD SP = new Point2DD(Convert.ToInt32(listBox1.Items[SPNum].ToString().Substring(0, IndexOfSpaceSP)),
                                      Convert.ToInt32(listBox1.Items[SPNum].ToString().Substring(IndexOfSpaceSP + 1)));
 
                 AllRibs.Add(FP, SP, Convert.ToDouble(listBox2.Items[i].ToString().Substring(IndexOfSpace2 + 1)));
@@ -93,12 +96,13 @@ namespace raytraicing
                 AllRibs[i].DrawRib(Graphics.FromImage(pic));
                 for (int t = 0; t <= (int)AllRibs[i].Length; t++)
                 {
-                    int x = AllRibs[i].FirstPoint.X + (int)(t * AllRibs[i].DirectingVector.X);
-                    int y = AllRibs[i].FirstPoint.Y + (int)(t * AllRibs[i].DirectingVector.Y);
-                    if (col[x / XGR][y / YGR].Contains(i) == false) col[x / XGR][y / YGR].Add(i); // Добавляем если надо информацию об отрезке
+                    double x = AllRibs[i].FirstPoint.X + t * AllRibs[i].DirectingVector.X;
+                    double y = AllRibs[i].FirstPoint.Y + t * AllRibs[i].DirectingVector.Y;
+                    if (col[(int)x / XGR][(int)y / YGR].Contains(i) == false) col[(int)x / XGR][(int)y / YGR].Add(i); // Добавляем если надо информацию об отрезке
                 }
             }
-
+            Perimetr = AllRibs.GetPerimetr();
+            Area = AllRibs.GetArea();
             // Делаем доступными кнопки
             button5.Enabled = true;
             button7.Enabled = true;
@@ -107,12 +111,12 @@ namespace raytraicing
         private void button5_Click(object sender, EventArgs e)
         {
             BumpLog.Items.Clear();
-            Rays AllRays = new Rays(new Point2D(int.Parse(FirstPointX.Text), int.Parse(FirstPointY.Text)), int.Parse(RayCount.Text));
+            Rays AllRays = new Rays(new Point2DD(int.Parse(FirstPointX.Text), int.Parse(FirstPointY.Text)), int.Parse(RayCount.Text));
             
             Head.DrawHead(Graphics.FromImage(pic));
             double epsilon = Convert.ToDouble(Eps.Text);
             int numR, numR1=-1, numR2=-1;
-            List<Point2D> Results = new List<Point2D>();
+            List<Point2DD> Results = new List<Point2DD>();
             List<double> Norms = new List<double>();
             List<int> Rnums = new List<int>();
             List<int> DelRNums = new List<int>();
@@ -128,18 +132,17 @@ namespace raytraicing
                 
                 while (ray.Power > epsilon)// Луч отражается пока его мощность не станет меньше epsilon
                 {
-                    Point2D Res = new Point2D();
+                    Point2DD Res = new Point2DD();
 
                     // Ищем не пустую клетку
 
-                    while (col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count.Equals(0))
+                    while (col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count.Equals(0))
                     {
                         ray.NextCell(XGR, YGR, Head);
                         if ((ray.CurPoint.X < 0) || (ray.CurPoint.X >= maxX) || (ray.CurPoint.Y < 0) || (ray.CurPoint.Y >= maxY))
                         {
-                            ray.DrawRay(Graphics.FromImage(pic), Pens.Black);
+                            //ray.DrawRay(Graphics.FromImage(pic), Pens.Black);
                             //MessageBox.Show("Ошибка! Выход за границы области!");
-                            BumpLog.Items.Add("Ошибка! Выход за границы области!");
                             i++;
                             goto qwerty;
                             //return;
@@ -148,12 +151,12 @@ namespace raytraicing
                     Results.Clear();
                     Norms.Clear();
                     Rnums.Clear();
-                    Rnums = new List<int>(col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR]); // Список рёбер этого сегмента копируем, он известен заранее
+                    Rnums = new List<int>(col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR]); // Список рёбер этого сегмента копируем, он известен заранее
 
                     // Собираем информацию о точках пересечения
-                    for (int j = 0; j < col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count; j++)
+                    for (int j = 0; j < col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count; j++)
                     {
-                        int num = col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR][j];
+                        int num = col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR][j];
                         Res = AllRibs[num].GetCrossPointXY(ray);
                         Results.Add(Res);
                         //Norms.Add(ray.GetDistance(Res));
@@ -161,9 +164,9 @@ namespace raytraicing
                     }
 
                     // Выясняем какие точки лишние
-                    for (int j = 0; j < col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR].Count; j++)
+                    for (int j = 0; j < col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count; j++)
                     {
-                        int num = col[ray.CurPoint.X / XGR][ray.CurPoint.Y / YGR][j];
+                        int num = col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR][j];
                         // Отрезок параллелен лучу
                         if (AllRibs[num].IsParallel(ray))
                         {
@@ -183,7 +186,7 @@ namespace raytraicing
                             continue;
                         }
                         // Проверяем принадлежит ли точка пересечения клетке
-                        if ((Res.X / XGR != ray.CurPoint.X / XGR) && (Res.Y / YGR != ray.CurPoint.X / YGR))
+                        if (((int)Res.X / XGR != (int)ray.CurPoint.X / XGR) && ((int)Res.Y / YGR != (int)ray.CurPoint.X / YGR))
                         {
                             DelRNums.Add(num);
                             continue;
@@ -204,18 +207,6 @@ namespace raytraicing
                         Norms.RemoveAt(Rnums.IndexOf(numR));
                         Rnums.Remove(numR);
                     }
-                    if (Rnums.Contains(numR1))
-                    {
-                        Results.RemoveAt(Rnums.IndexOf(numR1));
-                        Norms.RemoveAt(Rnums.IndexOf(numR1));
-                        Rnums.Remove(numR1);
-                    }
-                    if (Rnums.Contains(numR2))
-                    {
-                        Results.RemoveAt(Rnums.IndexOf(numR2));
-                        Norms.RemoveAt(Rnums.IndexOf(numR2));
-                        Rnums.Remove(numR2);
-                    }
                     // Проверям остались ли рёбра в списке
                     if (Rnums.Count.Equals(0))
                     {
@@ -224,63 +215,20 @@ namespace raytraicing
                     }
 
                     // Столкновение всё-таки произошло
-                    numR1 = -1;
-                    numR2 = -1;
-                    bool Angle = false;
-                    //numR = Rnums[Norms.IndexOf(Norms.Min())];
                     ray.CurPoint = Results[Norms.IndexOf(Norms.Min())];
-                    if (Results.Count > 1) 
-                    {
-                        numR = -1;
-                        numR1 = Rnums[0];
-                        numR2 = Rnums[1];
-                        Bisector = Rib.GetBisector(AllRibs[numR1], AllRibs[numR2], ray);
-                        Angle = true;
-                        /*foreach (Point2D CurRes in Results)
-                        {
-                            if (CurRes.Equals(ray.CurPoint))
-                            {
-                                int FRib = AllRibs.GetFirstPoints().IndexOf(CurRes);
-                                int SRib = AllRibs.GetSecondPoints().IndexOf(CurRes);=
-                                Bisector = Rib.GetBisector(AllRibs[FRib], AllRibs[SRib], ray);
-                                Angle = true;
-                            }
-                        }*/
-                    }
-                    /*List<Point2D> GoodResults = new List<Point2D>();
-                    foreach (Point2D CurRes in Results)
-                    {
-                        if (CurRes.Equals(ray.CurPoint)) GoodResults.Add(CurRes);
-                    }
-                    if (GoodResults.Count > 1) MessageBox.Show("Мы попали в угол!" + GoodResults.Count.ToString());*/
-                    //ray.DrawRay(Graphics.FromImage(pic), Pens.Aquamarine);
-                    /*bool IsInHead = Head.Check(ray);
-                    string InHead;
-                    if (IsInHead) InHead = " Слышен";
-                    else InHead =  " Не слышен";*/
-
-                    if (Angle)
-                    {
-                        ray.ReNew(Bisector);
-                        BumpLog.Items.Add(@"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString());
-                        Angle = false;
-                        
-                    }
-                    else
-                    {
-                        int IsInHead = Head.Check(ray); // Пересекает ли луч голову
-                        if (IsInHead != 0)
-                        {
-                            //ray.DrawRay(Graphics.FromImage(pic), Pens.Aquamarine);
-                            numR = Rnums[Norms.IndexOf(Norms.Min())];
-                            ray.ReNew(AllRibs[numR]);
-                            BumpLog.Items.Add(@"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString() + " " + IsInHead.ToString());
-                            //DelRNums.Add(numR);
-                        }
-                        else ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
-                    }
                     
-                }i++;
+                    int IsInHead = Head.Check(ray); // Пересекает ли луч голову
+                    if (IsInHead != 0)
+                    {
+                        //ray.DrawRay(Graphics.FromImage(pic), Pens.Aquamarine);
+                        numR = Rnums[Norms.IndexOf(Norms.Min())];
+                        ray.ReNew(AllRibs[numR]);
+                        //BumpLog.Items.Add(@"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString() + " " + IsInHead.ToString());
+                        //DelRNums.Add(numR);
+                    }
+                    else ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
+                }
+                i++;
             }
             Head.DrawHead(Graphics.FromImage(pic));
         }
@@ -311,6 +259,26 @@ namespace raytraicing
             col.Clear();
             AllRibs.Clear();
         }
+        // Вывод графика
+        private void show_graph_Click(object sender, EventArgs e)
+        {
+            Graph_bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            Graphics g = Graphics.FromImage(Graph_bmp);
+            g.Clear(Color.White);
+            Graph graph = new Graph(new Size(Graph_bmp.Width, Graph_bmp.Height));
+            //graph.DrawGraph(g, Head.GetTimes(), Head.GetLouds());
+            Point2DD[] points = Head.GetPoints();
+            graph.DrawGraph(g, points);
 
+            g.Dispose();
+            FormGraph f2 = new FormGraph();
+            f2.Owner = this;
+            f2.ShowDialog();
+        }
+
+        private void ShowT_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Инженерное Т="+(-0.128 * AllRibs.GetArea() / (AllRibs.GetPerimetr() * Math.Log(1 - AllRibs.GetAlpha()))).ToString()+"\n Вычмсленное Т="+Head.GetRT(0.4).ToString());
+        }
     }
 }

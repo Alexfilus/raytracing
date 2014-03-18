@@ -62,6 +62,8 @@
             this.btnAbort = new System.Windows.Forms.Button();
             this.lRayCount = new System.Windows.Forms.Label();
             this.RayCount = new System.Windows.Forms.TextBox();
+            this.show_graph = new System.Windows.Forms.Button();
+            this.ShowT = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -265,7 +267,7 @@
             this.button7.Enabled = false;
             this.button7.Location = new System.Drawing.Point(2, 274);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(205, 27);
+            this.button7.Size = new System.Drawing.Size(99, 27);
             this.button7.TabIndex = 34;
             this.button7.Text = "Рисунок";
             this.button7.UseVisualStyleBackColor = true;
@@ -274,7 +276,7 @@
             // EpsLabel
             // 
             this.EpsLabel.AutoSize = true;
-            this.EpsLabel.Location = new System.Drawing.Point(9, 251);
+            this.EpsLabel.Location = new System.Drawing.Point(8, 248);
             this.EpsLabel.Name = "EpsLabel";
             this.EpsLabel.Size = new System.Drawing.Size(41, 13);
             this.EpsLabel.TabIndex = 35;
@@ -282,7 +284,7 @@
             // 
             // Eps
             // 
-            this.Eps.Location = new System.Drawing.Point(56, 248);
+            this.Eps.Location = new System.Drawing.Point(55, 245);
             this.Eps.Name = "Eps";
             this.Eps.Size = new System.Drawing.Size(42, 20);
             this.Eps.TabIndex = 36;
@@ -341,9 +343,9 @@
             // 
             // btnAbort
             // 
-            this.btnAbort.Location = new System.Drawing.Point(120, 245);
+            this.btnAbort.Location = new System.Drawing.Point(103, 245);
             this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(87, 22);
+            this.btnAbort.Size = new System.Drawing.Size(104, 22);
             this.btnAbort.TabIndex = 43;
             this.btnAbort.Text = "Сброс";
             this.btnAbort.UseVisualStyleBackColor = true;
@@ -364,13 +366,35 @@
             this.RayCount.Name = "RayCount";
             this.RayCount.Size = new System.Drawing.Size(50, 20);
             this.RayCount.TabIndex = 45;
-            this.RayCount.Text = "999";
+            this.RayCount.Text = "10000";
+            // 
+            // show_graph
+            // 
+            this.show_graph.Location = new System.Drawing.Point(108, 273);
+            this.show_graph.Name = "show_graph";
+            this.show_graph.Size = new System.Drawing.Size(99, 28);
+            this.show_graph.TabIndex = 46;
+            this.show_graph.Text = "График";
+            this.show_graph.UseVisualStyleBackColor = true;
+            this.show_graph.Click += new System.EventHandler(this.show_graph_Click);
+            // 
+            // ShowT
+            // 
+            this.ShowT.Location = new System.Drawing.Point(3, 352);
+            this.ShowT.Name = "ShowT";
+            this.ShowT.Size = new System.Drawing.Size(75, 23);
+            this.ShowT.TabIndex = 47;
+            this.ShowT.Text = "T";
+            this.ShowT.UseVisualStyleBackColor = true;
+            this.ShowT.Click += new System.EventHandler(this.ShowT_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 372);
+            this.ClientSize = new System.Drawing.Size(1041, 383);
+            this.Controls.Add(this.ShowT);
+            this.Controls.Add(this.show_graph);
             this.Controls.Add(this.RayCount);
             this.Controls.Add(this.lRayCount);
             this.Controls.Add(this.btnAbort);
@@ -451,6 +475,8 @@
         private System.Windows.Forms.Button btnAbort;
         private System.Windows.Forms.Label lRayCount;
         private System.Windows.Forms.TextBox RayCount;
+        private System.Windows.Forms.Button show_graph;
+        private System.Windows.Forms.Button ShowT;
     }
 }
 
