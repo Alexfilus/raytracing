@@ -73,5 +73,9 @@ namespace raytraicing
                 G.DrawLine(Pens.Black, transX(points[i].X), transY(points[i].Y), transX(points[i + 1].X), transY(points[i + 1].Y));
             }
         }
+        public void DrawLine(Graphics G, Point2DD coefs)
+        {
+            G.DrawLine(Pens.Red, transX(minX), transY(coefs.X * minX + coefs.Y), transX(maxX), transY(coefs.X * maxX + coefs.Y));
+        }
     }
 }

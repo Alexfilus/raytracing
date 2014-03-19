@@ -34,6 +34,7 @@ namespace raytraicing
         public Bitmap Graph_bmp;
         public double Perimetr = 0;
         public double Area = 0;
+        public double RT;
    
         // Загрузить информацию
         private void button1_Click(object sender, EventArgs e)
@@ -269,7 +270,9 @@ namespace raytraicing
             //graph.DrawGraph(g, Head.GetTimes(), Head.GetLouds());
             Point2DD[] points = Head.GetPoints();
             graph.DrawGraph(g, points);
-
+            Point2DD coefs = new Point2DD(MNK.GetLine(points));
+            RT = -coefs.Y / coefs.X;
+            graph.DrawLine(g, coefs);
             g.Dispose();
             FormGraph f2 = new FormGraph();
             f2.Owner = this;
@@ -278,7 +281,8 @@ namespace raytraicing
 
         private void ShowT_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Инженерное Т="+(-0.128 * AllRibs.GetArea() / (AllRibs.GetPerimetr() * Math.Log(1 - AllRibs.GetAlpha()))).ToString()+"\n Вычмсленное Т="+Head.GetRT(0.4).ToString());
+            MessageBox.Show("Инженерное Т=" + (-0.128 * AllRibs.GetArea() / (AllRibs.GetPerimetr() * Math.Log(1 - AllRibs.GetAlpha()))).ToString() + "\n Вычмсленное Т=" + RT.ToString());
+            //MessageBox.Show("Инженерное Т="+(-0.128 * AllRibs.GetArea() / (AllRibs.GetPerimetr() * Math.Log(1 - AllRibs.GetAlpha()))).ToString()+"\n Вычмсленное Т="+Head.GetRT(0.4).ToString());
         }
     }
 }

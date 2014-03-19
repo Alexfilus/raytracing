@@ -7,16 +7,18 @@ namespace raytraicing
 {
     static class MNK
     {
-        public static Line GetLine(Point2DD[] points)
+        public static Point2DD GetLine(Point2DD[] points)
         {
-            Line result = new Line(0, 0, 0);
-            double SumXi = 0;
-            double SumYi = 0;
-            double SumXiYi = 0;
-            double SumXi2 = 0;
-            points.Sum(point =>point.X*point.X);
+            double SumXi = points.Sum(point => point.X);
+            double SumYi = points.Sum(point => point.Y);
+            double SumXiYi = points.Sum(point => point.X*point.Y);
+            double SumXi2 = points.Sum(point => point.X*point.X);
+            int n = points.Length;
+            double a = (n * SumXiYi - SumXi * SumYi) / (n * SumXi2 - SumXi * SumXi);
+            double b = (SumYi - a * SumXi) / n;
+            //points.Sum(point =>point.X*point.X);
             //foreach(Point2DD point
-            return result;
+            return new Point2DD(a,b);
         }
     }
 }
