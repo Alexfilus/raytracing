@@ -95,7 +95,7 @@ namespace raytraicing
                 Add(_Position, new Point2DD(Math.Cos(2 * Math.PI * i / Count), Math.Sin(2 * Math.PI * i / Count)));
         }
 
-        public void Add(Point2DD _FirstPoint, Point2DD _DirectingVector, double _Power = 1.0)
+        public void Add(Point2DD _FirstPoint, Point2DD _DirectingVector, double _Power = 100.0)
         {
             List.Add(new Ray(_FirstPoint, _DirectingVector, _Power));
         }

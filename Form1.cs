@@ -34,12 +34,15 @@ namespace raytraicing
         public Bitmap Graph_bmp;
         public double Perimetr = 0;
         public double Area = 0;
+        public double Alpha = 0;
         public double RT;
    
         // Загрузить информацию
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.AddRange(File.ReadAllLines(@"points.dat"));
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            listBox1.Items.AddRange(File.ReadAllLines(comboBox1.SelectedItem.ToString()+".points"));
             listBox2.Items.AddRange(File.ReadAllLines(@"ribs.dat"));
             button3.Enabled = true;
         }
@@ -111,7 +114,7 @@ namespace raytraicing
         //Запуск лучей
         private void button5_Click(object sender, EventArgs e)
         {
-            BumpLog.Items.Clear();
+            //BumpLog.Items.Clear();
             Rays AllRays = new Rays(new Point2DD(int.Parse(FirstPointX.Text), int.Parse(FirstPointY.Text)), int.Parse(RayCount.Text));
             
             Head.DrawHead(Graphics.FromImage(pic));
@@ -249,14 +252,26 @@ namespace raytraicing
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            foreach (FileInfo file in dir.GetFiles("*.points")) // извлекаем все файлы и кидаем их в список
+            {
+                comboBox1.Items.Add(Path.GetFileNameWithoutExtension(file.FullName)); // получаем полный путь к файлу и потом вычищаем ненужное, оставляем только имя файла.
+            }
+            comboBox1.SelectedIndex = 0;
+           // string[] FilesList = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.points");
+
+            //comboBox1.Items.AddRange(Directory.GetFiles(Directory.GetCurrentDirectory(), "*.points"));
             button1_Click(sender, e);
+            button6_Click(sender, e);
+            //trackBarH.Maximum = int.Parse(XRange.Text) - 2;
+            //trackBarV.Maximum = int.Parse(YRange.Text) - 2;
         }
         // Сброс
         private void btnAbort_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
-            BumpLog.Items.Clear();
+            //BumpLog.Items.Clear();
             col.Clear();
             AllRibs.Clear();
         }
@@ -272,6 +287,9 @@ namespace raytraicing
             graph.DrawGraph(g, points);
             Point2DD coefs = new Point2DD(MNK.GetLine(points));
             RT = -coefs.Y / coefs.X;
+            Area = AllRibs.GetArea();
+            Perimetr = AllRibs.GetPerimetr();
+            Alpha = AllRibs.GetAlpha();
             graph.DrawLine(g, coefs);
             g.Dispose();
             FormGraph f2 = new FormGraph();
@@ -281,8 +299,13 @@ namespace raytraicing
 
         private void ShowT_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Инженерное Т=" + (-0.128 * AllRibs.GetArea() / (AllRibs.GetPerimetr() * Math.Log(1 - AllRibs.GetAlpha()))).ToString() + "\n Вычмсленное Т=" + RT.ToString());
+            MessageBox.Show("Инженерное RТ=" + (-0.128 * Area/ (Perimetr * Math.Log(1 - Alpha))).ToString() + "\n Программное RТ=" + RT.ToString());
             //MessageBox.Show("Инженерное Т="+(-0.128 * AllRibs.GetArea() / (AllRibs.GetPerimetr() * Math.Log(1 - AllRibs.GetAlpha()))).ToString()+"\n Вычмсленное Т="+Head.GetRT(0.4).ToString());
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
         }
     }
 }

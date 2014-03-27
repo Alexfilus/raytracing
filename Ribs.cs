@@ -87,7 +87,7 @@ namespace raytraicing
             return ((Res.X > Math.Max(FirstPoint.X, SecondPoint.X)) || (Res.X < Math.Min(FirstPoint.X, SecondPoint.X)) ||
                         (Res.Y > Math.Max(FirstPoint.Y, SecondPoint.Y)) || (Res.Y < Math.Min(FirstPoint.Y, SecondPoint.Y)));
         }
-        public static Rib GetBisector(Rib FRib, Rib SRib, Ray ray)
+       /* public static Rib GetBisector(Rib FRib, Rib SRib, Ray ray)
         {
             Line FL = new Line(FRib);
             Line SL = new Line(SRib);
@@ -127,12 +127,12 @@ namespace raytraicing
             return new Rib(new Point2DD(new_ray.FirstPoint + new_ray.DirectingVector * 10.0), 
                             new Point2DD(new_ray.FirstPoint - new_ray.DirectingVector * 10.0), 
                             (FRib.Coef + SRib.Coef) / 2);
-        }
+        }*/
     }
 
-    class Ribs
+    public class Ribs
     {
-        private List<Rib> List = new List<Rib>();
+        List<Rib> List = new List<Rib>();
 
         public Ribs()
         {
@@ -168,27 +168,29 @@ namespace raytraicing
         }
         public double GetPerimetr()
         {
-            double result = 0;
+            /*double result = 0;
             foreach (Rib rib in List)
             {
                 result += rib.GetLength();
             }
-            return result;
+            return result;*/
+            return List.Sum(rib => rib.GetLength()/100); 
         }
         public double GetArea()
         {
-            return List[0].GetLength() * List[1].GetLength();
+            return List[0].GetLength()/100 * List[1].GetLength()/100;
         }
         public double GetAlpha()
         {
-            double result = 0;
+           /* double result = 0;
             foreach (Rib rib in List)
             {
                 result += rib.Coef;
             }
-            return result/this.GetCount();
+            return result/this.GetCount();*/
+            return List.Sum(rib => rib.Coef) / List.Count;
         }
-        public List<Point2DD> GetFirstPoints()
+       /* public List<Point2DD> GetFirstPoints()
         {
             List<Point2DD> result = new List<Point2DD>();
             foreach (Rib rib in List)
@@ -205,6 +207,6 @@ namespace raytraicing
                 result.Add(rib.SecondPoint);
             }
             return result;
-        }
+        }*/
     }
 }

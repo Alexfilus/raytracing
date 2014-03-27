@@ -28,7 +28,11 @@ namespace raytraicing
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button.Equals(MouseButtons.Middle)) MessageBox.Show(e.Location.ToString());
+            //if (e.Button.Equals(MouseButtons.Middle)) MessageBox.Show(e.Location.ToString());
+            if (e.Button.Equals(MouseButtons.Middle))
+            {
+                MessageBox.Show("Инженерное RТ=" + (-0.128 * (Owner as Form1).Area / ((Owner as Form1).Perimetr * Math.Log(1 - (Owner as Form1).Alpha))).ToString() + "\n Программное RТ=" + (Owner as Form1).RT.ToString());
+            }
             if (e.Button.Equals(MouseButtons.Left)) this.Close();
             if (e.Button.Equals(MouseButtons.Right))
             {

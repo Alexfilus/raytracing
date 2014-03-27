@@ -46,9 +46,7 @@
             this.FirstPointX = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.BumpLog = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.EpsLabel = new System.Windows.Forms.Label();
@@ -64,12 +62,14 @@
             this.RayCount = new System.Windows.Forms.TextBox();
             this.show_graph = new System.Windows.Forms.Button();
             this.ShowT = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(3, 10);
+            this.button1.Location = new System.Drawing.Point(13, 59);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(205, 23);
             this.button1.TabIndex = 0;
@@ -80,7 +80,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 65);
+            this.label3.Location = new System.Drawing.Point(14, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 9;
@@ -88,7 +88,7 @@
             // 
             // YRange
             // 
-            this.YRange.Location = new System.Drawing.Point(33, 62);
+            this.YRange.Location = new System.Drawing.Point(43, 111);
             this.YRange.Name = "YRange";
             this.YRange.Size = new System.Drawing.Size(39, 20);
             this.YRange.TabIndex = 8;
@@ -97,7 +97,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 39);
+            this.label2.Location = new System.Drawing.Point(14, 88);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 13);
             this.label2.TabIndex = 7;
@@ -105,7 +105,7 @@
             // 
             // XRange
             // 
-            this.XRange.Location = new System.Drawing.Point(33, 39);
+            this.XRange.Location = new System.Drawing.Point(43, 88);
             this.XRange.Name = "XRange";
             this.XRange.Size = new System.Drawing.Size(39, 20);
             this.XRange.TabIndex = 6;
@@ -113,7 +113,7 @@
             // 
             // XGridRange
             // 
-            this.XGridRange.Location = new System.Drawing.Point(108, 88);
+            this.XGridRange.Location = new System.Drawing.Point(120, 132);
             this.XGridRange.Name = "XGridRange";
             this.XGridRange.Size = new System.Drawing.Size(46, 20);
             this.XGridRange.TabIndex = 10;
@@ -122,7 +122,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-1, 95);
+            this.label1.Location = new System.Drawing.Point(11, 139);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 11;
@@ -131,7 +131,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(-1, 121);
+            this.label4.Location = new System.Drawing.Point(11, 165);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 13);
             this.label4.TabIndex = 13;
@@ -139,7 +139,7 @@
             // 
             // YGridRange
             // 
-            this.YGridRange.Location = new System.Drawing.Point(108, 114);
+            this.YGridRange.Location = new System.Drawing.Point(120, 158);
             this.YGridRange.Name = "YGridRange";
             this.YGridRange.Size = new System.Drawing.Size(46, 20);
             this.YGridRange.TabIndex = 12;
@@ -148,7 +148,7 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(3, 149);
+            this.button3.Location = new System.Drawing.Point(15, 193);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 27);
             this.button3.TabIndex = 14;
@@ -159,7 +159,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(340, 14);
+            this.label5.Location = new System.Drawing.Point(359, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 18;
@@ -168,7 +168,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(214, 12);
+            this.label6.Location = new System.Drawing.Point(233, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 17;
@@ -177,22 +177,22 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(343, 38);
+            this.listBox2.Location = new System.Drawing.Point(362, 39);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(120, 329);
+            this.listBox2.Size = new System.Drawing.Size(140, 329);
             this.listBox2.TabIndex = 16;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(217, 38);
+            this.listBox1.Location = new System.Drawing.Point(236, 39);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 329);
             this.listBox1.TabIndex = 15;
             // 
             // FirstPointY
             // 
-            this.FirstPointY.Location = new System.Drawing.Point(108, 182);
+            this.FirstPointY.Location = new System.Drawing.Point(120, 226);
             this.FirstPointY.Name = "FirstPointY";
             this.FirstPointY.Size = new System.Drawing.Size(50, 20);
             this.FirstPointY.TabIndex = 20;
@@ -200,7 +200,7 @@
             // 
             // FirstPointX
             // 
-            this.FirstPointX.Location = new System.Drawing.Point(33, 182);
+            this.FirstPointX.Location = new System.Drawing.Point(45, 226);
             this.FirstPointX.Name = "FirstPointX";
             this.FirstPointX.Size = new System.Drawing.Size(50, 20);
             this.FirstPointX.TabIndex = 23;
@@ -209,7 +209,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 185);
+            this.label7.Location = new System.Drawing.Point(19, 229);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(20, 13);
             this.label7.TabIndex = 25;
@@ -218,24 +218,16 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(82, 185);
+            this.label8.Location = new System.Drawing.Point(94, 229);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(20, 13);
             this.label8.TabIndex = 26;
             this.label8.Text = "Y1";
             // 
-            // BumpLog
-            // 
-            this.BumpLog.FormattingEnabled = true;
-            this.BumpLog.Location = new System.Drawing.Point(470, 38);
-            this.BumpLog.Name = "BumpLog";
-            this.BumpLog.Size = new System.Drawing.Size(559, 329);
-            this.BumpLog.TabIndex = 30;
-            // 
             // button5
             // 
             this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(108, 149);
+            this.button5.Location = new System.Drawing.Point(120, 193);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(99, 27);
             this.button5.TabIndex = 31;
@@ -243,18 +235,9 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(467, 14);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 13);
-            this.label12.TabIndex = 32;
-            this.label12.Text = "Столкновения";
-            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(78, 39);
+            this.button6.Location = new System.Drawing.Point(88, 88);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(129, 38);
             this.button6.TabIndex = 33;
@@ -265,7 +248,7 @@
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(2, 274);
+            this.button7.Location = new System.Drawing.Point(14, 318);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(99, 27);
             this.button7.TabIndex = 34;
@@ -276,7 +259,7 @@
             // EpsLabel
             // 
             this.EpsLabel.AutoSize = true;
-            this.EpsLabel.Location = new System.Drawing.Point(8, 248);
+            this.EpsLabel.Location = new System.Drawing.Point(20, 292);
             this.EpsLabel.Name = "EpsLabel";
             this.EpsLabel.Size = new System.Drawing.Size(41, 13);
             this.EpsLabel.TabIndex = 35;
@@ -284,7 +267,7 @@
             // 
             // Eps
             // 
-            this.Eps.Location = new System.Drawing.Point(55, 245);
+            this.Eps.Location = new System.Drawing.Point(67, 289);
             this.Eps.Name = "Eps";
             this.Eps.Size = new System.Drawing.Size(42, 20);
             this.Eps.TabIndex = 36;
@@ -293,7 +276,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(100, 310);
+            this.label11.Location = new System.Drawing.Point(112, 354);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 13);
             this.label11.TabIndex = 40;
@@ -302,7 +285,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(0, 310);
+            this.label13.Location = new System.Drawing.Point(12, 354);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 13);
             this.label13.TabIndex = 39;
@@ -310,7 +293,7 @@
             // 
             // headX
             // 
-            this.headX.Location = new System.Drawing.Point(56, 307);
+            this.headX.Location = new System.Drawing.Point(68, 351);
             this.headX.Name = "headX";
             this.headX.Size = new System.Drawing.Size(41, 20);
             this.headX.TabIndex = 38;
@@ -318,7 +301,7 @@
             // 
             // headY
             // 
-            this.headY.Location = new System.Drawing.Point(157, 307);
+            this.headY.Location = new System.Drawing.Point(169, 351);
             this.headY.Name = "headY";
             this.headY.Size = new System.Drawing.Size(50, 20);
             this.headY.TabIndex = 37;
@@ -327,7 +310,7 @@
             // RadLabel
             // 
             this.RadLabel.AutoSize = true;
-            this.RadLabel.Location = new System.Drawing.Point(-1, 336);
+            this.RadLabel.Location = new System.Drawing.Point(11, 380);
             this.RadLabel.Name = "RadLabel";
             this.RadLabel.Size = new System.Drawing.Size(111, 13);
             this.RadLabel.TabIndex = 41;
@@ -335,7 +318,7 @@
             // 
             // headRad
             // 
-            this.headRad.Location = new System.Drawing.Point(116, 333);
+            this.headRad.Location = new System.Drawing.Point(128, 377);
             this.headRad.Name = "headRad";
             this.headRad.Size = new System.Drawing.Size(92, 20);
             this.headRad.TabIndex = 42;
@@ -343,7 +326,7 @@
             // 
             // btnAbort
             // 
-            this.btnAbort.Location = new System.Drawing.Point(103, 245);
+            this.btnAbort.Location = new System.Drawing.Point(115, 289);
             this.btnAbort.Name = "btnAbort";
             this.btnAbort.Size = new System.Drawing.Size(104, 22);
             this.btnAbort.TabIndex = 43;
@@ -354,7 +337,7 @@
             // lRayCount
             // 
             this.lRayCount.AutoSize = true;
-            this.lRayCount.Location = new System.Drawing.Point(4, 215);
+            this.lRayCount.Location = new System.Drawing.Point(16, 259);
             this.lRayCount.Name = "lRayCount";
             this.lRayCount.Size = new System.Drawing.Size(97, 13);
             this.lRayCount.TabIndex = 44;
@@ -362,7 +345,7 @@
             // 
             // RayCount
             // 
-            this.RayCount.Location = new System.Drawing.Point(108, 212);
+            this.RayCount.Location = new System.Drawing.Point(120, 256);
             this.RayCount.Name = "RayCount";
             this.RayCount.Size = new System.Drawing.Size(50, 20);
             this.RayCount.TabIndex = 45;
@@ -370,7 +353,7 @@
             // 
             // show_graph
             // 
-            this.show_graph.Location = new System.Drawing.Point(108, 273);
+            this.show_graph.Location = new System.Drawing.Point(120, 317);
             this.show_graph.Name = "show_graph";
             this.show_graph.Size = new System.Drawing.Size(99, 28);
             this.show_graph.TabIndex = 46;
@@ -380,19 +363,39 @@
             // 
             // ShowT
             // 
-            this.ShowT.Location = new System.Drawing.Point(3, 352);
+            this.ShowT.Location = new System.Drawing.Point(12, 396);
             this.ShowT.Name = "ShowT";
             this.ShowT.Size = new System.Drawing.Size(75, 23);
             this.ShowT.TabIndex = 47;
-            this.ShowT.Text = "T";
+            this.ShowT.Text = "RT";
             this.ShowT.UseVisualStyleBackColor = true;
             this.ShowT.Click += new System.EventHandler(this.ShowT_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(13, 32);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(205, 21);
+            this.comboBox1.TabIndex = 48;
+            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(102, 13);
+            this.label9.TabIndex = 49;
+            this.label9.Text = "Выберите комнату";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 383);
+            this.ClientSize = new System.Drawing.Size(511, 438);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.ShowT);
             this.Controls.Add(this.show_graph);
             this.Controls.Add(this.RayCount);
@@ -408,9 +411,7 @@
             this.Controls.Add(this.EpsLabel);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.BumpLog);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.FirstPointX);
@@ -459,9 +460,7 @@
         private System.Windows.Forms.TextBox FirstPointX;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ListBox BumpLog;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label EpsLabel;
@@ -477,6 +476,8 @@
         private System.Windows.Forms.TextBox RayCount;
         private System.Windows.Forms.Button show_graph;
         private System.Windows.Forms.Button ShowT;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label9;
     }
 }
 
