@@ -42,9 +42,10 @@ namespace raytraicing
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
-            listBox1.Items.AddRange(File.ReadAllLines(comboBox1.SelectedItem.ToString()+".points"));
-            listBox2.Items.AddRange(File.ReadAllLines(@"ribs.dat"));
+            listBox1.Items.AddRange(File.ReadAllLines(comboBox1.SelectedItem.ToString() + ".points"));
+            listBox2.Items.AddRange(File.ReadAllLines(comboBox2.SelectedItem.ToString() + ".ribs"));
             button3.Enabled = true;
+            toolStripStatusLabel1.Text = "Комната загружена";
         }
         // Расчёты
         private void button3_Click(object sender, EventArgs e)
@@ -110,6 +111,7 @@ namespace raytraicing
             // Делаем доступными кнопки
             button5.Enabled = true;
             button7.Enabled = true;
+            toolStripStatusLabel1.Text = "Расчёты произведены";
         }
         //Запуск лучей
         private void button5_Click(object sender, EventArgs e)
@@ -224,17 +226,16 @@ namespace raytraicing
                     int IsInHead = Head.Check(ray); // Пересекает ли луч голову
                     if (IsInHead != 0)
                     {
-                        //ray.DrawRay(Graphics.FromImage(pic), Pens.Aquamarine);
                         numR = Rnums[Norms.IndexOf(Norms.Min())];
-                        ray.ReNew(AllRibs[numR]);
-                        //BumpLog.Items.Add(@"Было столкновение в точке: " + ray.FirstPoint.ToString() + " Сила луча: " + ray.Power.ToString() + " " + IsInHead.ToString());
-                        //DelRNums.Add(numR);
+                        ray.ReNew(AllRibs[numR]); // Отражаем луч
                     }
                     else ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
                 }
                 i++;
             }
             Head.DrawHead(Graphics.FromImage(pic));
+            Graphics.FromImage(pic).DrawEllipse(new Pen(Color.Green, 5), int.Parse(FirstPointX.Text) - 1, int.Parse(FirstPointY.Text) - 1, 2, 2);
+            toolStripStatusLabel1.Text = "Лучи пущены";
         }
         // Получить размеры экрана
         private void button6_Click(object sender, EventArgs e)
@@ -258,13 +259,14 @@ namespace raytraicing
                 comboBox1.Items.Add(Path.GetFileNameWithoutExtension(file.FullName)); // получаем полный путь к файлу и потом вычищаем ненужное, оставляем только имя файла.
             }
             comboBox1.SelectedIndex = 0;
-           // string[] FilesList = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.points");
-
-            //comboBox1.Items.AddRange(Directory.GetFiles(Directory.GetCurrentDirectory(), "*.points"));
+            dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            foreach (FileInfo file in dir.GetFiles("*.ribs")) // извлекаем все файлы и кидаем их в список
+            {
+                comboBox2.Items.Add(Path.GetFileNameWithoutExtension(file.FullName)); // получаем полный путь к файлу и потом вычищаем ненужное, оставляем только имя файла.
+            }
+            comboBox2.SelectedIndex = 0;
             button1_Click(sender, e);
             button6_Click(sender, e);
-            //trackBarH.Maximum = int.Parse(XRange.Text) - 2;
-            //trackBarV.Maximum = int.Parse(YRange.Text) - 2;
         }
         // Сброс
         private void btnAbort_Click(object sender, EventArgs e)
@@ -282,14 +284,16 @@ namespace raytraicing
             Graphics g = Graphics.FromImage(Graph_bmp);
             g.Clear(Color.White);
             Graph graph = new Graph(new Size(Graph_bmp.Width, Graph_bmp.Height));
-            //graph.DrawGraph(g, Head.GetTimes(), Head.GetLouds());
-            Point2DD[] points = Head.GetPoints();
+
+            Point2DD[] points = Head.GetPoints(); // Получаем отсортированный массив
             graph.DrawGraph(g, points);
-            Point2DD coefs = new Point2DD(MNK.GetLine(points));
-            RT = -coefs.Y / coefs.X;
-            Area = AllRibs.GetArea();
-            Perimetr = AllRibs.GetPerimetr();
-            Alpha = AllRibs.GetAlpha();
+            Point2DD coefs = new Point2DD(MNK.GetLine(points)); // Метод наименьших квадратов
+            double minY = points.Min(point => point.Y);
+            RT = (minY*6.0/7.0 - coefs.Y) / coefs.X;
+           // RT = (minY - coefs.Y) / coefs.X * 6 / 7;
+            Area = AllRibs.GetArea(); //Площадь комнаты
+            Perimetr = AllRibs.GetPerimetr(); // Периметр
+            Alpha = AllRibs.GetAlpha(); // Среднее арифметическое по всем коэфициентам звукопоглощения
             graph.DrawLine(g, coefs);
             g.Dispose();
             FormGraph f2 = new FormGraph();
@@ -300,12 +304,21 @@ namespace raytraicing
         private void ShowT_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Инженерное RТ=" + (-0.128 * Area/ (Perimetr * Math.Log(1 - Alpha))).ToString() + "\n Программное RТ=" + RT.ToString());
-            //MessageBox.Show("Инженерное Т="+(-0.128 * AllRibs.GetArea() / (AllRibs.GetPerimetr() * Math.Log(1 - AllRibs.GetAlpha()))).ToString()+"\n Вычмсленное Т="+Head.GetRT(0.4).ToString());
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             button1_Click(sender, e);
+        }
+
+        private void Eps_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EpsLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

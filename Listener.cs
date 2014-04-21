@@ -62,6 +62,8 @@ namespace raytraicing
             g.DrawEllipse(Pens.Pink, Position.X - Radius, Position.Y - Radius, 2 * Radius, 2 * Radius);
             g.Dispose();
         }
+        // Расстояние от последнего места отражения до головы.
+        // Точки пересечаения луча и окружности найдены с помощью Maple 
         private double GetDistance(Ray ray)
         {
             double x0 = ray.FirstPoint.X;
@@ -82,27 +84,7 @@ namespace raytraicing
         {
             Point2DD[] result = new Point2DD[LoudList.Count];
             for (int i = 0; i < result.Length; i++)
-            {
                 result[i] = new Point2DD(Ways[i] / 34000, Math.Log10(LoudList[i]));
-            }
-            // Сортировка выбором
-           /* for (int i = 0; i < result.Length - 1; i++)
-            {
-                int min = i;
-                for (int j = i + 1; j < result.Length; j++)
-                {
-                    if (result[j].X < result[min].X)
-                    {
-                        min = j;
-                    }
-                }
-                double temp = result[i].X;
-                result[i].X = result[min].X;
-                result[min].X = temp;
-                temp = result[i].Y;
-                result[i].Y = result[min].Y;
-                result[min].Y = temp;
-            }*/
             result = result.OrderBy(point => point.X).ToArray();
             return result;
         }
@@ -110,27 +92,21 @@ namespace raytraicing
         {
             double[] result = Ways.ToArray();
             for (int i = 0; i < result.Length; i++)
-            {
                 result[i] /= 34000;
-            }
             return result;
         }
         public double[] GetLouds()
         {
             double[] result = LoudList.ToArray();
             for (int i = 0; i < result.Length; i++)
-            {
                 result[i] = Math.Log10(result[i]);
-            }
             return result;
         }
         public double GetRT(double Loud)
         {
             int i = 1;
             for (; i < LoudList.Count; ++i)
-            {
                 if (LoudList[i] < Loud) break;
-            }
             return Ways[i] / 34000;
         }
     }

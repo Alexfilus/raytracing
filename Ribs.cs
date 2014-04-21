@@ -168,12 +168,6 @@ namespace raytraicing
         }
         public double GetPerimetr()
         {
-            /*double result = 0;
-            foreach (Rib rib in List)
-            {
-                result += rib.GetLength();
-            }
-            return result;*/
             return List.Sum(rib => rib.GetLength()/100); 
         }
         public double GetArea()
@@ -182,31 +176,7 @@ namespace raytraicing
         }
         public double GetAlpha()
         {
-           /* double result = 0;
-            foreach (Rib rib in List)
-            {
-                result += rib.Coef;
-            }
-            return result/this.GetCount();*/
-            return List.Sum(rib => rib.Coef) / List.Count;
+            return List.Sum(rib => rib.Coef*rib.GetLength()) / this.GetPerimetr()/100;
         }
-       /* public List<Point2DD> GetFirstPoints()
-        {
-            List<Point2DD> result = new List<Point2DD>();
-            foreach (Rib rib in List)
-            {
-                result.Add(rib.FirstPoint);
-            }
-            return result;
-        }
-        public List<Point2DD> GetSecondPoints()
-        {
-            List<Point2DD> result = new List<Point2DD>();
-            foreach (Rib rib in List)
-            {
-                result.Add(rib.SecondPoint);
-            }
-            return result;
-        }*/
     }
 }

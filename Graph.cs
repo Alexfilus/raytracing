@@ -31,51 +31,38 @@ namespace raytraicing
             return (int)((maxY - y) / (maxY - minY) * size.Height);
         }
 
-        public void DrawGraph(Graphics G, double[] axis1, double[] axis2)
+        private void DrawAxis(Graphics G)
         {
-            // Сортировка выбором
-            for (int i = 0; i < axis1.Length - 1; i++)
+            DrawLine(G, new Point2DD(), new Point2DD(maxX, 0));
+            DrawLine(G, new Point2DD(), new Point2DD(0, minY));
+            double step = minY / 7;
+            for (int i = 1; i < 7; ++i)
             {
-                int min = i;
-                for (int j = i + 1; j < axis1.Length; j++)
-                {
-                    if (axis1[j] < axis1[min])
-                    {
-                        min = j;
-                    }
-                }
-                double temp = axis1[i];
-                axis1[i] = axis1[min];
-                axis1[min] = temp;
-                temp = axis2[i];
-                axis2[i] = axis2[min];
-                axis2[min] = temp;
+                G.DrawLine(Pens.Black, transX(0), transY(step * i), transX(0)+15, transY(step * i));
+                G.DrawString((i * 10).ToString() + " dB", new Font("Times", 14), Brushes.Black, transX(0) + 20, transY(step * i) - 7);
             }
-            minX = axis1[0];
-            maxX = axis1[axis1.Length - 1];
-            minY = axis2.Min();
-            maxY = axis2.Max();
-            /*MessageBox.Show(minX.ToString() + "  " + maxX.ToString() + "  " + minY.ToString() + "  " + maxY.ToString());*/
-
-            for (int i = 0; i < axis1.Length - 1; i++)
+            for (int i = 1; i * 0.5 < maxX; ++i)
             {
-                G.DrawLine(Pens.Black, transX(axis1[i]), transY(axis2[i]), transX(axis1[i + 1]), transY(axis2[i + 1]));
+                G.DrawLine(Pens.Black, transX(i * 0.5), transY(0), transX(i * 0.5), transY(0) + 10);
+                G.DrawString((i * 0.5).ToString() + " c", new Font("Times", 14), Brushes.Black, transX(i * 0.5) -7, transY(0) +10);
             }
         }
         public void DrawGraph(Graphics G, Point2DD[] points)
         {
-            minX = points[0].X;
+            minX = -0.02;// points[0].X;
             maxX = points[points.Length - 1].X;
             minY = points.Min(point => point.Y);
-            maxY = points.Max(point => point.Y);
-            for (int i = 0; i < points.Length - 1; i++)
-            {
-                G.DrawLine(Pens.Black, transX(points[i].X), transY(points[i].Y), transX(points[i + 1].X), transY(points[i + 1].Y));
-            }
+            maxY = 0.1;// points.Max(point => point.Y);
+            DrawAxis(G);
+            for (int i = 0; i < points.Length - 1; i++) DrawLine(G, points[i], points[i + 1]);
         }
         public void DrawLine(Graphics G, Point2DD coefs)
         {
             G.DrawLine(Pens.Red, transX(minX), transY(coefs.X * minX + coefs.Y), transX(maxX), transY(coefs.X * maxX + coefs.Y));
+        }
+        private void DrawLine(Graphics G, Point2DD point1, Point2DD point2)
+        {
+            G.DrawLine(Pens.Black, transX(point1.X), transY(point1.Y), transX(point2.X), transY(point2.Y));
         }
     }
 }

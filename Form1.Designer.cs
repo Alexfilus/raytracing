@@ -64,6 +64,11 @@
             this.ShowT = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -159,7 +164,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(359, 15);
+            this.label5.Location = new System.Drawing.Point(360, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 18;
@@ -168,7 +173,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(233, 13);
+            this.label6.Location = new System.Drawing.Point(234, 67);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 17;
@@ -177,7 +182,7 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(362, 39);
+            this.listBox2.Location = new System.Drawing.Point(363, 93);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(140, 329);
             this.listBox2.TabIndex = 16;
@@ -185,7 +190,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(236, 39);
+            this.listBox1.Location = new System.Drawing.Point(237, 93);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 329);
             this.listBox1.TabIndex = 15;
@@ -259,19 +264,21 @@
             // EpsLabel
             // 
             this.EpsLabel.AutoSize = true;
-            this.EpsLabel.Location = new System.Drawing.Point(20, 292);
+            this.EpsLabel.Location = new System.Drawing.Point(9, 289);
             this.EpsLabel.Name = "EpsLabel";
             this.EpsLabel.Size = new System.Drawing.Size(41, 13);
             this.EpsLabel.TabIndex = 35;
             this.EpsLabel.Text = "Epsilon";
+            this.EpsLabel.Click += new System.EventHandler(this.EpsLabel_Click);
             // 
             // Eps
             // 
-            this.Eps.Location = new System.Drawing.Point(67, 289);
+            this.Eps.Location = new System.Drawing.Point(56, 289);
             this.Eps.Name = "Eps";
-            this.Eps.Size = new System.Drawing.Size(42, 20);
+            this.Eps.Size = new System.Drawing.Size(57, 20);
             this.Eps.TabIndex = 36;
-            this.Eps.Text = "0,01";
+            this.Eps.Text = "0,0000001";
+            this.Eps.TextChanged += new System.EventHandler(this.Eps_TextChanged);
             // 
             // label11
             // 
@@ -389,11 +396,48 @@
             this.label9.TabIndex = 49;
             this.label9.Text = "Выберите комнату";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 493);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(511, 22);
+            this.statusStrip1.TabIndex = 50;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(107, 17);
+            this.toolStripStatusLabel1.Text = "Комната загружена";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(234, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(151, 13);
+            this.label10.TabIndex = 52;
+            this.label10.Text = "Выберите набор мощностей";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(235, 32);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(205, 21);
+            this.comboBox2.TabIndex = 51;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 438);
+            this.ClientSize = new System.Drawing.Size(511, 515);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.ShowT);
@@ -435,6 +479,8 @@
             this.Name = "Form1";
             this.Text = "Трассировка";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,6 +524,10 @@
         private System.Windows.Forms.Button ShowT;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 
