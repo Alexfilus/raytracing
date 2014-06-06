@@ -68,6 +68,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.setPoints = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,7 +165,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(360, 69);
+            this.label5.Location = new System.Drawing.Point(360, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 18;
@@ -173,7 +174,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(234, 67);
+            this.label6.Location = new System.Drawing.Point(234, 64);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 17;
@@ -182,52 +183,53 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(363, 93);
+            this.listBox2.Location = new System.Drawing.Point(363, 90);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(140, 329);
+            this.listBox2.Size = new System.Drawing.Size(140, 368);
             this.listBox2.TabIndex = 16;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(237, 93);
+            this.listBox1.Location = new System.Drawing.Point(237, 90);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 329);
+            this.listBox1.Size = new System.Drawing.Size(120, 368);
             this.listBox1.TabIndex = 15;
             // 
             // FirstPointY
             // 
-            this.FirstPointY.Location = new System.Drawing.Point(120, 226);
+            this.FirstPointY.Location = new System.Drawing.Point(122, 252);
             this.FirstPointY.Name = "FirstPointY";
-            this.FirstPointY.Size = new System.Drawing.Size(50, 20);
+            this.FirstPointY.Size = new System.Drawing.Size(44, 20);
             this.FirstPointY.TabIndex = 20;
-            this.FirstPointY.Text = "400";
+            this.FirstPointY.Text = "500";
+            this.FirstPointY.TextChanged += new System.EventHandler(this.FirstPointY_TextChanged);
             // 
             // FirstPointX
             // 
-            this.FirstPointX.Location = new System.Drawing.Point(45, 226);
+            this.FirstPointX.Location = new System.Drawing.Point(122, 226);
             this.FirstPointX.Name = "FirstPointX";
-            this.FirstPointX.Size = new System.Drawing.Size(50, 20);
+            this.FirstPointX.Size = new System.Drawing.Size(44, 20);
             this.FirstPointX.TabIndex = 23;
             this.FirstPointX.Text = "160";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 229);
+            this.label7.Location = new System.Drawing.Point(16, 229);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(20, 13);
+            this.label7.Size = new System.Drawing.Size(69, 13);
             this.label7.TabIndex = 25;
-            this.label7.Text = "X1";
+            this.label7.Text = "X источника";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(94, 229);
+            this.label8.Location = new System.Drawing.Point(16, 255);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(20, 13);
+            this.label8.Size = new System.Drawing.Size(69, 13);
             this.label8.TabIndex = 26;
-            this.label8.Text = "Y1";
+            this.label8.Text = "Y источника";
             // 
             // button5
             // 
@@ -253,7 +255,7 @@
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(14, 318);
+            this.button7.Location = new System.Drawing.Point(14, 401);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(99, 27);
             this.button7.TabIndex = 34;
@@ -264,7 +266,7 @@
             // EpsLabel
             // 
             this.EpsLabel.AutoSize = true;
-            this.EpsLabel.Location = new System.Drawing.Point(9, 289);
+            this.EpsLabel.Location = new System.Drawing.Point(16, 342);
             this.EpsLabel.Name = "EpsLabel";
             this.EpsLabel.Size = new System.Drawing.Size(41, 13);
             this.EpsLabel.TabIndex = 35;
@@ -273,7 +275,7 @@
             // 
             // Eps
             // 
-            this.Eps.Location = new System.Drawing.Point(56, 289);
+            this.Eps.Location = new System.Drawing.Point(63, 339);
             this.Eps.Name = "Eps";
             this.Eps.Size = new System.Drawing.Size(57, 20);
             this.Eps.TabIndex = 36;
@@ -283,7 +285,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(112, 354);
+            this.label11.Location = new System.Drawing.Point(117, 279);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 13);
             this.label11.TabIndex = 40;
@@ -292,7 +294,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 354);
+            this.label13.Location = new System.Drawing.Point(14, 279);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 13);
             this.label13.TabIndex = 39;
@@ -300,7 +302,7 @@
             // 
             // headX
             // 
-            this.headX.Location = new System.Drawing.Point(68, 351);
+            this.headX.Location = new System.Drawing.Point(70, 276);
             this.headX.Name = "headX";
             this.headX.Size = new System.Drawing.Size(41, 20);
             this.headX.TabIndex = 38;
@@ -308,16 +310,17 @@
             // 
             // headY
             // 
-            this.headY.Location = new System.Drawing.Point(169, 351);
+            this.headY.Location = new System.Drawing.Point(177, 276);
             this.headY.Name = "headY";
-            this.headY.Size = new System.Drawing.Size(50, 20);
+            this.headY.Size = new System.Drawing.Size(42, 20);
             this.headY.TabIndex = 37;
-            this.headY.Text = "400";
+            this.headY.Text = "600";
+            this.headY.TextChanged += new System.EventHandler(this.headY_TextChanged);
             // 
             // RadLabel
             // 
             this.RadLabel.AutoSize = true;
-            this.RadLabel.Location = new System.Drawing.Point(11, 380);
+            this.RadLabel.Location = new System.Drawing.Point(14, 314);
             this.RadLabel.Name = "RadLabel";
             this.RadLabel.Size = new System.Drawing.Size(111, 13);
             this.RadLabel.TabIndex = 41;
@@ -325,17 +328,17 @@
             // 
             // headRad
             // 
-            this.headRad.Location = new System.Drawing.Point(128, 377);
+            this.headRad.Location = new System.Drawing.Point(131, 311);
             this.headRad.Name = "headRad";
-            this.headRad.Size = new System.Drawing.Size(92, 20);
+            this.headRad.Size = new System.Drawing.Size(88, 20);
             this.headRad.TabIndex = 42;
             this.headRad.Text = "15";
             // 
             // btnAbort
             // 
-            this.btnAbort.Location = new System.Drawing.Point(115, 289);
+            this.btnAbort.Location = new System.Drawing.Point(122, 339);
             this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(104, 22);
+            this.btnAbort.Size = new System.Drawing.Size(97, 22);
             this.btnAbort.TabIndex = 43;
             this.btnAbort.Text = "Сброс";
             this.btnAbort.UseVisualStyleBackColor = true;
@@ -344,7 +347,7 @@
             // lRayCount
             // 
             this.lRayCount.AutoSize = true;
-            this.lRayCount.Location = new System.Drawing.Point(16, 259);
+            this.lRayCount.Location = new System.Drawing.Point(16, 372);
             this.lRayCount.Name = "lRayCount";
             this.lRayCount.Size = new System.Drawing.Size(97, 13);
             this.lRayCount.TabIndex = 44;
@@ -352,7 +355,7 @@
             // 
             // RayCount
             // 
-            this.RayCount.Location = new System.Drawing.Point(120, 256);
+            this.RayCount.Location = new System.Drawing.Point(120, 369);
             this.RayCount.Name = "RayCount";
             this.RayCount.Size = new System.Drawing.Size(50, 20);
             this.RayCount.TabIndex = 45;
@@ -360,7 +363,7 @@
             // 
             // show_graph
             // 
-            this.show_graph.Location = new System.Drawing.Point(120, 317);
+            this.show_graph.Location = new System.Drawing.Point(120, 400);
             this.show_graph.Name = "show_graph";
             this.show_graph.Size = new System.Drawing.Size(99, 28);
             this.show_graph.TabIndex = 46;
@@ -370,9 +373,9 @@
             // 
             // ShowT
             // 
-            this.ShowT.Location = new System.Drawing.Point(12, 396);
+            this.ShowT.Location = new System.Drawing.Point(14, 434);
             this.ShowT.Name = "ShowT";
-            this.ShowT.Size = new System.Drawing.Size(75, 23);
+            this.ShowT.Size = new System.Drawing.Size(97, 27);
             this.ShowT.TabIndex = 47;
             this.ShowT.Text = "RT";
             this.ShowT.UseVisualStyleBackColor = true;
@@ -400,7 +403,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 493);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 476);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(511, 22);
             this.statusStrip1.TabIndex = 50;
@@ -409,7 +412,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(107, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(114, 17);
             this.toolStripStatusLabel1.Text = "Комната загружена";
             // 
             // label10
@@ -430,11 +433,22 @@
             this.comboBox2.TabIndex = 51;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
+            // setPoints
+            // 
+            this.setPoints.Location = new System.Drawing.Point(120, 434);
+            this.setPoints.Name = "setPoints";
+            this.setPoints.Size = new System.Drawing.Size(99, 27);
+            this.setPoints.TabIndex = 53;
+            this.setPoints.Text = "Установить";
+            this.setPoints.UseVisualStyleBackColor = true;
+            this.setPoints.Click += new System.EventHandler(this.setPoints_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 515);
+            this.ClientSize = new System.Drawing.Size(511, 498);
+            this.Controls.Add(this.setPoints);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.statusStrip1);
@@ -528,6 +542,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button setPoints;
     }
 }
 

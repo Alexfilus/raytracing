@@ -31,6 +31,8 @@ namespace raytraicing
         Ribs AllRibs = new Ribs(); // Список структур со всей информацией о рёбрах
         List<List<List<int>>> col = new List<List<List<int>>>(); // Списки рёбер в каждом сегменте
         public Bitmap pic; // Картинка
+        public Bitmap pic1; // Копия комнаты с заливкой и без лучей
+        public Bitmap room; // Пустая комната
         public Bitmap Graph_bmp;
         public double Perimetr = 0;
         public double Area = 0;
@@ -53,7 +55,9 @@ namespace raytraicing
             maxX = Convert.ToInt32(XRange.Text);
             maxY = Convert.ToInt32(YRange.Text);
             pic = new Bitmap(maxX, maxY);
+            pic1 = new Bitmap(maxX, maxY);
             Graphics.FromImage(pic).Clear(Color.White);
+            Graphics.FromImage(pic1).Clear(Color.White);
             col.Clear();
             AllRibs.Clear();
 
@@ -99,6 +103,7 @@ namespace raytraicing
             for (int i = 0; i < AllRibs.GetCount(); i++)
             {
                 AllRibs[i].DrawRib(Graphics.FromImage(pic));
+                //AllRibs[i].DrawRib(Graphics.FromImage(pic1));
                 for (int t = 0; t <= (int)AllRibs[i].Length; t++)
                 {
                     double x = AllRibs[i].FirstPoint.X + t * AllRibs[i].DirectingVector.X;
@@ -106,6 +111,8 @@ namespace raytraicing
                     if (col[(int)x / XGR][(int)y / YGR].Contains(i) == false) col[(int)x / XGR][(int)y / YGR].Add(i); // Добавляем если надо информацию об отрезке
                 }
             }
+            pic1 = new Bitmap(pic);
+            room = new Bitmap(pic);
             Perimetr = AllRibs.GetPerimetr();
             Area = AllRibs.GetArea();
             // Делаем доступными кнопки
@@ -317,6 +324,23 @@ namespace raytraicing
         }
 
         private void EpsLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void setPoints_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.Owner = this;
+            f2.ShowDialog();
+        }
+
+        private void FirstPointY_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void headY_TextChanged(object sender, EventArgs e)
         {
 
         }
