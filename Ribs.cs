@@ -170,10 +170,46 @@ namespace raytraicing
         {
             return List.Sum(rib => rib.GetLength()/100); 
         }
+        private double GetFigureArea(Point2D bounds)
+        {
+            double Sum = 0;
+            for(int i = bounds.X;i<=bounds.Y;++i)
+            {
+                Sum += Useful.VectorMulti(List[i].FirstPoint,i!=bounds.Y?List[i].SecondPoint:List[bounds.X].FirstPoint);
+                //MessageBox.Show(Sum.ToString());
+            }
+            /*for (int i = bounds.X; i < bounds.Y; ++i)
+            {
+                Sum += Useful.VectorMulti(List[i].FirstPoint, List[i].SecondPoint);
+            }
+            Sum += Useful.VectorMulti(List[bounds.Y].FirstPoint, List[bounds.X].FirstPoint);
+            MessageBox.Show((0.5 * Math.Abs(Sum)).ToString());*/
+            return 0.5 * Math.Abs(Sum);
+        }
         public double GetArea()
         {
-            return List[0].GetLength()/100 * List[1].GetLength()/100;
+            //Point2D MainFigure = new Point2D(0, List.FindIndex(delegate(Rib rib) { return rib.SecondPoint.X == List[0].FirstPoint.X && rib.SecondPoint.Y == List[0].FirstPoint.Y; }));
+            int j = 1;
+            for (; j < List.Count && !(List[j].SecondPoint.X == List[0].FirstPoint.X && List[j].SecondPoint.Y == List[0].FirstPoint.Y); ++j) ;
+            Point2D MainFigure = new Point2D(0, j);
+            List<Point2D> InnerFigures = new List<Point2D>();
+            if(MainFigure.Y != List.Count-1)
+            {
+                InnerFigures.Add(new Point2D(MainFigure.Y+1,-1));
+                for(int i=MainFigure.Y+2;i<List.Count;++i)
+                {
+                    if(List[i].SecondPoint == List[InnerFigures[InnerFigures.Count-1].X].FirstPoint)
+                    {
+                        InnerFigures[InnerFigures.Count - 1].Y = i;
+                        InnerFigures.Add(new Point2D(i + 1, -1));
+                    }
+                }
+            }
+
+            return (GetFigureArea(MainFigure) - InnerFigures.Sum(bounds => GetFigureArea(bounds)))/10000;
+            //return List[0].GetLength()/100 * List[1].GetLength()/100;
         }
+
         public double GetAlpha()
         {
             return List.Sum(rib => rib.Coef*rib.GetLength()) / this.GetPerimetr()/100;

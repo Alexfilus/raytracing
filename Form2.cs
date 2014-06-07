@@ -18,26 +18,21 @@ namespace raytraicing
 
         public Bitmap buf;
 
-        private void floodFill4(int x, int y, int newColor, int oldColor)
+        private void DrawPoints()
         {
-            if (x >= 0 && x < w && y >= 0 && y < h && screenBuffer[x][y] == oldColor && screenBuffer[x][y] != newColor)
-            {
-                screenBuffer[x][y] = newColor; //set color before starting recursion
-
-                floodFill4(x + 1, y, newColor, oldColor);
-                floodFill4(x - 1, y, newColor, oldColor);
-                floodFill4(x, y + 1, newColor, oldColor);
-                floodFill4(x, y - 1, newColor, oldColor);
-            }
+            pictureBox1.Image = ((Owner as Form1).room.Clone() as Image);
+            int Radius = int.Parse(((Owner as Form1).Controls["HeadRad"] as TextBox).Text);
+            Graphics.FromImage(pictureBox1.Image).DrawEllipse(new Pen(Color.Green, 5), int.Parse(((Owner as Form1).Controls["FirstPointX"] as TextBox).Text) - 1, int.Parse(((Owner as Form1).Controls["FirstPointY"] as TextBox).Text) - 1, 2, 2);
+            Graphics.FromImage(pictureBox1.Image).DrawEllipse(Pens.Pink, int.Parse(((Owner as Form1).Controls["HeadX"] as TextBox).Text) - Radius, int.Parse(((Owner as Form1).Controls["HeadY"] as TextBox).Text) - Radius, 2 * Radius, 2 * Radius);
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             //pictureBox1.Image = buf;
-            pictureBox1.Image = (Owner as Form1).room;
+            //pictureBox1.Image = (Owner as Form1).room;
+            DrawPoints();
             pictureBox1.Refresh();
         }
-
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -46,13 +41,13 @@ namespace raytraicing
             {
                 ((Owner as Form1).Controls["FirstPointX"] as TextBox).Text = e.X.ToString();
                 ((Owner as Form1).Controls["FirstPointY"] as TextBox).Text = e.Y.ToString();
+                DrawPoints();
             }
             if (e.Button.Equals(MouseButtons.Right))
             {
                 ((Owner as Form1).Controls["HeadX"] as TextBox).Text = e.X.ToString();
                 ((Owner as Form1).Controls["HeadY"] as TextBox).Text = e.Y.ToString();
-                Listener temp = new Listener(new Point2D(e.X, e.Y), int.Parse(((Owner as Form1).Controls["headRad"] as TextBox).Text));
-                temp.DrawHead(Graphics.FromImage(buf));
+                DrawPoints();
             }
         }
 

@@ -61,7 +61,7 @@ namespace raytraicing
             col.Clear();
             AllRibs.Clear();
 
-            Head = new Listener(new Point2D(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
+            
             XGR = Convert.ToInt32(XGridRange.Text);
             YGR = Convert.ToInt32(YGridRange.Text);
             
@@ -123,7 +123,7 @@ namespace raytraicing
         //Запуск лучей
         private void button5_Click(object sender, EventArgs e)
         {
-            //BumpLog.Items.Clear();
+            Head = new Listener(new Point2D(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
             Rays AllRays = new Rays(new Point2DD(int.Parse(FirstPointX.Text), int.Parse(FirstPointY.Text)), int.Parse(RayCount.Text));
             
             Head.DrawHead(Graphics.FromImage(pic));
@@ -343,6 +343,12 @@ namespace raytraicing
         private void headY_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Area.ToString());
+            
         }
     }
 }

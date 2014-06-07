@@ -16,16 +16,43 @@ namespace raytraicing
             InitializeComponent();
         }
 
+        private void DrawPoints()
+        {
+            pictureBox1.Image = ((Owner as Form1).pic.Clone() as Image);
+            int Radius = int.Parse(((Owner as Form1).Controls["HeadRad"] as TextBox).Text);
+            Graphics.FromImage(pictureBox1.Image).DrawEllipse(new Pen(Color.Green, 5), int.Parse(((Owner as Form1).Controls["FirstPointX"] as TextBox).Text) - 1, int.Parse(((Owner as Form1).Controls["FirstPointY"] as TextBox).Text) - 1, 2, 2);
+            Graphics.FromImage(pictureBox1.Image).DrawEllipse(Pens.Pink, int.Parse(((Owner as Form1).Controls["HeadX"] as TextBox).Text) - Radius, int.Parse(((Owner as Form1).Controls["HeadY"] as TextBox).Text) - Radius, 2 * Radius, 2 * Radius);
+        }
+
         private void Form4_Paint(object sender, PaintEventArgs e)
         {
             pictureBox1.Image = (Owner as Form1).pic;
             pictureBox1.Refresh();
+            DrawPoints();
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button.Equals(MouseButtons.Middle)) MessageBox.Show(e.Location.ToString());
-            if (e.Button.Equals(MouseButtons.Left)) this.Close();
+            if (e.Button.Equals(MouseButtons.Left))
+            {
+                switch (Control.ModifierKeys)
+                {
+                    case Keys.Control:
+                        ((Owner as Form1).Controls["FirstPointX"] as TextBox).Text = e.X.ToString();
+                        ((Owner as Form1).Controls["FirstPointY"] as TextBox).Text = e.Y.ToString();
+                        DrawPoints();
+                        break;
+                    case Keys.Alt:
+                        ((Owner as Form1).Controls["HeadX"] as TextBox).Text = e.X.ToString();
+                        ((Owner as Form1).Controls["HeadY"] as TextBox).Text = e.Y.ToString();
+                        DrawPoints();
+                        break;
+                    default: 
+                        this.Close();
+                        break;
+                }
+            }
             if (e.Button.Equals(MouseButtons.Right))
             {
                 SaveFileDialog savedialog = new SaveFileDialog();

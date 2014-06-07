@@ -16,6 +16,8 @@ namespace raytraicing
         public static Point2D operator -(Point2D point1, Point2D point2) { return new Point2D(point1.X - point2.X, point1.Y - point2.Y); }
         public static Point2DD operator *(Point2D point, double mul) { return new Point2DD(point.X * mul, point.Y * mul); }
         public static double operator *(Point2D point1, Point2D point2) { return point1.X * point2.Y + point1.Y * point2.Y; }
+        public static bool operator ==(Point2D point1, Point2D point2) { return point1.X == point2.X && point1.Y == point2.Y; }
+        public static bool operator !=(Point2D point1, Point2D point2) { return !(point1 == point2); }
 
         public static explicit operator Point2D(Point2DD point)
         {
@@ -40,5 +42,7 @@ namespace raytraicing
         public static Point2DD operator -(Point2DD point1, Point2DD point2) { return new Point2DD(point1.X - point2.X, point1.Y - point2.Y); }
         public static Point2DD operator *(Point2DD point, double mul) { return new Point2DD(point.X * mul, point.Y * mul); }
         public static double operator *(Point2DD point1, Point2DD point2) { return point1.X * point2.Y + point1.Y * point2.Y; }
+        public static bool operator ==(Point2DD point1, Point2DD point2) { return point1.X == point2.X && point1.Y == point2.Y; }
+        public static bool operator !=(Point2DD point1, Point2DD point2) { return !(point1 == point2); }
     }
 }
