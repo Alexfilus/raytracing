@@ -28,38 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.YRange = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.XRange = new System.Windows.Forms.TextBox();
-            this.XGridRange = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.YGridRange = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.FirstPointY = new System.Windows.Forms.TextBox();
-            this.FirstPointX = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.EpsLabel = new System.Windows.Forms.Label();
-            this.Eps = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.headX = new System.Windows.Forms.TextBox();
-            this.headY = new System.Windows.Forms.TextBox();
-            this.RadLabel = new System.Windows.Forms.Label();
-            this.headRad = new System.Windows.Forms.TextBox();
             this.btnAbort = new System.Windows.Forms.Button();
-            this.lRayCount = new System.Windows.Forms.Label();
-            this.RayCount = new System.Windows.Forms.TextBox();
             this.show_graph = new System.Windows.Forms.Button();
             this.ShowT = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -69,103 +45,48 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.setPoints = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.XRange = new System.Windows.Forms.TextBox();
+            this.YRange = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.XGridRange = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.YGridRange = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.FirstPointY = new System.Windows.Forms.TextBox();
+            this.RayCount = new System.Windows.Forms.TextBox();
+            this.FirstPointX = new System.Windows.Forms.TextBox();
+            this.lRayCount = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.headRad = new System.Windows.Forms.TextBox();
+            this.EpsLabel = new System.Windows.Forms.Label();
+            this.RadLabel = new System.Windows.Forms.Label();
+            this.Eps = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.headY = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.headX = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(13, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(205, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Загрузить информацию";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Y = ";
-            // 
-            // YRange
-            // 
-            this.YRange.Location = new System.Drawing.Point(43, 111);
-            this.YRange.Name = "YRange";
-            this.YRange.Size = new System.Drawing.Size(39, 20);
-            this.YRange.TabIndex = 8;
-            this.YRange.Text = "1080";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "X =";
-            // 
-            // XRange
-            // 
-            this.XRange.Location = new System.Drawing.Point(43, 88);
-            this.XRange.Name = "XRange";
-            this.XRange.Size = new System.Drawing.Size(39, 20);
-            this.XRange.TabIndex = 6;
-            this.XRange.Text = "1920";
-            // 
-            // XGridRange
-            // 
-            this.XGridRange.Location = new System.Drawing.Point(120, 132);
-            this.XGridRange.Name = "XGridRange";
-            this.XGridRange.Size = new System.Drawing.Size(46, 20);
-            this.XGridRange.TabIndex = 10;
-            this.XGridRange.Text = "40";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 139);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Размер сетки по X";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 165);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Размер сетки по Y";
-            // 
-            // YGridRange
-            // 
-            this.YGridRange.Location = new System.Drawing.Point(120, 158);
-            this.YGridRange.Name = "YGridRange";
-            this.YGridRange.Size = new System.Drawing.Size(46, 20);
-            this.YGridRange.TabIndex = 12;
-            this.YGridRange.Text = "40";
             // 
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(15, 193);
+            this.button3.Location = new System.Drawing.Point(15, 57);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(99, 27);
+            this.button3.Size = new System.Drawing.Size(200, 27);
             this.button3.TabIndex = 14;
-            this.button3.Text = "Расчёты";
+            this.button3.Text = "Предварительные расчёты";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(360, 66);
+            this.label5.Location = new System.Drawing.Point(358, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 18;
@@ -174,7 +95,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(234, 64);
+            this.label6.Location = new System.Drawing.Point(232, 64);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 17;
@@ -183,58 +104,23 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(363, 90);
+            this.listBox2.Location = new System.Drawing.Point(361, 90);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(140, 368);
+            this.listBox2.Size = new System.Drawing.Size(140, 342);
             this.listBox2.TabIndex = 16;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(237, 90);
+            this.listBox1.Location = new System.Drawing.Point(235, 90);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 368);
+            this.listBox1.Size = new System.Drawing.Size(120, 342);
             this.listBox1.TabIndex = 15;
-            // 
-            // FirstPointY
-            // 
-            this.FirstPointY.Location = new System.Drawing.Point(122, 252);
-            this.FirstPointY.Name = "FirstPointY";
-            this.FirstPointY.Size = new System.Drawing.Size(44, 20);
-            this.FirstPointY.TabIndex = 20;
-            this.FirstPointY.Text = "500";
-            this.FirstPointY.TextChanged += new System.EventHandler(this.FirstPointY_TextChanged);
-            // 
-            // FirstPointX
-            // 
-            this.FirstPointX.Location = new System.Drawing.Point(122, 226);
-            this.FirstPointX.Name = "FirstPointX";
-            this.FirstPointX.Size = new System.Drawing.Size(44, 20);
-            this.FirstPointX.TabIndex = 23;
-            this.FirstPointX.Text = "160";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 229);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "X источника";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 255);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 13);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Y источника";
             // 
             // button5
             // 
             this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(120, 193);
+            this.button5.Location = new System.Drawing.Point(13, 395);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(99, 27);
             this.button5.TabIndex = 31;
@@ -242,20 +128,10 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(88, 88);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(129, 38);
-            this.button6.TabIndex = 33;
-            this.button6.Text = "Взять разрешение монитора";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(14, 401);
+            this.button7.Location = new System.Drawing.Point(115, 395);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(99, 27);
             this.button7.TabIndex = 34;
@@ -263,107 +139,20 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // EpsLabel
-            // 
-            this.EpsLabel.AutoSize = true;
-            this.EpsLabel.Location = new System.Drawing.Point(16, 342);
-            this.EpsLabel.Name = "EpsLabel";
-            this.EpsLabel.Size = new System.Drawing.Size(41, 13);
-            this.EpsLabel.TabIndex = 35;
-            this.EpsLabel.Text = "Epsilon";
-            this.EpsLabel.Click += new System.EventHandler(this.EpsLabel_Click);
-            // 
-            // Eps
-            // 
-            this.Eps.Location = new System.Drawing.Point(63, 339);
-            this.Eps.Name = "Eps";
-            this.Eps.Size = new System.Drawing.Size(57, 20);
-            this.Eps.TabIndex = 36;
-            this.Eps.Text = "0,0000001";
-            this.Eps.TextChanged += new System.EventHandler(this.Eps_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(117, 279);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 13);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Y головы";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 279);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 13);
-            this.label13.TabIndex = 39;
-            this.label13.Text = "X головы";
-            // 
-            // headX
-            // 
-            this.headX.Location = new System.Drawing.Point(70, 276);
-            this.headX.Name = "headX";
-            this.headX.Size = new System.Drawing.Size(41, 20);
-            this.headX.TabIndex = 38;
-            this.headX.Text = "750";
-            // 
-            // headY
-            // 
-            this.headY.Location = new System.Drawing.Point(177, 276);
-            this.headY.Name = "headY";
-            this.headY.Size = new System.Drawing.Size(42, 20);
-            this.headY.TabIndex = 37;
-            this.headY.Text = "600";
-            this.headY.TextChanged += new System.EventHandler(this.headY_TextChanged);
-            // 
-            // RadLabel
-            // 
-            this.RadLabel.AutoSize = true;
-            this.RadLabel.Location = new System.Drawing.Point(14, 314);
-            this.RadLabel.Name = "RadLabel";
-            this.RadLabel.Size = new System.Drawing.Size(111, 13);
-            this.RadLabel.TabIndex = 41;
-            this.RadLabel.Text = "Радиус слышимости";
-            // 
-            // headRad
-            // 
-            this.headRad.Location = new System.Drawing.Point(131, 311);
-            this.headRad.Name = "headRad";
-            this.headRad.Size = new System.Drawing.Size(88, 20);
-            this.headRad.TabIndex = 42;
-            this.headRad.Text = "15";
-            // 
             // btnAbort
             // 
-            this.btnAbort.Location = new System.Drawing.Point(122, 339);
+            this.btnAbort.Location = new System.Drawing.Point(233, 447);
             this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(97, 22);
+            this.btnAbort.Size = new System.Drawing.Size(268, 41);
             this.btnAbort.TabIndex = 43;
-            this.btnAbort.Text = "Сброс";
+            this.btnAbort.Text = "Очистить";
             this.btnAbort.UseVisualStyleBackColor = true;
             this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
             // 
-            // lRayCount
-            // 
-            this.lRayCount.AutoSize = true;
-            this.lRayCount.Location = new System.Drawing.Point(16, 372);
-            this.lRayCount.Name = "lRayCount";
-            this.lRayCount.Size = new System.Drawing.Size(97, 13);
-            this.lRayCount.TabIndex = 44;
-            this.lRayCount.Text = "Количество лучей";
-            // 
-            // RayCount
-            // 
-            this.RayCount.Location = new System.Drawing.Point(120, 369);
-            this.RayCount.Name = "RayCount";
-            this.RayCount.Size = new System.Drawing.Size(50, 20);
-            this.RayCount.TabIndex = 45;
-            this.RayCount.Text = "10000";
-            // 
             // show_graph
             // 
-            this.show_graph.Location = new System.Drawing.Point(120, 400);
+            this.show_graph.Enabled = false;
+            this.show_graph.Location = new System.Drawing.Point(15, 428);
             this.show_graph.Name = "show_graph";
             this.show_graph.Size = new System.Drawing.Size(99, 28);
             this.show_graph.TabIndex = 46;
@@ -373,7 +162,8 @@
             // 
             // ShowT
             // 
-            this.ShowT.Location = new System.Drawing.Point(14, 434);
+            this.ShowT.Enabled = false;
+            this.ShowT.Location = new System.Drawing.Point(117, 429);
             this.ShowT.Name = "ShowT";
             this.ShowT.Size = new System.Drawing.Size(97, 27);
             this.ShowT.TabIndex = 47;
@@ -384,9 +174,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 32);
+            this.comboBox1.Location = new System.Drawing.Point(15, 31);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(205, 21);
+            this.comboBox1.Size = new System.Drawing.Size(199, 21);
             this.comboBox1.TabIndex = 48;
             this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
@@ -403,7 +193,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 476);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 502);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(511, 22);
             this.statusStrip1.TabIndex = 50;
@@ -435,19 +225,239 @@
             // 
             // setPoints
             // 
-            this.setPoints.Location = new System.Drawing.Point(120, 434);
+            this.setPoints.Enabled = false;
+            this.setPoints.Location = new System.Drawing.Point(15, 461);
             this.setPoints.Name = "setPoints";
-            this.setPoints.Size = new System.Drawing.Size(99, 27);
+            this.setPoints.Size = new System.Drawing.Size(200, 27);
             this.setPoints.TabIndex = 53;
-            this.setPoints.Text = "Установить";
+            this.setPoints.Text = "Установить приёмник и источник";
             this.setPoints.UseVisualStyleBackColor = true;
             this.setPoints.Click += new System.EventHandler(this.setPoints_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.XRange);
+            this.groupBox1.Controls.Add(this.YRange);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.XGridRange);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.YGridRange);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.FirstPointY);
+            this.groupBox1.Controls.Add(this.RayCount);
+            this.groupBox1.Controls.Add(this.FirstPointX);
+            this.groupBox1.Controls.Add(this.lRayCount);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.headRad);
+            this.groupBox1.Controls.Add(this.EpsLabel);
+            this.groupBox1.Controls.Add(this.RadLabel);
+            this.groupBox1.Controls.Add(this.Eps);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.headY);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.headX);
+            this.groupBox1.Location = new System.Drawing.Point(13, 90);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(202, 299);
+            this.groupBox1.TabIndex = 54;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ручная настройка";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 13);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "X =";
+            // 
+            // XRange
+            // 
+            this.XRange.Location = new System.Drawing.Point(46, 29);
+            this.XRange.Name = "XRange";
+            this.XRange.Size = new System.Drawing.Size(39, 20);
+            this.XRange.TabIndex = 46;
+            this.XRange.Text = "1920";
+            // 
+            // YRange
+            // 
+            this.YRange.Location = new System.Drawing.Point(145, 29);
+            this.YRange.Name = "YRange";
+            this.YRange.Size = new System.Drawing.Size(39, 20);
+            this.YRange.TabIndex = 48;
+            this.YRange.Text = "1080";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(113, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(26, 13);
+            this.label3.TabIndex = 49;
+            this.label3.Text = "Y = ";
+            // 
+            // XGridRange
+            // 
+            this.XGridRange.Location = new System.Drawing.Point(145, 55);
+            this.XGridRange.Name = "XGridRange";
+            this.XGridRange.Size = new System.Drawing.Size(39, 20);
+            this.XGridRange.TabIndex = 50;
+            this.XGridRange.Text = "40";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "Размер сетки по X";
+            // 
+            // YGridRange
+            // 
+            this.YGridRange.Location = new System.Drawing.Point(145, 81);
+            this.YGridRange.Name = "YGridRange";
+            this.YGridRange.Size = new System.Drawing.Size(39, 20);
+            this.YGridRange.TabIndex = 52;
+            this.YGridRange.Text = "40";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 84);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 13);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "Размер сетки по Y";
+            // 
+            // FirstPointY
+            // 
+            this.FirstPointY.Location = new System.Drawing.Point(147, 133);
+            this.FirstPointY.Name = "FirstPointY";
+            this.FirstPointY.Size = new System.Drawing.Size(37, 20);
+            this.FirstPointY.TabIndex = 54;
+            this.FirstPointY.Text = "500";
+            // 
+            // RayCount
+            // 
+            this.RayCount.Location = new System.Drawing.Point(139, 267);
+            this.RayCount.Name = "RayCount";
+            this.RayCount.Size = new System.Drawing.Size(45, 20);
+            this.RayCount.TabIndex = 67;
+            this.RayCount.Text = "10000";
+            // 
+            // FirstPointX
+            // 
+            this.FirstPointX.Location = new System.Drawing.Point(147, 107);
+            this.FirstPointX.Name = "FirstPointX";
+            this.FirstPointX.Size = new System.Drawing.Size(37, 20);
+            this.FirstPointX.TabIndex = 55;
+            this.FirstPointX.Text = "160";
+            // 
+            // lRayCount
+            // 
+            this.lRayCount.AutoSize = true;
+            this.lRayCount.Location = new System.Drawing.Point(14, 270);
+            this.lRayCount.Name = "lRayCount";
+            this.lRayCount.Size = new System.Drawing.Size(97, 13);
+            this.lRayCount.TabIndex = 66;
+            this.lRayCount.Text = "Количество лучей";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 110);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 13);
+            this.label7.TabIndex = 56;
+            this.label7.Text = "X источника";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(14, 136);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 13);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "Y источника";
+            // 
+            // headRad
+            // 
+            this.headRad.Location = new System.Drawing.Point(147, 209);
+            this.headRad.Name = "headRad";
+            this.headRad.Size = new System.Drawing.Size(37, 20);
+            this.headRad.TabIndex = 65;
+            this.headRad.Text = "15";
+            // 
+            // EpsLabel
+            // 
+            this.EpsLabel.AutoSize = true;
+            this.EpsLabel.Location = new System.Drawing.Point(14, 240);
+            this.EpsLabel.Name = "EpsLabel";
+            this.EpsLabel.Size = new System.Drawing.Size(41, 13);
+            this.EpsLabel.TabIndex = 58;
+            this.EpsLabel.Text = "Epsilon";
+            // 
+            // RadLabel
+            // 
+            this.RadLabel.AutoSize = true;
+            this.RadLabel.Location = new System.Drawing.Point(14, 212);
+            this.RadLabel.Name = "RadLabel";
+            this.RadLabel.Size = new System.Drawing.Size(111, 13);
+            this.RadLabel.TabIndex = 64;
+            this.RadLabel.Text = "Радиус слышимости";
+            // 
+            // Eps
+            // 
+            this.Eps.Location = new System.Drawing.Point(127, 237);
+            this.Eps.Name = "Eps";
+            this.Eps.Size = new System.Drawing.Size(57, 20);
+            this.Eps.TabIndex = 59;
+            this.Eps.Text = "0,0000001";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 186);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 13);
+            this.label11.TabIndex = 63;
+            this.label11.Text = "Y головы";
+            // 
+            // headY
+            // 
+            this.headY.Location = new System.Drawing.Point(147, 183);
+            this.headY.Name = "headY";
+            this.headY.Size = new System.Drawing.Size(37, 20);
+            this.headY.TabIndex = 60;
+            this.headY.Text = "600";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(14, 160);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 13);
+            this.label13.TabIndex = 62;
+            this.label13.Text = "X головы";
+            // 
+            // headX
+            // 
+            this.headX.Location = new System.Drawing.Point(147, 157);
+            this.headX.Name = "headX";
+            this.headX.Size = new System.Drawing.Size(37, 20);
+            this.headX.TabIndex = 61;
+            this.headX.Text = "750";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 498);
+            this.ClientSize = new System.Drawing.Size(511, 524);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.setPoints);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox2);
@@ -456,38 +466,14 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.ShowT);
             this.Controls.Add(this.show_graph);
-            this.Controls.Add(this.RayCount);
-            this.Controls.Add(this.lRayCount);
             this.Controls.Add(this.btnAbort);
-            this.Controls.Add(this.headRad);
-            this.Controls.Add(this.RadLabel);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.headX);
-            this.Controls.Add(this.headY);
-            this.Controls.Add(this.Eps);
-            this.Controls.Add(this.EpsLabel);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.FirstPointX);
-            this.Controls.Add(this.FirstPointY);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.YGridRange);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.XGridRange);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.YRange);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.XRange);
-            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -495,6 +481,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -502,38 +490,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox YRange;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox XRange;
-        private System.Windows.Forms.TextBox XGridRange;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox YGridRange;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox FirstPointY;
-        private System.Windows.Forms.TextBox FirstPointX;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label EpsLabel;
-        private System.Windows.Forms.TextBox Eps;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox headX;
-        private System.Windows.Forms.TextBox headY;
-        private System.Windows.Forms.Label RadLabel;
-        private System.Windows.Forms.TextBox headRad;
         private System.Windows.Forms.Button btnAbort;
-        private System.Windows.Forms.Label lRayCount;
-        private System.Windows.Forms.TextBox RayCount;
         private System.Windows.Forms.Button show_graph;
         private System.Windows.Forms.Button ShowT;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -543,6 +507,29 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button setPoints;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox XRange;
+        private System.Windows.Forms.TextBox YRange;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox XGridRange;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox YGridRange;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox FirstPointY;
+        private System.Windows.Forms.TextBox RayCount;
+        private System.Windows.Forms.TextBox FirstPointX;
+        private System.Windows.Forms.Label lRayCount;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox headRad;
+        private System.Windows.Forms.Label EpsLabel;
+        private System.Windows.Forms.Label RadLabel;
+        private System.Windows.Forms.TextBox Eps;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox headY;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox headX;
     }
 }
 

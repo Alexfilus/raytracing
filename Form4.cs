@@ -19,9 +19,20 @@ namespace raytraicing
         private void DrawPoints()
         {
             pictureBox1.Image = ((Owner as Form1).pic.Clone() as Image);
-            int Radius = int.Parse(((Owner as Form1).Controls["HeadRad"] as TextBox).Text);
-            Graphics.FromImage(pictureBox1.Image).DrawEllipse(new Pen(Color.Green, 5), int.Parse(((Owner as Form1).Controls["FirstPointX"] as TextBox).Text) - 1, int.Parse(((Owner as Form1).Controls["FirstPointY"] as TextBox).Text) - 1, 2, 2);
-            Graphics.FromImage(pictureBox1.Image).DrawEllipse(Pens.Pink, int.Parse(((Owner as Form1).Controls["HeadX"] as TextBox).Text) - Radius, int.Parse(((Owner as Form1).Controls["HeadY"] as TextBox).Text) - Radius, 2 * Radius, 2 * Radius);
+            //int Radius = int.Parse(((Owner as Form1).Controls["HeadRad"] as TextBox).Text);
+            int Radius = int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadRad"] as TextBox).Text);
+            Graphics.FromImage(pictureBox1.Image).DrawEllipse(
+                new Pen(Color.Green, 5), 
+                    int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointX"] as TextBox).Text) - 1, 
+                    int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointY"] as TextBox).Text) - 1, 
+                    2, 
+                    2);
+            Graphics.FromImage(pictureBox1.Image).DrawEllipse(
+                Pens.Pink, 
+                    int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadX"] as TextBox).Text) - Radius, 
+                    int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadY"] as TextBox).Text) - Radius, 
+                    2 * Radius, 
+                    2 * Radius);
         }
 
         private void Form4_Paint(object sender, PaintEventArgs e)
@@ -39,13 +50,13 @@ namespace raytraicing
                 switch (Control.ModifierKeys)
                 {
                     case Keys.Control:
-                        ((Owner as Form1).Controls["FirstPointX"] as TextBox).Text = e.X.ToString();
-                        ((Owner as Form1).Controls["FirstPointY"] as TextBox).Text = e.Y.ToString();
+                        (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointX"] as TextBox).Text = e.X.ToString();
+                        (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointY"] as TextBox).Text = e.Y.ToString();
                         DrawPoints();
                         break;
                     case Keys.Alt:
-                        ((Owner as Form1).Controls["HeadX"] as TextBox).Text = e.X.ToString();
-                        ((Owner as Form1).Controls["HeadY"] as TextBox).Text = e.Y.ToString();
+                        (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadX"] as TextBox).Text = e.X.ToString();
+                        (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadY"] as TextBox).Text = e.Y.ToString();
                         DrawPoints();
                         break;
                     default: 

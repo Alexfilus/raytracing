@@ -61,7 +61,6 @@ namespace raytraicing
             col.Clear();
             AllRibs.Clear();
 
-            
             XGR = Convert.ToInt32(XGridRange.Text);
             YGR = Convert.ToInt32(YGridRange.Text);
             
@@ -78,6 +77,11 @@ namespace raytraicing
                 int IndexOfSpace2 = listBox2.Items[i].ToString().LastIndexOf(' ');
                 int FPNum = Convert.ToInt32(listBox2.Items[i].ToString().Substring(0, IndexOfSpace1));
                 int SPNum = Convert.ToInt32(listBox2.Items[i].ToString().Substring(IndexOfSpace1 + 1, IndexOfSpace2 - IndexOfSpace1));
+                if((FPNum>=listBox1.Items.Count)||SPNum>=listBox1.Items.Count)
+                {
+                    MessageBox.Show("Неверный формат введенных данных. Пожалуйста, проверьте исходные файлы комнаты.");
+                    return;
+                }
                 int IndexOfSpaceFP = listBox1.Items[FPNum].ToString().IndexOf(' ');
                 int IndexOfSpaceSP = listBox1.Items[SPNum].ToString().IndexOf(' ');
                 Point2DD FP = new Point2DD(Convert.ToInt32(listBox1.Items[FPNum].ToString().Substring(0, IndexOfSpaceFP)),
@@ -118,6 +122,7 @@ namespace raytraicing
             // Делаем доступными кнопки
             button5.Enabled = true;
             button7.Enabled = true;
+            setPoints.Enabled = true;
             toolStripStatusLabel1.Text = "Расчёты произведены";
         }
         //Запуск лучей
@@ -243,12 +248,28 @@ namespace raytraicing
             Head.DrawHead(Graphics.FromImage(pic));
             Graphics.FromImage(pic).DrawEllipse(new Pen(Color.Green, 5), int.Parse(FirstPointX.Text) - 1, int.Parse(FirstPointY.Text) - 1, 2, 2);
             toolStripStatusLabel1.Text = "Лучи пущены";
-        }
-        // Получить размеры экрана
-        private void button6_Click(object sender, EventArgs e)
-        {
-            XRange.Text = Screen.PrimaryScreen.Bounds.Width.ToString();
-            YRange.Text = Screen.PrimaryScreen.Bounds.Height.ToString();
+
+            // Построение графика
+
+            Graph_bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            Graphics g = Graphics.FromImage(Graph_bmp);
+            g.Clear(Color.White);
+            Graph graph = new Graph(new Size(Graph_bmp.Width, Graph_bmp.Height));
+
+            Point2DD[] points = Head.GetPoints(); // Получаем отсортированный массив
+            graph.DrawGraph(g, points);
+            Point2DD coefs = new Point2DD(MNK.GetLine(points)); // Метод наименьших квадратов
+            double minY = points.Min(point => point.Y);
+            RT = (minY * 6.0 / 7.0 - coefs.Y) / coefs.X;
+            // RT = (minY - coefs.Y) / coefs.X * 6 / 7;
+            Area = AllRibs.GetArea(); //Площадь комнаты
+            Perimetr = AllRibs.GetPerimetr(); // Периметр
+            Alpha = AllRibs.GetAlpha(); // Среднее арифметическое по всем коэфициентам звукопоглощения
+            graph.DrawLine(g, coefs);
+            g.Dispose();
+
+            show_graph.Enabled = true;
+            ShowT.Enabled = true;
         }
         // Показать форму с рисунком
         private void button7_Click(object sender, EventArgs e)
@@ -272,12 +293,16 @@ namespace raytraicing
                 comboBox2.Items.Add(Path.GetFileNameWithoutExtension(file.FullName)); // получаем полный путь к файлу и потом вычищаем ненужное, оставляем только имя файла.
             }
             comboBox2.SelectedIndex = 0;
-            button1_Click(sender, e);
-            button6_Click(sender, e);
+            comboBox1_SelectionChangeCommitted(sender, e);
+            XRange.Text = Screen.PrimaryScreen.Bounds.Width.ToString();
+            YRange.Text = Screen.PrimaryScreen.Bounds.Height.ToString();
         }
         // Сброс
         private void btnAbort_Click(object sender, EventArgs e)
         {
+            show_graph.Enabled = false;
+            ShowT.Enabled = false;
+            setPoints.Enabled = false;
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             //BumpLog.Items.Clear();
@@ -287,22 +312,7 @@ namespace raytraicing
         // Вывод графика
         private void show_graph_Click(object sender, EventArgs e)
         {
-            Graph_bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            Graphics g = Graphics.FromImage(Graph_bmp);
-            g.Clear(Color.White);
-            Graph graph = new Graph(new Size(Graph_bmp.Width, Graph_bmp.Height));
-
-            Point2DD[] points = Head.GetPoints(); // Получаем отсортированный массив
-            graph.DrawGraph(g, points);
-            Point2DD coefs = new Point2DD(MNK.GetLine(points)); // Метод наименьших квадратов
-            double minY = points.Min(point => point.Y);
-            RT = (minY*6.0/7.0 - coefs.Y) / coefs.X;
-           // RT = (minY - coefs.Y) / coefs.X * 6 / 7;
-            Area = AllRibs.GetArea(); //Площадь комнаты
-            Perimetr = AllRibs.GetPerimetr(); // Периметр
-            Alpha = AllRibs.GetAlpha(); // Среднее арифметическое по всем коэфициентам звукопоглощения
-            graph.DrawLine(g, coefs);
-            g.Dispose();
+            
             FormGraph f2 = new FormGraph();
             f2.Owner = this;
             f2.ShowDialog();
@@ -315,7 +325,12 @@ namespace raytraicing
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            button1_Click(sender, e);
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            listBox1.Items.AddRange(File.ReadAllLines(comboBox1.SelectedItem.ToString() + ".points"));
+            listBox2.Items.AddRange(File.ReadAllLines(comboBox2.SelectedItem.ToString() + ".ribs"));
+            button3.Enabled = true;
+            toolStripStatusLabel1.Text = "Комната загружена";
         }
 
         private void Eps_TextChanged(object sender, EventArgs e)
