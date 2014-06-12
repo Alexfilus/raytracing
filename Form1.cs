@@ -39,6 +39,38 @@ namespace raytraicing
         public double Alpha = 0;
         public double RT;
    
+        public void AddSource(string Text1 = "",string Text2 ="")
+        {
+            DelSource.Enabled = true;
+            int SourceCount = sourceBox.Controls.OfType<Label>().Sum(label => 1) - 2;
+            Label tempLabel = (sourceBox.Controls["SourceNum" + SourceCount.ToString()] as Label);
+            Label NewLabel = new Label();
+            NewLabel.Name = "SourceNum" + (SourceCount + 1).ToString();
+            NewLabel.Size = tempLabel.Size;
+            NewLabel.Top = tempLabel.Top + 24;
+            NewLabel.Left = tempLabel.Left;
+            NewLabel.Text = (SourceCount + 1).ToString();
+            sourceBox.Controls.Add(NewLabel);
+            TextBox tempX = (sourceBox.Controls["FirstPointX" + SourceCount.ToString()] as TextBox);
+            TextBox tempY = (sourceBox.Controls["FirstPointY" + SourceCount.ToString()] as TextBox);
+            TextBox NewX = new TextBox();
+            TextBox NewY = new TextBox();
+            NewX.Name = "FirstPointX" + (SourceCount + 1).ToString();
+            NewY.Name = "FirstPointY" + (SourceCount + 1).ToString();
+            NewX.Size = tempX.Size;
+            NewY.Size = tempY.Size;
+            NewX.Top = tempX.Top + 24;
+            NewY.Top = tempY.Top + 24;
+            NewX.Left = tempX.Left;
+            NewY.Left = tempY.Left;
+            if (Text1 == "") NewX.Text = tempX.Text;
+            else NewX.Text = Text1;
+            if (Text2 == "") NewY.Text = tempY.Text;
+            else NewY.Text = Text2;
+            sourceBox.Controls.Add(NewX);
+            sourceBox.Controls.Add(NewY);
+        }
+
         // Загрузить информацию
         private void button1_Click(object sender, EventArgs e)
         {
@@ -129,124 +161,137 @@ namespace raytraicing
         private void button5_Click(object sender, EventArgs e)
         {
             Head = new Listener(new Point2D(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
-            Rays AllRays = new Rays(new Point2DD(int.Parse(FirstPointX.Text), int.Parse(FirstPointY.Text)), int.Parse(RayCount.Text));
-            
-            Head.DrawHead(Graphics.FromImage(pic));
+            //Rays AllRays = new Rays(new Point2DD(int.Parse(FirstPointX1.Text), int.Parse(FirstPointY1.Text)), int.Parse(RayCount.Text));
+
+            List<Rays> AllSources = new List<Rays>();
+            int SourceCount = sourceBox.Controls.OfType<Label>().Sum(label => 1) - 2;
+            for (int j = 1; j <= SourceCount; ++j) 
+                AllSources.Add(
+                    new Rays(
+                        new Point2DD(int.Parse((sourceBox.Controls["FirstPointX"+j.ToString()] as TextBox).Text), 
+                                     int.Parse((sourceBox.Controls["FirstPointY"+j.ToString()] as TextBox).Text)), 
+                        int.Parse(RayCount.Text)));
+
+            //Head.DrawHead(Graphics.FromImage(pic));
             double epsilon = Convert.ToDouble(Eps.Text);
-            int numR, numR1=-1, numR2=-1;
+            int numR;//, numR1=-1, numR2=-1;
             List<Point2DD> Results = new List<Point2DD>();
             List<double> Norms = new List<double>();
             List<int> Rnums = new List<int>();
             List<int> DelRNums = new List<int>();
-            Rib Bisector = new Rib();
-            int i = 0;
-            qwerty:
-            //foreach (Ray ray in AllRays.List)
-            while(i<AllRays.Count)
+           // Rib Bisector = new Rib();
+            foreach (Rays AllRays in AllSources)
             {
-                Ray ray = AllRays[i];
-                numR = -1;
-                DelRNums.Clear();
-                
-                while (ray.Power > epsilon)// Луч отражается пока его мощность не станет меньше epsilon
+                int i = 0;
+            qwerty:
+                //foreach (Ray ray in AllRays.List)
+                while (i < AllRays.Count)
                 {
-                    Point2DD Res = new Point2DD();
+                    Ray ray = AllRays[i];
+                    numR = -1;
+                    DelRNums.Clear();
 
-                    // Ищем не пустую клетку
-
-                    while (col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count.Equals(0))
+                    while (ray.Power > epsilon)// Луч отражается пока его мощность не станет меньше epsilon
                     {
-                        ray.NextCell(XGR, YGR, Head);
-                        if ((ray.CurPoint.X < 0) || (ray.CurPoint.X >= maxX) || (ray.CurPoint.Y < 0) || (ray.CurPoint.Y >= maxY))
+                        Point2DD Res = new Point2DD();
+
+                        // Ищем не пустую клетку
+
+                        while (col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count.Equals(0))
                         {
-                            //ray.DrawRay(Graphics.FromImage(pic), Pens.Black);
-                            //MessageBox.Show("Ошибка! Выход за границы области!");
-                            i++;
-                            goto qwerty;
-                            //return;
+                            ray.NextCell(XGR, YGR, Head);
+                            if ((ray.CurPoint.X < 0) || (ray.CurPoint.X >= maxX) || (ray.CurPoint.Y < 0) || (ray.CurPoint.Y >= maxY))
+                            {
+                                //ray.DrawRay(Graphics.FromImage(pic), Pens.Black);
+                                //MessageBox.Show("Ошибка! Выход за границы области!");
+                                i++;
+                                goto qwerty;
+                                //return;
+                            }
                         }
-                    }
-                    Results.Clear();
-                    Norms.Clear();
-                    Rnums.Clear();
-                    Rnums = new List<int>(col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR]); // Список рёбер этого сегмента копируем, он известен заранее
+                        Results.Clear();
+                        Norms.Clear();
+                        Rnums.Clear();
+                        Rnums = new List<int>(col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR]); // Список рёбер этого сегмента копируем, он известен заранее
 
-                    // Собираем информацию о точках пересечения
-                    for (int j = 0; j < col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count; j++)
-                    {
-                        int num = col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR][j];
-                        Res = AllRibs[num].GetCrossPointXY(ray);
-                        Results.Add(Res);
-                        //Norms.Add(ray.GetDistance(Res));
-                        Norms.Add(Useful.vect_length(ray.CurPoint, Res));
-                    }
-
-                    // Выясняем какие точки лишние
-                    for (int j = 0; j < col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count; j++)
-                    {
-                        int num = col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR][j];
-                        // Отрезок параллелен лучу
-                        if (AllRibs[num].IsParallel(ray))
+                        // Собираем информацию о точках пересечения
+                        for (int j = 0; j < col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count; j++)
                         {
-                            DelRNums.Add(num);
+                            int num = col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR][j];
+                            Res = AllRibs[num].GetCrossPointXY(ray);
+                            Results.Add(Res);
+                            //Norms.Add(ray.GetDistance(Res));
+                            Norms.Add(Useful.vect_length(ray.CurPoint, Res));
+                        }
+
+                        // Выясняем какие точки лишние
+                        for (int j = 0; j < col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR].Count; j++)
+                        {
+                            int num = col[(int)ray.CurPoint.X / XGR][(int)ray.CurPoint.Y / YGR][j];
+                            // Отрезок параллелен лучу
+                            if (AllRibs[num].IsParallel(ray))
+                            {
+                                DelRNums.Add(num);
+                                continue;
+                            }
+                            // Мы остались в той же точке, либо отрезок находится раньше начала луча
+                            if (AllRibs[num].GetCrossPointT(ray) < 0)
+                            {
+                                DelRNums.Add(num);
+                                continue;
+                            }
+                            Res = AllRibs[num].GetCrossPointXY(ray);
+                            if (AllRibs[num].IsInhere(ray))//if (AllRibs[num].IsInhere(ray))
+                            {
+                                DelRNums.Add(num);
+                                continue;
+                            }
+                            // Проверяем принадлежит ли точка пересечения клетке
+                            if (((int)Res.X / XGR != (int)ray.CurPoint.X / XGR) && ((int)Res.Y / YGR != (int)ray.CurPoint.X / YGR))
+                            {
+                                DelRNums.Add(num);
+                                continue;
+                            }
+                        }
+                        // Удаляем лишние точки. Двигаемся с конца
+                        while (DelRNums.Count != 0)
+                        {
+                            Results.RemoveAt(Rnums.IndexOf(DelRNums[DelRNums.Count - 1]));
+                            Norms.RemoveAt(Rnums.IndexOf(DelRNums[DelRNums.Count - 1]));
+                            Rnums.RemoveAt(Rnums.IndexOf(DelRNums[DelRNums.Count - 1]));
+                            DelRNums.RemoveAt(DelRNums.Count - 1);
+                        }
+                        // Удалим то ребро от которого уже только что отражались
+                        if (Rnums.Contains(numR))
+                        {
+                            Results.RemoveAt(Rnums.IndexOf(numR));
+                            Norms.RemoveAt(Rnums.IndexOf(numR));
+                            Rnums.Remove(numR);
+                        }
+                        // Проверям остались ли рёбра в списке
+                        if (Rnums.Count.Equals(0))
+                        {
+                            ray.NextCell(XGR, YGR, Head);
                             continue;
                         }
-                        // Мы остались в той же точке, либо отрезок находится раньше начала луча
-                        if (AllRibs[num].GetCrossPointT(ray) < 0)
-                        {
-                            DelRNums.Add(num);
-                            continue;
-                        }
-                        Res = AllRibs[num].GetCrossPointXY(ray);
-                        if (AllRibs[num].IsInhere(ray))//if (AllRibs[num].IsInhere(ray))
-                        {
-                            DelRNums.Add(num);
-                            continue;
-                        }
-                        // Проверяем принадлежит ли точка пересечения клетке
-                        if (((int)Res.X / XGR != (int)ray.CurPoint.X / XGR) && ((int)Res.Y / YGR != (int)ray.CurPoint.X / YGR))
-                        {
-                            DelRNums.Add(num);
-                            continue;
-                        }
-                    }
-                    // Удаляем лишние точки. Двигаемся с конца
-                    while (DelRNums.Count != 0)
-                    {
-                        Results.RemoveAt(Rnums.IndexOf(DelRNums[DelRNums.Count - 1]));
-                        Norms.RemoveAt(Rnums.IndexOf(DelRNums[DelRNums.Count - 1]));
-                        Rnums.RemoveAt(Rnums.IndexOf(DelRNums[DelRNums.Count - 1]));
-                        DelRNums.RemoveAt(DelRNums.Count - 1);
-                    }
-                    // Удалим то ребро от которого уже только что отражались
-                    if (Rnums.Contains(numR))
-                    {
-                        Results.RemoveAt(Rnums.IndexOf(numR));
-                        Norms.RemoveAt(Rnums.IndexOf(numR));
-                        Rnums.Remove(numR);
-                    }
-                    // Проверям остались ли рёбра в списке
-                    if (Rnums.Count.Equals(0))
-                    {
-                        ray.NextCell(XGR, YGR, Head);
-                        continue;
-                    }
 
-                    // Столкновение всё-таки произошло
-                    ray.CurPoint = Results[Norms.IndexOf(Norms.Min())];
-                    
-                    int IsInHead = Head.Check(ray); // Пересекает ли луч голову
-                    if (IsInHead != 0)
-                    {
-                        numR = Rnums[Norms.IndexOf(Norms.Min())];
-                        ray.ReNew(AllRibs[numR]); // Отражаем луч
+                        // Столкновение всё-таки произошло
+                        ray.CurPoint = Results[Norms.IndexOf(Norms.Min())];
+
+                        int IsInHead = Head.Check(ray); // Пересекает ли луч голову
+                        if (IsInHead != 0)
+                        {
+                            numR = Rnums[Norms.IndexOf(Norms.Min())];
+                            ray.ReNew(AllRibs[numR]); // Отражаем луч
+                        }
+                        else ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
                     }
-                    else ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
+                    i++;
                 }
-                i++;
+                Graphics.FromImage(pic).DrawEllipse(new Pen(Color.Green, 5), int.Parse(FirstPointX1.Text) - 1, int.Parse(FirstPointY1.Text) - 1, 2, 2);
             }
             Head.DrawHead(Graphics.FromImage(pic));
-            Graphics.FromImage(pic).DrawEllipse(new Pen(Color.Green, 5), int.Parse(FirstPointX.Text) - 1, int.Parse(FirstPointY.Text) - 1, 2, 2);
+            
             toolStripStatusLabel1.Text = "Лучи пущены";
 
             // Построение графика
@@ -303,8 +348,8 @@ namespace raytraicing
             show_graph.Enabled = false;
             ShowT.Enabled = false;
             setPoints.Enabled = false;
-            listBox1.Items.Clear();
-            listBox2.Items.Clear();
+            //listBox1.Items.Clear();
+            //listBox2.Items.Clear();
             //BumpLog.Items.Clear();
             col.Clear();
             AllRibs.Clear();
@@ -364,6 +409,20 @@ namespace raytraicing
         {
             MessageBox.Show(Area.ToString());
             
+        }
+
+        private void AddSource_Click(object sender, EventArgs e)
+        {
+            AddSource();
+        }
+
+        private void DelSource_Click(object sender, EventArgs e)
+        {
+            int SourceCount = sourceBox.Controls.OfType<Label>().Sum(label => 1) - 2;
+            sourceBox.Controls.RemoveByKey("SourceNum" + SourceCount.ToString());
+            sourceBox.Controls.RemoveByKey("FirstPointX" + SourceCount.ToString());
+            sourceBox.Controls.RemoveByKey("FirstPointY" + SourceCount.ToString());
+            if (SourceCount == 2) DelSource.Enabled = false;
         }
     }
 }
