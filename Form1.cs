@@ -154,14 +154,13 @@ namespace raytraicing
             // Делаем доступными кнопки
             button5.Enabled = true;
             button7.Enabled = true;
-            setPoints.Enabled = true;
+            //setPoints.Enabled = true;
             toolStripStatusLabel1.Text = "Расчёты произведены";
         }
         //Запуск лучей
         private void button5_Click(object sender, EventArgs e)
         {
             Head = new Listener(new Point2D(Convert.ToInt32(headX.Text), Convert.ToInt32(headY.Text)), Convert.ToInt32(headRad.Text));
-            //Rays AllRays = new Rays(new Point2DD(int.Parse(FirstPointX1.Text), int.Parse(FirstPointY1.Text)), int.Parse(RayCount.Text));
 
             List<Rays> AllSources = new List<Rays>();
             int SourceCount = sourceBox.Controls.OfType<Label>().Sum(label => 1) - 2;
@@ -279,12 +278,14 @@ namespace raytraicing
                         ray.CurPoint = Results[Norms.IndexOf(Norms.Min())];
 
                         int IsInHead = Head.Check(ray); // Пересекает ли луч голову
+                       // ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
                         if (IsInHead != 0)
                         {
                             numR = Rnums[Norms.IndexOf(Norms.Min())];
                             ray.ReNew(AllRibs[numR]); // Отражаем луч
                         }
-                        else ray.DrawRay(Graphics.FromImage(pic), Pens.Red);
+                        //else 
+                            
                     }
                     i++;
                 }
@@ -307,8 +308,8 @@ namespace raytraicing
             double minY = points.Min(point => point.Y);
             RT = (minY * 6.0 / 7.0 - coefs.Y) / coefs.X;
             // RT = (minY - coefs.Y) / coefs.X * 6 / 7;
-            Area = AllRibs.GetArea(); //Площадь комнаты
-            Perimetr = AllRibs.GetPerimetr(); // Периметр
+            Area = Math.Round(AllRibs.GetArea(),4); //Площадь комнаты
+            Perimetr = Math.Round(AllRibs.GetPerimetr(),4); // Периметр
             Alpha = AllRibs.GetAlpha(); // Среднее арифметическое по всем коэфициентам звукопоглощения
             graph.DrawLine(g, coefs);
             g.Dispose();
@@ -347,10 +348,7 @@ namespace raytraicing
         {
             show_graph.Enabled = false;
             ShowT.Enabled = false;
-            setPoints.Enabled = false;
-            //listBox1.Items.Clear();
-            //listBox2.Items.Clear();
-            //BumpLog.Items.Clear();
+            //setPoints.Enabled = false;
             col.Clear();
             AllRibs.Clear();
         }
@@ -363,9 +361,9 @@ namespace raytraicing
             f2.ShowDialog();
         }
 
-        private void ShowT_Click(object sender, EventArgs e)
+        public void ShowT_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Инженерное RТ=" + (-0.128 * Area/ (Perimetr * Math.Log(1 - Alpha))).ToString() + "\n Программное RТ=" + RT.ToString());
+            MessageBox.Show("Инженерное RТ=" + Math.Round(-0.128 * Area/ (Perimetr * Math.Log(1 - Alpha)),4).ToString() + "\n Программное RТ=" + Math.Round(RT,4).ToString());
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -378,37 +376,11 @@ namespace raytraicing
             toolStripStatusLabel1.Text = "Комната загружена";
         }
 
-        private void Eps_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EpsLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void setPoints_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2();
             f2.Owner = this;
             f2.ShowDialog();
-        }
-
-        private void FirstPointY_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void headY_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(Area.ToString());
-            
         }
 
         private void AddSource_Click(object sender, EventArgs e)

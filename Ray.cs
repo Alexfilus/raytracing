@@ -86,7 +86,12 @@ namespace raytraicing
         public int Count;
         public List<Ray> List;
         
-
+        public Rays(Point2DD _Position)
+        {
+            Count = 1;
+            List = new List<Ray>(Count);
+            Add(_Position, new Point2DD(Math.Cos(60 * Math.PI / 180), Math.Sin(60 * Math.PI / 180)));
+        }
         public Rays(Point2DD _Position, int _Count)
         {
             Count = _Count;

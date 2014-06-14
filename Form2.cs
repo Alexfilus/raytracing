@@ -49,19 +49,23 @@ namespace raytraicing
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button.Equals(MouseButtons.Left)) this.Close();
-            if (e.Button.Equals(MouseButtons.Middle))
+            if (e.Button.Equals(MouseButtons.Left))
             {
-                (Owner as Form1).AddSource(e.X.ToString(), e.Y.ToString());
-               // (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointX"] as TextBox).Text = e.X.ToString();
-               // (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointY"] as TextBox).Text = e.Y.ToString();
-                DrawPoints();
-            }
-            if (e.Button.Equals(MouseButtons.Right))
-            {
-                (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadX"] as TextBox).Text = e.X.ToString();
-                (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadY"] as TextBox).Text = e.Y.ToString();
-                DrawPoints();
+                switch (Control.ModifierKeys)
+                {
+                    case Keys.Control:
+                        (Owner as Form1).AddSource(e.X.ToString(), e.Y.ToString());
+                        DrawPoints();
+                        break;
+                    case Keys.Alt:
+                        (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadX"] as TextBox).Text = e.X.ToString();
+                        (((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadY"] as TextBox).Text = e.Y.ToString();
+                        DrawPoints();
+                        break;
+                    default:
+                        this.Close();
+                        break;
+                }
             }
         }
 

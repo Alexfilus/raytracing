@@ -23,7 +23,7 @@ namespace raytraicing
             int Radius = int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadRad"] as TextBox).Text);
             
             Graphics.FromImage(pictureBox1.Image).DrawEllipse(
-                Pens.Pink, 
+                new Pen(Color.HotPink,3), 
                     int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadX"] as TextBox).Text) - Radius, 
                     int.Parse((((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["HeadY"] as TextBox).Text) - Radius, 
                     2 * Radius, 
@@ -53,8 +53,6 @@ namespace raytraicing
                 switch (Control.ModifierKeys)
                 {
                     case Keys.Control:
-                        //(((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointX"] as TextBox).Text = e.X.ToString();
-                        //(((Owner as Form1).Controls["groupBox1"] as GroupBox).Controls["FirstPointY"] as TextBox).Text = e.Y.ToString();
                         (Owner as Form1).AddSource(e.X.ToString(), e.Y.ToString());
                         DrawPoints();
                         break;

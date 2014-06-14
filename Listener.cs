@@ -59,7 +59,7 @@ namespace raytraicing
         }
         public void DrawHead(Graphics g)
         {
-            g.DrawEllipse(Pens.Pink, Position.X - Radius, Position.Y - Radius, 2 * Radius, 2 * Radius);
+            g.DrawEllipse(new Pen(Color.HotPink,3), Position.X - Radius, Position.Y - Radius, 2 * Radius, 2 * Radius);
             g.Dispose();
         }
         // Расстояние от последнего места отражения до головы.

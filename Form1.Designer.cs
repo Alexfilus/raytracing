@@ -44,7 +44,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.setPoints = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.XRange = new System.Windows.Forms.TextBox();
@@ -54,12 +53,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.YGridRange = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.FirstPointY1 = new System.Windows.Forms.TextBox();
             this.RayCount = new System.Windows.Forms.TextBox();
-            this.FirstPointX1 = new System.Windows.Forms.TextBox();
             this.lRayCount = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.headRad = new System.Windows.Forms.TextBox();
             this.EpsLabel = new System.Windows.Forms.Label();
             this.RadLabel = new System.Windows.Forms.Label();
@@ -68,6 +63,10 @@
             this.headY = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.headX = new System.Windows.Forms.TextBox();
+            this.FirstPointY1 = new System.Windows.Forms.TextBox();
+            this.FirstPointX1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.sourceBox = new System.Windows.Forms.GroupBox();
             this.SourceNum1 = new System.Windows.Forms.Label();
             this.AddSourceBtn = new System.Windows.Forms.Button();
@@ -146,9 +145,9 @@
             // 
             // btnAbort
             // 
-            this.btnAbort.Location = new System.Drawing.Point(218, 414);
+            this.btnAbort.Location = new System.Drawing.Point(220, 15);
             this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(402, 26);
+            this.btnAbort.Size = new System.Drawing.Size(131, 69);
             this.btnAbort.TabIndex = 43;
             this.btnAbort.Text = "Очистить";
             this.btnAbort.UseVisualStyleBackColor = true;
@@ -198,7 +197,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 443);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 413);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(632, 22);
             this.statusStrip1.TabIndex = 50;
@@ -227,17 +226,6 @@
             this.comboBox2.Size = new System.Drawing.Size(266, 21);
             this.comboBox2.TabIndex = 51;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
-            // 
-            // setPoints
-            // 
-            this.setPoints.Enabled = false;
-            this.setPoints.Location = new System.Drawing.Point(15, 413);
-            this.setPoints.Name = "setPoints";
-            this.setPoints.Size = new System.Drawing.Size(200, 27);
-            this.setPoints.TabIndex = 53;
-            this.setPoints.Text = "Установить приёмник и источник";
-            this.setPoints.UseVisualStyleBackColor = true;
-            this.setPoints.Click += new System.EventHandler(this.setPoints_Click);
             // 
             // groupBox1
             // 
@@ -338,30 +326,14 @@
             this.label4.TabIndex = 53;
             this.label4.Text = "Размер сетки по Y";
             // 
-            // FirstPointY1
-            // 
-            this.FirstPointY1.Location = new System.Drawing.Point(93, 32);
-            this.FirstPointY1.Name = "FirstPointY1";
-            this.FirstPointY1.Size = new System.Drawing.Size(27, 20);
-            this.FirstPointY1.TabIndex = 54;
-            this.FirstPointY1.Text = "500";
-            // 
             // RayCount
             // 
             this.RayCount.Location = new System.Drawing.Point(139, 217);
             this.RayCount.Name = "RayCount";
             this.RayCount.Size = new System.Drawing.Size(45, 20);
             this.RayCount.TabIndex = 67;
-            this.RayCount.Text = "10000";
+            this.RayCount.Text = "3000";
             this.RayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // FirstPointX1
-            // 
-            this.FirstPointX1.Location = new System.Drawing.Point(46, 32);
-            this.FirstPointX1.Name = "FirstPointX1";
-            this.FirstPointX1.Size = new System.Drawing.Size(27, 20);
-            this.FirstPointX1.TabIndex = 55;
-            this.FirstPointX1.Text = "160";
             // 
             // lRayCount
             // 
@@ -371,24 +343,6 @@
             this.lRayCount.Size = new System.Drawing.Size(97, 13);
             this.lRayCount.TabIndex = 66;
             this.lRayCount.Text = "Количество лучей";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(59, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(14, 13);
-            this.label7.TabIndex = 56;
-            this.label7.Text = "X";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(106, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(14, 13);
-            this.label8.TabIndex = 57;
-            this.label8.Text = "Y";
             // 
             // headRad
             // 
@@ -441,7 +395,7 @@
             this.headY.Name = "headY";
             this.headY.Size = new System.Drawing.Size(37, 20);
             this.headY.TabIndex = 60;
-            this.headY.Text = "600";
+            this.headY.Text = "500";
             this.headY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
@@ -461,6 +415,40 @@
             this.headX.TabIndex = 61;
             this.headX.Text = "750";
             this.headX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // FirstPointY1
+            // 
+            this.FirstPointY1.Location = new System.Drawing.Point(93, 32);
+            this.FirstPointY1.Name = "FirstPointY1";
+            this.FirstPointY1.Size = new System.Drawing.Size(27, 20);
+            this.FirstPointY1.TabIndex = 54;
+            this.FirstPointY1.Text = "500";
+            // 
+            // FirstPointX1
+            // 
+            this.FirstPointX1.Location = new System.Drawing.Point(46, 32);
+            this.FirstPointX1.Name = "FirstPointX1";
+            this.FirstPointX1.Size = new System.Drawing.Size(27, 20);
+            this.FirstPointX1.TabIndex = 55;
+            this.FirstPointX1.Text = "160";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(59, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 56;
+            this.label7.Text = "X";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(106, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(14, 13);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "Y";
             // 
             // sourceBox
             // 
@@ -510,12 +498,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 465);
+            this.ClientSize = new System.Drawing.Size(632, 435);
             this.Controls.Add(this.DelSource);
             this.Controls.Add(this.AddSourceBtn);
             this.Controls.Add(this.sourceBox);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.setPoints);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.statusStrip1);
@@ -565,7 +552,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button setPoints;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox XRange;
